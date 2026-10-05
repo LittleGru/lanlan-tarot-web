@@ -1,10 +1,8 @@
 /* The cover is a separate entrance; functional pages retain their navigation. */
-body[data-page="home"] .header { position: absolute; top: 0; left: 0; right: 0; z-index: 3; height: 106px; padding-top: 0; border: 0; }
-body[data-page="home"] .nav,
-body[data-page="home"] .ai-access-button,
+body[data-page="home"] .header,
 body[data-page="home"] footer { display: none; }
 body[data-page="home"] main { max-width: none; padding: 0; }
-body[data-page="home"] .home-hero { min-height: 100svh; padding: 130px max(5%,calc((100vw - 1296px)/2)) 70px; border: 0; border-radius: 0; }
+body[data-page="home"] .home-hero { min-height: 100svh; padding: 70px max(5%,calc((100vw - 1296px)/2)); border: 0; border-radius: 0; }
 body[data-page="home"] .home-hero::after { inset: 18px; }
 .home-hero { position: relative; isolation: isolate; display: grid; grid-template-columns: 1.1fr 1fr; align-items: center; gap: 20px; min-height: 630px; padding: 60px 48px; border: 1px solid #b78a5355; border-radius: 8px; overflow: hidden; background: #130b1a; }
 .home-hero::before { content: ''; position: absolute; inset: 0; z-index: -2; background: linear-gradient(90deg,#160c1df2 0%,#160c1dda 45%,#160c1d75 100%),url('../assets/witch-altar.png') center/cover no-repeat; }
@@ -17,7 +15,7 @@ body[data-page="home"] .home-hero::after { inset: 18px; }
 .home-actions { display: flex; gap: 14px; flex-wrap: wrap; }
 .home-actions button { padding: 14px 24px; font-size: 16px; }
 .home-actions .primary span { margin-left: 24px; }
-.home-logo { position: absolute; left: 50%; top: 48%; transform: translate(-50%,-50%); width: min(420px, 110%); height: auto; object-fit: contain; filter: drop-shadow(0 22px 35px #0007); }
+.home-mascot { position: absolute; left: 50%; top: 48%; transform: translate(-50%,-50%); width: min(420px, 110%); aspect-ratio: 1; border: 0; padding: 0; background: transparent; cursor: pointer; filter: drop-shadow(0 22px 35px #0007); }
 .home-art { position: relative; height: 430px; min-width: 0; }
 .home-orbit { position: absolute; width: 370px; height: 370px; left: 50%; top: 48%; transform: translate(-50%,-50%); border: 1px solid #c99c5660; border-radius: 50%; background: radial-gradient(ellipse,#97614730,transparent 70%); box-shadow: 0 0 0 22px #c99c5606,0 0 0 23px #c99c562b; }
 .home-orbit::before { content: ''; position: absolute; inset: 34px; border: 1px dashed #c99c5640; border-radius: 50%; }
@@ -33,7 +31,7 @@ body[data-page="home"] .home-hero::after { inset: 18px; }
   .home-hero { padding: 44px 30px; min-height: 550px; }
   .home-orbit { width: 270px; height: 270px; }
   .home-art { height: 350px; }
-  .home-logo { width: min(320px, 110%); }
+  .home-mascot { width: min(320px, 110%); }
   .home-hero h1 { font-size: 38px; }
 }
 @media (max-width:720px) {
@@ -46,7 +44,7 @@ body[data-page="home"] .home-hero::after { inset: 18px; }
   .header .nav { gap: 22px; overflow-x: auto; }
 }
 @media (prefers-reduced-motion: no-preference) {
-  .home-logo { animation: home-reveal 900ms ease-out both; }
+  .home-mascot { animation: home-reveal 900ms ease-out both; }
   @keyframes home-reveal { from { opacity: 0; top: 53%; } to { opacity: 1; top: 48%; } }
 }
 @media (max-width:720px) {
@@ -57,16 +55,39 @@ body[data-page="home"] .home-hero::after { inset: 18px; }
   .home-actions .primary span { margin-left: 12px; }
   .home-orbit { width: 230px; height: 230px; }
   .home-art { height: 300px; }
-  .home-logo { width: min(285px, 110%); }
+  .home-mascot { width: min(285px, 110%); }
 }
 
 @media (max-width:720px) {
-  body[data-page="home"] .header { height: 90px; }
-  body[data-page="home"] .home-hero { padding: 110px 28px 36px; gap: 20px; }
+  body[data-page="home"] .home-hero { padding: 44px 28px; gap: 20px; }
   .home-hero-copy { text-align: center; }
   .home-hero .eyebrow { margin-bottom: 18px; }
   .home-hero h1 { margin-top: 0; margin-bottom: 18px; }
   .home-intro { margin-bottom: 22px; }
   .home-actions { justify-content: center; }
   .home-art { height: 285px; margin-top: 0; }
+}
+
+.home-practice { border: 1px solid #79717d; border-radius: 3px; background: #39313d88; color: #cec8d0; }
+.home-practice:hover { background: #4a414e; border-color: #a59aa9; }
+.mascot-layers { display: block; position: relative; width: 100%; height: 100%; }
+.mascot-body,.mascot-arm { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; pointer-events: none; }
+/* The arm uses the original illustration, clipped to its hand, cuff and wand. */
+.mascot-arm { clip-path: polygon(6% 40%,19% 40%,20% 61%,23% 61%,24.5% 64%,24.5% 67.5%,27% 68%,29% 72%,29% 77%,26% 84%,21% 84%,16% 79%,14% 74%,14% 65%,17% 61%,12% 54%,6% 53%); transform-origin: 29% 80%; }
+.mascot-spark { position: absolute; opacity: 0; color: #ffe3a0; font-family: Georgia,serif; text-shadow: 0 0 16px #eec878; pointer-events: none; }
+.spark-one { left: 0; top: 38%; font-size: 28px; }
+.spark-two { left: 9%; top: 25%; font-size: 17px; }
+.spark-three { left: -4%; top: 55%; font-size: 20px; }
+@media (prefers-reduced-motion: no-preference) {
+  .mascot-arm { transition: transform 550ms cubic-bezier(.2,.8,.2,1); }
+  .mascot-layers { transition: transform 550ms ease; }
+  .home-mascot:is(:hover,:focus-visible,:active) .mascot-arm { transform: rotate(-24deg) translate(-2%,-2%); }
+  .home-mascot:is(:hover,:focus-visible,:active) .mascot-layers { transform: translateY(-5px); }
+  .home-mascot:is(:hover,:focus-visible,:active) .mascot-spark { animation: wand-spark 1.4s ease-in-out infinite; }
+  .home-mascot:is(:hover,:focus-visible,:active) .spark-two { animation-delay: .2s; }
+  .home-mascot:is(:hover,:focus-visible,:active) .spark-three { animation-delay: .4s; }
+  @keyframes wand-spark { 0%,100% { opacity: 0; transform: translateY(8px) scale(.6); } 45% { opacity: 1; transform: translateY(-6px) scale(1); } }
+}
+@media (prefers-reduced-motion: reduce) {
+  .home-mascot:is(:hover,:focus-visible,:active) .mascot-spark { opacity: 1; }
 }
