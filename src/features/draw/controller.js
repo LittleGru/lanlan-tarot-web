@@ -1,10 +1,10 @@
-import { drawCards, describeReading } from '../../core/drawing.js';
-import { element, listen } from '../../shared/dom.js';
-import { createDrawView } from './view.js';
-import { createReadingAssistantView } from './ai-view.js';
-import { requestAI } from '../../shared/ai-client.js';
-import { createLatestRequest } from '../../shared/ai-view.js';
-import { validateInterpretation } from '../../core/ai-contract.js';
+import { drawCards, describeReading } from '../../core/drawing.js?v=2a24e698b1e4';
+import { element, listen } from '../../shared/dom.js?v=2a24e698b1e4';
+import { createDrawView } from './view.js?v=2a24e698b1e4';
+import { createReadingAssistantView } from './ai-view.js?v=2a24e698b1e4';
+import { requestAI } from '../../shared/ai-client.js?v=2a24e698b1e4';
+import { createLatestRequest } from '../../shared/ai-view.js?v=2a24e698b1e4';
+import { validateInterpretation } from '../../core/ai-contract.js?v=2a24e698b1e4';
 
 export function mountDraw({ cards, spreads, signal, aiAvailable = true }) {
   const view = createDrawView();

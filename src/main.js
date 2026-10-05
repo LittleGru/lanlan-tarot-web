@@ -1,12 +1,12 @@
-import { loadCatalog } from './shared/catalog-loader.js';
-import { element } from './shared/dom.js';
-import { createNavigation } from './shared/navigation.js';
-import { mountCardDialog } from './shared/card-dialog.js';
-import { mountDraw } from './features/draw/controller.js';
-import { mountLibrary } from './features/library/controller.js';
-import { mountPractice } from './features/practice/controller.js';
-import { registerTarotTools } from './integrations/webmcp.js';
-import { configureRuntime } from './shared/runtime.js';
+import { loadCatalog } from './shared/catalog-loader.js?v=2a24e698b1e4';
+import { element } from './shared/dom.js?v=2a24e698b1e4';
+import { createNavigation } from './shared/navigation.js?v=2a24e698b1e4';
+import { mountCardDialog } from './shared/card-dialog.js?v=2a24e698b1e4';
+import { mountDraw } from './features/draw/controller.js?v=2a24e698b1e4';
+import { mountLibrary } from './features/library/controller.js?v=2a24e698b1e4';
+import { mountPractice } from './features/practice/controller.js?v=2a24e698b1e4';
+import { registerTarotTools } from './integrations/webmcp.js?v=2a24e698b1e4';
+import { configureRuntime } from './shared/runtime.js?v=2a24e698b1e4';
 
 async function startApplication() {
   const lifetime = new AbortController();

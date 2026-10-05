@@ -1,4 +1,4 @@
-import { escapeHTML as html } from './dom.js';
+import { escapeHTML as html } from './dom.js?v=2a24e698b1e4';
 
 export function renderTextList(items) {
   return `<ul class="ai-list">${items.map(item => `<li>${html(item)}</li>`).join('')}</ul>`;
