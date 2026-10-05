@@ -13,7 +13,7 @@ export function renderCardFace(drawn, label) {
     return `
       <div class="tarot-card card-back" aria-label="${html(label)}：等待抽牌">
         <span class="back-glyph" aria-hidden="true">☾</span>
-        <span class="back-line">LANLAN</span>
+        <span class="back-line">MOONLIT</span>
       </div>`;
   }
 
