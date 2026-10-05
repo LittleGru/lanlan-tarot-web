@@ -11,13 +11,10 @@
 .home-actions .primary span { margin-left: 24px; }
 .home-footnote { margin-top: 22px; font-size: 13px; color: var(--muted); }
 .home-footnote button { font-size: inherit; margin-left: 8px; }
+.home-logo { position: absolute; left: 50%; top: 48%; transform: translate(-50%,-50%); width: min(420px, 110%); height: auto; object-fit: contain; filter: drop-shadow(0 22px 35px #0007); }
 .home-art { position: relative; height: 430px; min-width: 0; }
 .home-orbit { position: absolute; width: 370px; height: 370px; left: 50%; top: 48%; transform: translate(-50%,-50%); border: 1px solid #c99c5660; border-radius: 50%; background: radial-gradient(ellipse,#97614730,transparent 70%); box-shadow: 0 0 0 22px #c99c5606,0 0 0 23px #c99c562b; }
 .home-orbit::before { content: ''; position: absolute; inset: 34px; border: 1px dashed #c99c5640; border-radius: 50%; }
-.home-card { position: absolute; left: 50%; top: 50%; width: 160px; height: 274px; object-fit: cover; border: 6px solid #dec9a5; border-radius: 7px; box-shadow: 0 20px 60px #0009; }
-.home-card.card-left { transform: translate(-112%,-48%) rotate(-17deg); }
-.home-card.card-right { transform: translate(12%,-48%) rotate(17deg); }
-.home-card.card-center { transform: translate(-50%,-55%); z-index: 1; }
 .home-star { position: absolute; color: #dfbd82; font-size: 33px; }
 .home-star.star-one { top: 18px; left: 18%; }
 .home-star.star-two { bottom: 52px; right: 8%; font-size: 21px; }
@@ -49,9 +46,9 @@
   .header .nav button { white-space: nowrap; }
   .header .ai-access-button { margin-left: auto; }
   .home-hero { padding: 44px 30px; min-height: 550px; }
-  .home-card { width: 125px; height: 214px; }
   .home-orbit { width: 270px; height: 270px; }
   .home-art { height: 350px; }
+  .home-logo { width: min(320px, 110%); }
   .home-hero h1 { font-size: 38px; }
   .home-facts div { flex-direction: column; gap: 3px; text-align: center; }
 }
@@ -60,7 +57,6 @@
   .home-hero h1 { font-size: clamp(27px,6.4vw,40px); white-space: normal; }
   .home-intro { font-size: 14px; }
   .home-art { height: 320px; margin-top: 10px; }
-  .home-card { width: 132px; height: 226px; }
   .home-art-caption { font-size: 8px; letter-spacing: 1px; }
   .home-star.star-two { right: 5%; bottom: 38px; }
   .home-facts strong { font-size: 22px; }
@@ -76,8 +72,8 @@
   .header .nav { gap: 22px; overflow-x: auto; }
 }
 @media (prefers-reduced-motion: no-preference) {
-  .home-card { animation: home-reveal 900ms ease-out both; }
-  @keyframes home-reveal { from { opacity: 0; top: 55%; } to { opacity: 1; top: 50%; } }
+  .home-logo { animation: home-reveal 900ms ease-out both; }
+  @keyframes home-reveal { from { opacity: 0; top: 53%; } to { opacity: 1; top: 48%; } }
 }
 @media (max-width:720px) {
   .header .nav { scrollbar-width: none; gap: 18px; }
@@ -85,7 +81,7 @@
   .home-actions { flex-wrap: nowrap; gap: 10px; }
   .home-actions button { padding: 12px 16px; font-size: 14px; }
   .home-actions .primary span { margin-left: 12px; }
-  .home-card { width: 110px; height: 188px; }
   .home-orbit { width: 230px; height: 230px; }
-  .home-art { height: 280px; }
+  .home-art { height: 300px; }
+  .home-logo { width: min(285px, 110%); }
 }
