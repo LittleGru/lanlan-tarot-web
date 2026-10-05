@@ -1,10 +1,10 @@
 export const PAGE_TITLES = Object.freeze({
-  draw: '抽牌', learn: '牌义资料', practice: '解读练习', guide: '入门指南',
+  home: '首页', draw: '抽牌', learn: '牌义资料', practice: '解读练习', guide: '入门指南',
 });
 
 export function pageFromHash(hash) {
   const page = hash.replace(/^#\/?/, '');
-  return Object.hasOwn(PAGE_TITLES, page) ? page : 'draw';
+  return Object.hasOwn(PAGE_TITLES, page) ? page : 'home';
 }
 
 /** Hash routes work on GitHub Pages without a server-side fallback. */

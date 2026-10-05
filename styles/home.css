@@ -1,0 +1,91 @@
+.home-hero { position: relative; isolation: isolate; display: grid; grid-template-columns: 1.1fr 1fr; align-items: center; gap: 20px; min-height: 630px; padding: 60px 48px; border: 1px solid #b78a5355; border-radius: 8px; overflow: hidden; background: #130b1a; }
+.home-hero::before { content: ''; position: absolute; inset: 0; z-index: -2; background: linear-gradient(90deg,#160c1df2 0%,#160c1dda 45%,#160c1d75 100%),url('../assets/witch-altar.png') center/cover no-repeat; }
+.home-hero::after { content: ''; position: absolute; inset: 12px; border: 1px solid #bd93532b; border-radius: 3px; pointer-events: none; z-index: -1; }
+.home-hero-copy { position: relative; z-index: 2; }
+.home-hero .eyebrow { margin-bottom: 28px; font-size: 11px; letter-spacing: 2.6px; }
+.home-hero h1 { font-size: clamp(38px,4.6vw,66px); line-height: 1.5; letter-spacing: 1px; margin-bottom: 28px; white-space: nowrap; }
+.home-hero h1 em { font-style: normal; color: #dfbd82; }
+.home-intro { font-size: 16px; line-height: 2; color: #cfbfd1; margin-bottom: 32px; }
+.home-actions { display: flex; gap: 14px; flex-wrap: wrap; }
+.home-actions button { padding: 14px 24px; font-size: 16px; }
+.home-actions .primary span { margin-left: 24px; }
+.home-footnote { margin-top: 22px; font-size: 13px; color: var(--muted); }
+.home-footnote button { font-size: inherit; margin-left: 8px; }
+.home-art { position: relative; height: 430px; min-width: 0; }
+.home-orbit { position: absolute; width: 370px; height: 370px; left: 50%; top: 48%; transform: translate(-50%,-50%); border: 1px solid #c99c5660; border-radius: 50%; background: radial-gradient(ellipse,#97614730,transparent 70%); box-shadow: 0 0 0 22px #c99c5606,0 0 0 23px #c99c562b; }
+.home-orbit::before { content: ''; position: absolute; inset: 34px; border: 1px dashed #c99c5640; border-radius: 50%; }
+.home-card { position: absolute; left: 50%; top: 50%; width: 160px; height: 274px; object-fit: cover; border: 6px solid #dec9a5; border-radius: 7px; box-shadow: 0 20px 60px #0009; }
+.home-card.card-left { transform: translate(-112%,-48%) rotate(-17deg); }
+.home-card.card-right { transform: translate(12%,-48%) rotate(17deg); }
+.home-card.card-center { transform: translate(-50%,-55%); z-index: 1; }
+.home-star { position: absolute; color: #dfbd82; font-size: 33px; }
+.home-star.star-one { top: 18px; left: 18%; }
+.home-star.star-two { bottom: 52px; right: 8%; font-size: 21px; }
+.home-art-caption { position: absolute; bottom: 2px; left: 50%; transform: translateX(-50%); white-space: nowrap; font: 9px Georgia,serif; letter-spacing: 2px; color: #c3a579; }
+.home-facts { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); padding: 28px 0; border-bottom: 1px solid var(--line); }
+.home-facts div { display: flex; align-items: center; justify-content: center; gap: 14px; padding: 12px; border-right: 1px solid var(--line); }
+.home-facts div:last-child { border-right: 0; }
+.home-facts strong { color: var(--gold); font: 27px Georgia,'Noto Serif SC',serif; font-weight: 400; white-space: nowrap; }
+.home-facts span { color: var(--muted); font-size: 13px; }
+.home-section-heading { margin: 68px 0 28px; }
+.home-section-heading h2 { font-size: 30px; }
+.home-section-heading p:last-child { color: var(--muted); }
+.home-paths { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); border-top: 1px solid var(--line); }
+.home-path { padding: 32px 28px 28px 0; }
+.home-path + .home-path { border-left: 1px solid var(--line); padding-left: 28px; }
+.home-path-number { color: #b99a72; font: 11px Georgia,serif; letter-spacing: 2px; }
+.home-path h3 { margin: 20px 0 15px; font-size: 23px; }
+.home-path p { color: var(--muted); font-size: 14px; line-height: 1.9; margin-bottom: 22px; }
+.home-path .text-button { font-size: 15px; }
+.home-closing { display: flex; gap: 26px; align-items: center; padding: 32px; margin-top: 55px; border: 1px solid #9d775947; background: linear-gradient(115deg,#311b3780,#130c1a); border-radius: 6px; }
+.home-closing img { flex-shrink: 0; object-fit: contain; }
+.home-closing div { flex: 1; }
+.home-closing h2 { font-size: 23px; }
+.home-closing p:last-child { color: var(--muted); font-size: 14px; margin-bottom: 0; }
+.home-closing button { flex-shrink: 0; }
+@media (max-width:1050px) {
+  .header { flex-wrap: wrap; height: auto; padding-top: 14px; gap: 12px 20px; }
+  .header .nav { order: 3; width: 100%; height: 48px; gap: 28px; }
+  .header .nav button { white-space: nowrap; }
+  .header .ai-access-button { margin-left: auto; }
+  .home-hero { padding: 44px 30px; min-height: 550px; }
+  .home-card { width: 125px; height: 214px; }
+  .home-orbit { width: 270px; height: 270px; }
+  .home-art { height: 350px; }
+  .home-hero h1 { font-size: 38px; }
+  .home-facts div { flex-direction: column; gap: 3px; text-align: center; }
+}
+@media (max-width:720px) {
+  .home-hero { grid-template-columns: 1fr; padding: 38px 26px; }
+  .home-hero h1 { font-size: clamp(27px,6.4vw,40px); white-space: normal; }
+  .home-intro { font-size: 14px; }
+  .home-art { height: 320px; margin-top: 10px; }
+  .home-card { width: 132px; height: 226px; }
+  .home-art-caption { font-size: 8px; letter-spacing: 1px; }
+  .home-star.star-two { right: 5%; bottom: 38px; }
+  .home-facts strong { font-size: 22px; }
+  .home-facts span { font-size: 11px; }
+  .home-section-heading { margin-top: 44px; }
+  .home-paths { grid-template-columns: 1fr; }
+  .home-path,.home-path + .home-path { border-left: 0; border-bottom: 1px solid var(--line); padding: 25px 0; }
+  .home-closing { flex-wrap: wrap; padding: 24px; gap: 18px; }
+  .home-closing img { width: 65px; height: 65px; }
+  .home-closing div { flex-basis: calc(100% - 90px); }
+  .home-closing h2 { font-size: 18px; }
+  .home-closing button { width: 100%; }
+  .header .nav { gap: 22px; overflow-x: auto; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .home-card { animation: home-reveal 900ms ease-out both; }
+  @keyframes home-reveal { from { opacity: 0; top: 55%; } to { opacity: 1; top: 50%; } }
+}
+@media (max-width:720px) {
+  .header .nav { scrollbar-width: none; gap: 18px; }
+  .header .nav::-webkit-scrollbar { display: none; }
+  .home-actions { flex-wrap: nowrap; gap: 10px; }
+  .home-actions button { padding: 12px 16px; font-size: 14px; }
+  .home-actions .primary span { margin-left: 12px; }
+  .home-card { width: 110px; height: 188px; }
+  .home-orbit { width: 230px; height: 230px; }
+  .home-art { height: 280px; }
+}

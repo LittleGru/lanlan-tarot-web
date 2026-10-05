@@ -1,4 +1,4 @@
-import { escapeHTML as html } from './dom.js?v=76f66a77feeb';
+import { escapeHTML as html } from './dom.js?v=ec38052b7ca7';
 
 export function orientationLabel(reverse) {
   return reverse ? '逆位' : '正位';

@@ -1,10 +1,10 @@
-import { createPracticeSession } from '../../core/practice.js?v=76f66a77feeb';
-import { element, listen } from '../../shared/dom.js?v=76f66a77feeb';
-import { createPracticeView } from './view.js?v=76f66a77feeb';
-import { createGradingView } from './ai-view.js?v=76f66a77feeb';
-import { createLatestRequest } from '../../shared/ai-view.js?v=76f66a77feeb';
-import { requestAI } from '../../shared/ai-client.js?v=76f66a77feeb';
-import { validateGrade } from '../../core/ai-contract.js?v=76f66a77feeb';
+import { createPracticeSession } from '../../core/practice.js?v=ec38052b7ca7';
+import { element, listen } from '../../shared/dom.js?v=ec38052b7ca7';
+import { createPracticeView } from './view.js?v=ec38052b7ca7';
+import { createGradingView } from './ai-view.js?v=ec38052b7ca7';
+import { createLatestRequest } from '../../shared/ai-view.js?v=ec38052b7ca7';
+import { requestAI } from '../../shared/ai-client.js?v=ec38052b7ca7';
+import { validateGrade } from '../../core/ai-contract.js?v=ec38052b7ca7';
 
 export function mountPractice({ cards, spreads, scenarios, includeReversed, signal, aiAvailable = true }) {
   const session = createPracticeSession(cards, scenarios, spreads);

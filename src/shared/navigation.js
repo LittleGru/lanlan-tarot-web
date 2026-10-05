@@ -1,5 +1,5 @@
-import { element, listen } from './dom.js?v=76f66a77feeb';
-import { createPageRouter, PAGE_TITLES } from '../core/routing.js?v=76f66a77feeb';
+import { element, listen } from './dom.js?v=ec38052b7ca7';
+import { createPageRouter, PAGE_TITLES } from '../core/routing.js?v=ec38052b7ca7';
 
 export function createNavigation({ onEnter, signal }) {
   function render(page) {
@@ -29,7 +29,7 @@ export function createNavigation({ onEnter, signal }) {
   }, signal);
   listen(element('.brand'), 'click', event => {
     event.preventDefault();
-    router.show('draw');
+    router.show('home');
   }, signal);
 
   return { show: router.show };
