@@ -4,12 +4,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#0c0712">
-    <meta name="tarot-ai-mode" content="disabled">
+    <meta name="tarot-ai-mode" content="hosted-api"><meta name="tarot-api-base" content="https://moonlit-tarot-api.moonlit-tarot.workers.dev">
     <title>懒懒塔罗 · 学习与练习</title>
-    <meta name="description" content="懒懒塔罗：78 张韦特塔罗牌义、9 种牌阵、随机抽牌与解读练习。">
+    <meta name="description" content="懒懒塔罗：78 张韦特塔罗牌义、9 种牌阵、随机抽牌、AI 解读与练习评分。">
     <link rel="icon" type="image/png" href="assets/lanlan-witch-logo.png">
     <link rel="stylesheet" href="styles/index.css">
-    <script type="module" src="src/main.js?v=2a24e698b1e4"></script>
+    <script type="module" src="src/main.js?v=b595f55a60fa"></script>
   </head>
   <body>
     <header class="header">
@@ -20,7 +20,23 @@
         <button data-tab="practice">解读练习</button>
         <button data-tab="guide">入门指南</button>
       </nav>
+      <button id="ai-access-button" class="outline ai-access-button" hidden>输入邀请码</button>
     </header>
+    <dialog id="ai-access-dialog" class="ai-access-dialog" aria-labelledby="ai-access-title">
+      <form id="ai-access-form">
+        <p class="eyebrow">AI READING</p>
+        <h2 id="ai-access-title">开启 AI 解读</h2>
+        <p class="muted">填写朋友分享的邀请码，即可使用解读与练习评分。试用次数有限，用完后会显示提示。</p>
+        <label for="ai-invite-code">邀请码</label>
+        <input id="ai-invite-code" type="password" maxlength="256" autocomplete="off" placeholder="填写邀请码" required>
+        <p class="muted">这里填写邀请码，不要填写 OpenAI API 密钥。</p>
+        <p id="ai-access-message" class="ai-message" role="status"></p>
+        <div class="practice-actions">
+          <button id="ai-access-submit" type="submit" class="primary">确认</button>
+          <button id="ai-access-close" type="button" class="outline">稍后再说</button>
+        </div>
+      </form>
+    </dialog>
     <main>
       <section id="draw" class="page active" aria-labelledby="draw-title">
         <div class="section-heading">
@@ -86,7 +102,7 @@
           <p class="muted">结合本次问题，查看每张牌的含义、牌与牌之间的联系和建议。</p>
           <p id="reading-ai-message" class="ai-message" role="status" aria-live="polite"></p>
           <div id="reading-ai-result" hidden></div>
-          <p class="ai-note" hidden></p>
+          <p class="ai-note">AI 反馈供学习参考，合理的不同解释也可以得分。</p>
         </section>
         <div id="draw-results" class="results" hidden></div>
       </section>
@@ -115,7 +131,7 @@
           <div>
             <p class="eyebrow">INTERPRETATION</p>
             <h1 id="practice-title">解读练习</h1>
-            <p class="intro">根据题目写下自己的解读，再对照参考说明与自查提示。</p>
+            <p class="intro">写下你的解读，查看评分与修改建议，也可以对照参考说明。</p>
           </div>
           <span id="practice-count" class="pill">本次练习：0 题</span>
         </div>
@@ -139,13 +155,13 @@
               <span id="char-count" class="muted">0 字</span>
               <div class="practice-actions">
                 <button id="reveal-reference" class="outline">查看参考</button>
-                <button id="grade-practice" class="primary" hidden>评分与建议</button>
+                <button id="grade-practice" class="primary">评分与建议</button>
               </div>
             </div>
             <p id="practice-message" role="status"></p>
             <p id="grading-message" class="ai-message" role="status" aria-live="polite"></p>
             <div id="grading-result" hidden></div>
-            <p class="ai-note" hidden></p>
+            <p class="ai-note">AI 反馈供学习参考，合理的不同解释也可以得分。</p>
             <div id="reference" hidden></div>
           </div>
         </div>

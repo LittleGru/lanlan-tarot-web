@@ -147,3 +147,16 @@
     flex: 1;
   }
 }
+.ai-access-button { flex-shrink: 0; font-size: 14px; }
+.ai-access-dialog {
+  width: min(460px, calc(100vw - 36px));
+  border: 1px solid var(--gold);
+  border-radius: 12px;
+  padding: 28px;
+  background: #180f22;
+  color: var(--text);
+  box-shadow: 0 24px 100px #0009;
+}
+.ai-access-dialog::backdrop { background: #08050dd9; }
+.ai-access-dialog input { width: 100%; margin-top: 10px; }
+.ai-access-dialog h2 { margin-top: 0; }

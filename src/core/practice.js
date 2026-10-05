@@ -1,4 +1,4 @@
-import { drawCards, randomIndex } from './drawing.js?v=2a24e698b1e4';
+import { drawCards, randomIndex } from './drawing.js?v=b595f55a60fa';
 
 /** One session owns its exercise and completion count; it has no DOM dependency. */
 export function createPracticeSession(cards, scenarios, pickIndex = randomIndex) {

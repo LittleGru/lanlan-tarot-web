@@ -1,5 +1,5 @@
-import { element, escapeHTML as html } from '../../shared/dom.js?v=2a24e698b1e4';
-import { renderCardFace, renderCardCaption, renderTags, orientationLabel } from '../../shared/card-view.js?v=2a24e698b1e4';
+import { element, escapeHTML as html } from '../../shared/dom.js?v=b595f55a60fa';
+import { renderCardFace, renderCardCaption, renderTags, orientationLabel } from '../../shared/card-view.js?v=b595f55a60fa';
 
 export function createPracticeView() {
   const input = element('#interpretation');
