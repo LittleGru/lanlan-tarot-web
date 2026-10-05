@@ -1,9 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700&family=Noto+Serif+SC:wght@400;500;600&display=swap');
 
 /* Keep the layer order explicit: foundations, breakpoints, theme, brand, spreads. */
-@import url('./base.css?v=a4d40a22b0f3');
-@import url('./responsive.css?v=a4d40a22b0f3');
-@import url('./theme.css?v=a4d40a22b0f3');
-@import url('./branding.css?v=a4d40a22b0f3');
-@import url('./spreads.css?v=a4d40a22b0f3');
-@import url('./ai.css?v=a4d40a22b0f3');
+@import url('./base.css?v=2fc853de6c13');
+@import url('./responsive.css?v=2fc853de6c13');
+@import url('./theme.css?v=2fc853de6c13');
+@import url('./branding.css?v=2fc853de6c13');
+@import url('./spreads.css?v=2fc853de6c13');
+@import url('./ai.css?v=2fc853de6c13');

@@ -1,13 +1,13 @@
-import { loadCatalog } from './shared/catalog-loader.js?v=a4d40a22b0f3';
-import { element } from './shared/dom.js?v=a4d40a22b0f3';
-import { createNavigation } from './shared/navigation.js?v=a4d40a22b0f3';
-import { mountCardDialog } from './shared/card-dialog.js?v=a4d40a22b0f3';
-import { mountDraw } from './features/draw/controller.js?v=a4d40a22b0f3';
-import { mountLibrary } from './features/library/controller.js?v=a4d40a22b0f3';
-import { mountPractice } from './features/practice/controller.js?v=a4d40a22b0f3';
-import { registerTarotTools } from './integrations/webmcp.js?v=a4d40a22b0f3';
-import { configureRuntime } from './shared/runtime.js?v=a4d40a22b0f3';
-import { mountAIAccess } from './shared/ai-access.js?v=a4d40a22b0f3';
+import { loadCatalog } from './shared/catalog-loader.js?v=2fc853de6c13';
+import { element } from './shared/dom.js?v=2fc853de6c13';
+import { createNavigation } from './shared/navigation.js?v=2fc853de6c13';
+import { mountCardDialog } from './shared/card-dialog.js?v=2fc853de6c13';
+import { mountDraw } from './features/draw/controller.js?v=2fc853de6c13';
+import { mountLibrary } from './features/library/controller.js?v=2fc853de6c13';
+import { mountPractice } from './features/practice/controller.js?v=2fc853de6c13';
+import { registerTarotTools } from './integrations/webmcp.js?v=2fc853de6c13';
+import { configureRuntime } from './shared/runtime.js?v=2fc853de6c13';
+import { mountAIAccess } from './shared/ai-access.js?v=2fc853de6c13';
 
 async function startApplication() {
   const lifetime = new AbortController();
