@@ -1,18 +1,26 @@
-import { drawCards, randomIndex } from './drawing.js?v=b595f55a60fa';
+import { drawCards, randomIndex } from './drawing.js?v=a4d40a22b0f3';
 
-/** One session owns its exercise and completion count; it has no DOM dependency. */
-export function createPracticeSession(cards, scenarios, pickIndex = randomIndex) {
+export function scenarioSupportsSpread(scenario, spreadId) {
+  return !scenario.spreadIds || scenario.spreadIds.includes(spreadId);
+}
+
+/** Owns a complete reading and counts a submitted exercise only once. */
+export function createPracticeSession(cards, scenarios, spreads, pickIndex = randomIndex) {
   let exercise = null;
   let completed = 0;
   let revealed = false;
 
-  function start(includeReversed) {
-    // Choose uniformly from the remaining scenarios rather than biasing the next one.
-    const candidates = scenarios.map((_, index) => index)
-      .filter(index => scenarios.length === 1 || index !== exercise?.scenarioIndex);
-    const scenarioIndex = candidates[pickIndex(candidates.length)];
+  function start(includeReversed, spreadId = 'daily') {
+    const spread = spreads.find(item => item.id === spreadId);
+    if (!spread) throw new Error('未知练习牌阵');
+    const eligible = scenarios.map((scenario, index) => ({ scenario, index }))
+      .filter(({ scenario }) => scenarioSupportsSpread(scenario, spread.id));
+    const candidates = eligible.filter(({ index }) => eligible.length === 1 || index !== exercise?.scenarioIndex);
+    if (!candidates.length) throw new Error('该牌阵暂无练习题目');
+    const scenarioIndex = candidates[pickIndex(candidates.length)].index;
     exercise = {
-      ...drawCards(cards, 1, includeReversed, pickIndex)[0],
+      spread,
+      reading: drawCards(cards, spread.count, includeReversed, pickIndex),
       scenarioIndex,
       scenario: scenarios[scenarioIndex],
     };
@@ -29,8 +37,7 @@ export function createPracticeSession(cards, scenarios, pickIndex = randomIndex)
   }
 
   return {
-    start,
-    reveal,
+    start, reveal,
     get exercise() { return exercise; },
     get completed() { return completed; },
   };

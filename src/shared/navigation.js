@@ -1,4 +1,4 @@
-import { element, listen } from './dom.js?v=b595f55a60fa';
+import { element, listen } from './dom.js?v=a4d40a22b0f3';
 
 const PAGES = new Set(['draw', 'learn', 'practice', 'guide']);
 

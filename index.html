@@ -8,9 +8,9 @@
     <title>懒懒塔罗 · 学习与练习</title>
     <meta name="description" content="懒懒塔罗：78 张韦特塔罗牌义、9 种牌阵、随机抽牌、AI 解读与练习评分。">
     <link rel="icon" type="image/png" href="assets/lanlan-witch-logo.png">
-    <link rel="stylesheet" href="styles/index.css">
-    <script type="module" src="src/main.js?v=b595f55a60fa"></script>
-  </head>
+    <link rel="stylesheet" href="styles/index.css?v=a4d40a22b0f3">
+    <script type="module" src="src/main.js?v=a4d40a22b0f3"></script>
+  <meta name="tarot-assets-version" content="a4d40a22b0f3"></head>
   <body>
     <header class="header">
       <a class="brand" href="#" aria-label="懒懒塔罗首页"><img class="brand-logo" src="assets/lanlan-witch-logo.png" alt="懒羊羊女巫 logo" width="80" height="80"><span>懒懒塔罗<small>MOONLIT TAROT</small></span></a>
@@ -135,6 +135,11 @@
           </div>
           <span id="practice-count" class="pill">本次练习：0 题</span>
         </div>
+        <div class="practice-toolbar">
+          <label for="practice-spread">练习牌阵</label>
+          <select id="practice-spread" aria-describedby="practice-spread-description"></select>
+          <p id="practice-spread-description" class="muted"></p>
+        </div>
         <div class="practice-layout">
           <div class="panel practice-scene">
             <div class="scene-top">
@@ -143,11 +148,12 @@
             </div>
             <h2 id="scenario"></h2>
             <div id="practice-card"></div>
+            <p id="practice-reading-tip" class="muted"></p>
             <p class="muted">先完成自己的解读，再查看参考说明。</p>
           </div>
           <div class="panel writing-panel">
             <label for="interpretation"><h2>你的解读</h2></label>
-            <p class="muted">说明牌面线索、与题目的联系，以及你的建议。</p>
+            <p class="muted">说明每张牌的位置和线索、牌之间的联系，以及你的建议。</p>
             <textarea id="interpretation" placeholder="牌面线索：……
 与题目的联系：……
 建议：……" maxlength="4000"></textarea>

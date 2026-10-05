@@ -160,3 +160,21 @@
 .ai-access-dialog::backdrop { background: #08050dd9; }
 .ai-access-dialog input { width: 100%; margin-top: 10px; }
 .ai-access-dialog h2 { margin-top: 0; }
+
+.practice-toolbar { display: flex; flex-wrap: wrap; align-items: center; gap: 14px; margin-bottom: 24px; }
+.practice-toolbar select { min-width: 240px; }
+.practice-toolbar p { flex-basis: 100%; margin: 0; }
+.practice-layout[data-multi="true"] { grid-template-columns: minmax(0, 1fr); }
+.practice-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 24px 16px; }
+.practice-cards.single { grid-template-columns: 1fr; }
+.practice-slot { min-width: 0; display: flex; flex-direction: column; align-items: center; }
+.practice-slot .position { margin: 0 0 14px; }
+.practice-cards:not(.single) .tarot-card { width: 130px; height: 223px; flex-shrink: 0; }
+.practice-position-prompt { font-size: 13px; line-height: 1.7; color: var(--muted); max-width: 220px; margin: 10px 0 0; }
+.practice-reference-card + .practice-reference-card { border-top: 1px solid var(--line); padding-top: 12px; }
+@media (max-width: 600px) {
+  .practice-toolbar select { width: 100%; min-width: 0; }
+  .practice-cards:not(.single) { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px 12px; }
+  .practice-cards:not(.single) .tarot-card { width: min(110px, 100%); height: auto; aspect-ratio: 158 / 270; }
+  .practice-slot .position { font-size: 13px; }
+}

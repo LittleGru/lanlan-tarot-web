@@ -1,13 +1,13 @@
-import { loadCatalog } from './shared/catalog-loader.js?v=b595f55a60fa';
-import { element } from './shared/dom.js?v=b595f55a60fa';
-import { createNavigation } from './shared/navigation.js?v=b595f55a60fa';
-import { mountCardDialog } from './shared/card-dialog.js?v=b595f55a60fa';
-import { mountDraw } from './features/draw/controller.js?v=b595f55a60fa';
-import { mountLibrary } from './features/library/controller.js?v=b595f55a60fa';
-import { mountPractice } from './features/practice/controller.js?v=b595f55a60fa';
-import { registerTarotTools } from './integrations/webmcp.js?v=b595f55a60fa';
-import { configureRuntime } from './shared/runtime.js?v=b595f55a60fa';
-import { mountAIAccess } from './shared/ai-access.js?v=b595f55a60fa';
+import { loadCatalog } from './shared/catalog-loader.js?v=a4d40a22b0f3';
+import { element } from './shared/dom.js?v=a4d40a22b0f3';
+import { createNavigation } from './shared/navigation.js?v=a4d40a22b0f3';
+import { mountCardDialog } from './shared/card-dialog.js?v=a4d40a22b0f3';
+import { mountDraw } from './features/draw/controller.js?v=a4d40a22b0f3';
+import { mountLibrary } from './features/library/controller.js?v=a4d40a22b0f3';
+import { mountPractice } from './features/practice/controller.js?v=a4d40a22b0f3';
+import { registerTarotTools } from './integrations/webmcp.js?v=a4d40a22b0f3';
+import { configureRuntime } from './shared/runtime.js?v=a4d40a22b0f3';
+import { mountAIAccess } from './shared/ai-access.js?v=a4d40a22b0f3';
 
 async function startApplication() {
   const lifetime = new AbortController();
@@ -16,7 +16,8 @@ async function startApplication() {
     if (!event.persisted) lifetime.abort();
   }, { signal: lifetime.signal });
   const signal = lifetime.signal;
-  const catalog = await loadCatalog();
+  const assetVersion = document.querySelector('meta[name="tarot-assets-version"]')?.content;
+  const catalog = await loadCatalog(path => fetch(assetVersion ? `${path}?v=${assetVersion}` : path));
   if (signal.aborted) return;
 
   const { aiAvailable } = configureRuntime(document);
@@ -25,6 +26,7 @@ async function startApplication() {
   const library = mountLibrary({ cards: catalog.cards, signal });
   const practice = mountPractice({
     cards: catalog.cards,
+    spreads: catalog.spreads,
     scenarios: catalog.scenarios,
     includeReversed: () => draw.includeReversed,
     signal,

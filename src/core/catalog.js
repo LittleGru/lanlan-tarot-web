@@ -71,7 +71,8 @@ export function validateSpreads(document) {
 export function validateScenarios(document) {
   const scenarios = entries(document, 'scenarios');
   if (!scenarios.every(scenario => ['question', 'lens', 'action']
-    .every(key => requireText(scenario[key])))) {
+    .every(key => requireText(scenario[key])) && (!scenario.spreadIds ||
+      (Array.isArray(scenario.spreadIds) && scenario.spreadIds.length && scenario.spreadIds.every(id => /^[a-z]+$/.test(id)))))) {
     throw new Error('练习题目无效');
   }
   return scenarios;

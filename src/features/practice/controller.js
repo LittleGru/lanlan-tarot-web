@@ -1,27 +1,31 @@
-import { createPracticeSession } from '../../core/practice.js?v=b595f55a60fa';
-import { element, listen } from '../../shared/dom.js?v=b595f55a60fa';
-import { createPracticeView } from './view.js?v=b595f55a60fa';
-import { createGradingView } from './ai-view.js?v=b595f55a60fa';
-import { createLatestRequest } from '../../shared/ai-view.js?v=b595f55a60fa';
-import { requestAI } from '../../shared/ai-client.js?v=b595f55a60fa';
-import { validateGrade } from '../../core/ai-contract.js?v=b595f55a60fa';
+import { createPracticeSession } from '../../core/practice.js?v=a4d40a22b0f3';
+import { element, listen } from '../../shared/dom.js?v=a4d40a22b0f3';
+import { createPracticeView } from './view.js?v=a4d40a22b0f3';
+import { createGradingView } from './ai-view.js?v=a4d40a22b0f3';
+import { createLatestRequest } from '../../shared/ai-view.js?v=a4d40a22b0f3';
+import { requestAI } from '../../shared/ai-client.js?v=a4d40a22b0f3';
+import { validateGrade } from '../../core/ai-contract.js?v=a4d40a22b0f3';
 
-export function mountPractice({ cards, scenarios, includeReversed, signal, aiAvailable = true }) {
-  const session = createPracticeSession(cards, scenarios);
+export function mountPractice({ cards, spreads, scenarios, includeReversed, signal, aiAvailable = true }) {
+  const session = createPracticeSession(cards, scenarios, spreads);
   const view = createPracticeView();
   const grading = createGradingView();
   const request = createLatestRequest(signal);
   const input = element('#interpretation');
+  const selector = element('#practice-spread');
+  view.populate(spreads);
 
   function start() {
     request.cancel();
     grading.reset();
-    const exercise = session.start(includeReversed());
+    const exercise = session.start(includeReversed(), selector.value);
     view.showExercise(exercise);
     return {
-      id: exercise.card.id,
-      name: exercise.card.name,
-      orientation: exercise.reverse ? 'reversed' : 'upright',
+      spreadId: exercise.spread.id,
+      cards: exercise.reading.map(({ card, reverse }, index) => ({
+        id: card.id, name: card.name, orientation: reverse ? 'reversed' : 'upright',
+        position: exercise.spread.positions[index].name,
+      })),
       question: exercise.scenario.question,
     };
   }
@@ -40,7 +44,8 @@ export function mountPractice({ cards, scenarios, includeReversed, signal, aiAva
     grading.loading();
     try {
       const value = validateGrade(await requestAI('grade', {
-        card: { id: exercise.card.id, reverse: exercise.reverse },
+        spreadId: exercise.spread.id,
+        cards: exercise.reading.map(({ card, reverse }) => ({ id: card.id, reverse })),
         scenarioIndex: exercise.scenarioIndex,
         interpretation,
       }, pending));
@@ -62,6 +67,7 @@ export function mountPractice({ cards, scenarios, includeReversed, signal, aiAva
     return true;
   }
 
+  listen(selector, 'change', start, signal);
   listen(element('#new-practice'), 'click', start, signal);
   listen(element('#reveal-reference'), 'click', reveal, signal);
   listen(element('#grade-practice'), 'click', grade, signal);

@@ -1,4 +1,4 @@
-import { validateCards, validateSpreads, validateScenarios } from '../core/catalog.js?v=b595f55a60fa';
+import { validateCards, validateSpreads, validateScenarios } from '../core/catalog.js?v=a4d40a22b0f3';
 
 async function readJSON(path, fetchResource) {
   const response = await fetchResource(path);
@@ -15,6 +15,9 @@ export async function loadCatalog(fetchResource = globalThis.fetch) {
   ]);
   if (spreads.some(spread => spread.count > cards.length)) {
     throw new Error('牌阵张数超过牌组数量');
+  }
+  if (scenarios.some(scenario => scenario.spreadIds?.some(id => !spreads.some(spread => spread.id === id)))) {
+    throw new Error('练习题目引用了未知牌阵');
   }
   return { cards, spreads, scenarios };
 }
