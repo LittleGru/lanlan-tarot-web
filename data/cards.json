@@ -1,0 +1,1275 @@
+{
+  "schemaVersion": 1,
+  "cards": [
+    {
+      "id": "major-0",
+      "suit": "major",
+      "rank": 0,
+      "name": "愚人",
+      "english": "The Fool",
+      "keywords": [
+        "新旅程",
+        "好奇",
+        "信任"
+      ],
+      "upright": "开始新的事情，愿意尝试尚不熟悉的选择。",
+      "reversed": "冲动、准备不足，或因担忧而迟迟不迈步。",
+      "symbol": "轻装与悬崖形成对照，涉及新的开始与风险。",
+      "prompt": "开始前需要哪些准备？",
+      "imagePath": "cards/major-00.jpg"
+    },
+    {
+      "id": "major-1",
+      "suit": "major",
+      "rank": 1,
+      "name": "魔术师",
+      "english": "The Magician",
+      "keywords": [
+        "行动",
+        "资源",
+        "创造"
+      ],
+      "upright": "运用已有的资源和能力，将想法付诸实践。",
+      "reversed": "能力分散、言行脱节，或过度依赖技巧。",
+      "symbol": "桌上的四种器物象征可被运用的不同资源。",
+      "prompt": "现有的资源中，哪些还没有用上？",
+      "imagePath": "cards/major-01.jpg"
+    },
+    {
+      "id": "major-2",
+      "suit": "major",
+      "rank": 2,
+      "name": "女祭司",
+      "english": "The High Priestess",
+      "keywords": [
+        "直觉",
+        "安静",
+        "隐藏"
+      ],
+      "upright": "保持观察，留意直觉和尚未明确的信息。",
+      "reversed": "忽略内在感受，或把直觉与猜测混淆。",
+      "symbol": "帷幕与卷轴常与尚未明确或公开的信息有关。",
+      "prompt": "哪些信息还需要观察或确认？",
+      "imagePath": "cards/major-02.jpg"
+    },
+    {
+      "id": "major-3",
+      "suit": "major",
+      "rank": 3,
+      "name": "皇后",
+      "english": "The Empress",
+      "keywords": [
+        "滋养",
+        "丰盛",
+        "生长"
+      ],
+      "upright": "与照顾、创造和持续发展有关，需要适当的投入与耐心。",
+      "reversed": "照顾过度、创作停滞，或忽略自己的需要。",
+      "symbol": "麦田与自然环境呼应丰盛和生长。",
+      "prompt": "继续发展需要怎样的投入和照顾？",
+      "imagePath": "cards/major-03.jpg"
+    },
+    {
+      "id": "major-4",
+      "suit": "major",
+      "rank": 4,
+      "name": "皇帝",
+      "english": "The Emperor",
+      "keywords": [
+        "结构",
+        "边界",
+        "责任"
+      ],
+      "upright": "建立规则、明确责任，按计划推进事情。",
+      "reversed": "控制过多、缺乏弹性，或边界不清。",
+      "symbol": "石座与山体强调稳定、秩序和掌控。",
+      "prompt": "哪些规则或责任需要明确？",
+      "imagePath": "cards/major-04.jpg"
+    },
+    {
+      "id": "major-5",
+      "suit": "major",
+      "rank": 5,
+      "name": "教皇",
+      "english": "The Hierophant",
+      "keywords": [
+        "传统",
+        "学习",
+        "共同价值"
+      ],
+      "upright": "向成熟的方法或可信的导师学习。",
+      "reversed": "惯例限制了你，或需要重新审视既定规则。",
+      "symbol": "两位学习者与仪式空间提示传承与共同信念。",
+      "prompt": "哪些经验值得继承，哪些可以调整？",
+      "imagePath": "cards/major-05.jpg"
+    },
+    {
+      "id": "major-6",
+      "suit": "major",
+      "rank": 6,
+      "name": "恋人",
+      "english": "The Lovers",
+      "keywords": [
+        "联结",
+        "选择",
+        "价值一致"
+      ],
+      "upright": "关系或选择涉及个人价值，需要明确自己的立场。",
+      "reversed": "价值冲突、失衡，或回避重要选择。",
+      "symbol": "人物之间的关系常与选择、联系和责任有关。",
+      "prompt": "这个选择是否与你的价值观一致？",
+      "imagePath": "cards/major-06.jpg"
+    },
+    {
+      "id": "major-7",
+      "suit": "major",
+      "rank": 7,
+      "name": "战车",
+      "english": "The Chariot",
+      "keywords": [
+        "方向",
+        "意志",
+        "推进"
+      ],
+      "upright": "目标明确，能够协调不同因素并主动推进。",
+      "reversed": "失去方向、推进过急，或内在力量相互拉扯。",
+      "symbol": "两只颜色不同的斯芬克斯呼应需要协调的力量。",
+      "prompt": "各项行动是否都指向同一个目标？",
+      "imagePath": "cards/major-07.jpg"
+    },
+    {
+      "id": "major-8",
+      "suit": "major",
+      "rank": 8,
+      "name": "力量",
+      "english": "Strength",
+      "keywords": [
+        "耐心",
+        "勇气",
+        "温柔"
+      ],
+      "upright": "面对困难时保持耐心、自制和信心。",
+      "reversed": "自我怀疑、压抑情绪，或急于强行控制。",
+      "symbol": "人与狮子的互动常与耐心、自制和稳定有关。",
+      "prompt": "面对困难时，怎样保持耐心和自制？",
+      "imagePath": "cards/major-08.jpg"
+    },
+    {
+      "id": "major-9",
+      "suit": "major",
+      "rank": 9,
+      "name": "隐者",
+      "english": "The Hermit",
+      "keywords": [
+        "独处",
+        "反思",
+        "寻找"
+      ],
+      "upright": "暂时减少外界干扰，独立思考并参考已有经验。",
+      "reversed": "过度孤立，或因害怕面对而逃避反思。",
+      "symbol": "提灯照亮有限的范围，常与独立思考和寻找方向有关。",
+      "prompt": "已有经验能为当前问题提供什么参考？",
+      "imagePath": "cards/major-09.jpg"
+    },
+    {
+      "id": "major-10",
+      "suit": "major",
+      "rank": 10,
+      "name": "命运之轮",
+      "english": "Wheel of Fortune",
+      "keywords": [
+        "周期",
+        "转折",
+        "变化"
+      ],
+      "upright": "事情进入变化或转折阶段，需要调整能够掌控的部分。",
+      "reversed": "抗拒变化、重复旧模式，或节奏暂时受阻。",
+      "symbol": "转动的轮象征循环、变化和转折。",
+      "prompt": "哪些条件正在变化，哪些仍可由自己决定？",
+      "imagePath": "cards/major-10.jpg"
+    },
+    {
+      "id": "major-11",
+      "suit": "major",
+      "rank": 11,
+      "name": "正义",
+      "english": "Justice",
+      "keywords": [
+        "公平",
+        "因果",
+        "判断"
+      ],
+      "upright": "依据事实作判断，并承担选择的后果。",
+      "reversed": "判断失衡、信息不全，或回避责任。",
+      "symbol": "天平与剑分别提示权衡和清晰的决定。",
+      "prompt": "还需要哪些事实才能公平地判断？",
+      "imagePath": "cards/major-11.jpg"
+    },
+    {
+      "id": "major-12",
+      "suit": "major",
+      "rank": 12,
+      "name": "倒吊人",
+      "english": "The Hanged Man",
+      "keywords": [
+        "暂停",
+        "换位",
+        "放下"
+      ],
+      "upright": "暂停原有做法，从不同角度重新考虑问题。",
+      "reversed": "拖延没有带来新理解，或不愿放下旧立场。",
+      "symbol": "倒悬的人物提供了不同于日常的观察角度。",
+      "prompt": "换一种考虑方式，会得到什么不同的结论？",
+      "imagePath": "cards/major-12.jpg"
+    },
+    {
+      "id": "major-13",
+      "suit": "major",
+      "rank": 13,
+      "name": "死神",
+      "english": "Death",
+      "keywords": [
+        "结束",
+        "转化",
+        "更新"
+      ],
+      "upright": "一个阶段结束，原有的安排或做法需要改变。",
+      "reversed": "仍依赖不再适用的做法，难以接受必要的改变。",
+      "symbol": "落日与行进的骑士提示阶段更替，而非字面死亡。",
+      "prompt": "哪些事情已经结束，哪些安排需要改变？",
+      "imagePath": "cards/major-13.jpg"
+    },
+    {
+      "id": "major-14",
+      "suit": "major",
+      "rank": 14,
+      "name": "节制",
+      "english": "Temperance",
+      "keywords": [
+        "平衡",
+        "调和",
+        "节奏"
+      ],
+      "upright": "调整节奏和比例，协调不同的需要。",
+      "reversed": "节奏失衡、过犹不及，或缺乏整合。",
+      "symbol": "两个杯子间的水流强调调和与流动。",
+      "prompt": "哪些安排或投入的比例需要调整？",
+      "imagePath": "cards/major-14.jpg"
+    },
+    {
+      "id": "major-15",
+      "suit": "major",
+      "rank": 15,
+      "name": "恶魔",
+      "english": "The Devil",
+      "keywords": [
+        "束缚",
+        "欲望",
+        "依赖"
+      ],
+      "upright": "某种欲望、习惯或依赖正在限制选择。",
+      "reversed": "开始认识或摆脱限制，也可能仍不愿承认依赖。",
+      "symbol": "链条是限制、欲望和依赖的主要象征。",
+      "prompt": "哪些习惯或依赖正在限制你的选择？",
+      "imagePath": "cards/major-15.jpg"
+    },
+    {
+      "id": "major-16",
+      "suit": "major",
+      "rank": 16,
+      "name": "高塔",
+      "english": "The Tower",
+      "keywords": [
+        "突变",
+        "揭示",
+        "重建"
+      ],
+      "upright": "原有的安排或观念受到冲击，需要重新评估基础。",
+      "reversed": "延迟面对问题，或在变化后逐步修复。",
+      "symbol": "闪电与破裂的塔提示不稳固结构的暴露。",
+      "prompt": "有哪些基础需要重新检查？",
+      "imagePath": "cards/major-16.jpg"
+    },
+    {
+      "id": "major-17",
+      "suit": "major",
+      "rank": 17,
+      "name": "星星",
+      "english": "The Star",
+      "keywords": [
+        "希望",
+        "修复",
+        "真诚"
+      ],
+      "upright": "经历困难后逐渐恢复，重新建立信心。",
+      "reversed": "信心低落、恢复缓慢，或忽略自己的需要。",
+      "symbol": "水流与星空呼应恢复、开放和愿景。",
+      "prompt": "有哪些迹象表明情况正在改善？",
+      "imagePath": "cards/major-17.jpg"
+    },
+    {
+      "id": "major-18",
+      "suit": "major",
+      "rank": 18,
+      "name": "月亮",
+      "english": "The Moon",
+      "keywords": [
+        "不确定",
+        "潜意识",
+        "想象"
+      ],
+      "upright": "信息不清时，辨别感受、想象与可以确认的事实。",
+      "reversed": "不明确的信息逐渐清楚，也可能仍受焦虑和猜测影响。",
+      "symbol": "曲折的路与月光提示未知与有限的视野。",
+      "prompt": "哪些是已确认的事实，哪些只是猜测？",
+      "imagePath": "cards/major-18.jpg"
+    },
+    {
+      "id": "major-19",
+      "suit": "major",
+      "rank": 19,
+      "name": "太阳",
+      "english": "The Sun",
+      "keywords": [
+        "清晰",
+        "喜悦",
+        "活力"
+      ],
+      "upright": "情况逐渐清晰，成果、喜悦和活力有所增加。",
+      "reversed": "满足感不足、期待过高，或暂时缺少活力。",
+      "symbol": "明亮的太阳与孩童呼应坦诚和生命力。",
+      "prompt": "目前已经取得了哪些进展？",
+      "imagePath": "cards/major-19.jpg"
+    },
+    {
+      "id": "major-20",
+      "suit": "major",
+      "rank": 20,
+      "name": "审判",
+      "english": "Judgement",
+      "keywords": [
+        "觉醒",
+        "回顾",
+        "回应"
+      ],
+      "upright": "回顾已有经验，作出判断并回应新的要求。",
+      "reversed": "过度自责、迟迟不回应，或害怕重新评估。",
+      "symbol": "号角与苏醒的人物提示回顾之后的回应。",
+      "prompt": "根据以往经验，哪些决定需要重新考虑？",
+      "imagePath": "cards/major-20.jpg"
+    },
+    {
+      "id": "major-21",
+      "suit": "major",
+      "rank": 21,
+      "name": "世界",
+      "english": "The World",
+      "keywords": [
+        "完成",
+        "整合",
+        "新阶段"
+      ],
+      "upright": "一个阶段完成，可以总结成果并准备接下来的安排。",
+      "reversed": "收尾尚未完成，或很难承认自己的成果。",
+      "symbol": "花环与四角的形象呼应整体与循环的完成。",
+      "prompt": "这个阶段还有哪些收尾工作？",
+      "imagePath": "cards/major-21.jpg"
+    },
+    {
+      "id": "wands-1",
+      "suit": "wands",
+      "rank": 1,
+      "name": "权杖王牌",
+      "english": "Wands · 1",
+      "keywords": [
+        "灵感",
+        "开端"
+      ],
+      "upright": "新的想法或计划处于起步阶段。",
+      "reversed": "灵感受阻，或缺少把热情变为行动的方向。",
+      "symbol": "",
+      "prompt": "这个想法具备开始实施的条件吗？",
+      "imagePath": "cards/wands-01.jpg"
+    },
+    {
+      "id": "wands-2",
+      "suit": "wands",
+      "rank": 2,
+      "name": "权杖二",
+      "english": "Wands · 2",
+      "keywords": [
+        "规划",
+        "选择"
+      ],
+      "upright": "考虑不同的方向，制定下一步计划。",
+      "reversed": "计划犹疑，或害怕走出熟悉的范围。",
+      "symbol": "",
+      "prompt": "不同选项之间的主要差别是什么？",
+      "imagePath": "cards/wands-02.jpg"
+    },
+    {
+      "id": "wands-3",
+      "suit": "wands",
+      "rank": 3,
+      "name": "权杖三",
+      "english": "Wands · 3",
+      "keywords": [
+        "拓展",
+        "等待"
+      ],
+      "upright": "计划已经开始实施，需要观察进展和反馈。",
+      "reversed": "拓展受阻，或期待与实际进展有落差。",
+      "symbol": "",
+      "prompt": "实施后得到的反馈是否符合预期？",
+      "imagePath": "cards/wands-03.jpg"
+    },
+    {
+      "id": "wands-4",
+      "suit": "wands",
+      "rank": 4,
+      "name": "权杖四",
+      "english": "Wands · 4",
+      "keywords": [
+        "庆祝",
+        "稳定"
+      ],
+      "upright": "阶段性成果、稳定的安排，以及共同庆祝。",
+      "reversed": "归属感不稳，或庆祝和合作的节奏失衡。",
+      "symbol": "",
+      "prompt": "目前哪些成果或安排已经稳定？",
+      "imagePath": "cards/wands-04.jpg"
+    },
+    {
+      "id": "wands-5",
+      "suit": "wands",
+      "rank": 5,
+      "name": "权杖五",
+      "english": "Wands · 5",
+      "keywords": [
+        "竞争",
+        "磨合"
+      ],
+      "upright": "不同想法正在碰撞，需要协调。",
+      "reversed": "避免冲突，或冲突耗费了过多精力。",
+      "symbol": "",
+      "prompt": "分歧主要出在哪里？",
+      "imagePath": "cards/wands-05.jpg"
+    },
+    {
+      "id": "wands-6",
+      "suit": "wands",
+      "rank": 6,
+      "name": "权杖六",
+      "english": "Wands · 6",
+      "keywords": [
+        "认可",
+        "进展"
+      ],
+      "upright": "努力获得认可，事情有明显进展。",
+      "reversed": "过于在意外界认可，或进展尚未被看见。",
+      "symbol": "",
+      "prompt": "哪些进展已经得到确认？",
+      "imagePath": "cards/wands-06.jpg"
+    },
+    {
+      "id": "wands-7",
+      "suit": "wands",
+      "rank": 7,
+      "name": "权杖七",
+      "english": "Wands · 7",
+      "keywords": [
+        "立场",
+        "坚持"
+      ],
+      "upright": "面对质疑或竞争时坚持自己的立场。",
+      "reversed": "疲于防守，或需要重新选择值得坚持的事。",
+      "symbol": "",
+      "prompt": "哪些立场值得坚持，哪些可以协商？",
+      "imagePath": "cards/wands-07.jpg"
+    },
+    {
+      "id": "wands-8",
+      "suit": "wands",
+      "rank": 8,
+      "name": "权杖八",
+      "english": "Wands · 8",
+      "keywords": [
+        "速度",
+        "交流"
+      ],
+      "upright": "进展加快，需要及时处理消息和行动安排。",
+      "reversed": "延迟、混乱，或推进速度超过了承受力。",
+      "symbol": "",
+      "prompt": "目前的速度是否适合实际条件？",
+      "imagePath": "cards/wands-08.jpg"
+    },
+    {
+      "id": "wands-9",
+      "suit": "wands",
+      "rank": 9,
+      "name": "权杖九",
+      "english": "Wands · 9",
+      "keywords": [
+        "韧性",
+        "警觉"
+      ],
+      "upright": "经历困难后仍然坚持，但需要考虑自身的承受能力。",
+      "reversed": "精力耗尽，或警觉变成了过度防备。",
+      "symbol": "",
+      "prompt": "继续坚持还需要哪些条件？",
+      "imagePath": "cards/wands-09.jpg"
+    },
+    {
+      "id": "wands-10",
+      "suit": "wands",
+      "rank": 10,
+      "name": "权杖十",
+      "english": "Wands · 10",
+      "keywords": [
+        "负担",
+        "责任"
+      ],
+      "upright": "任务或责任过多，可能需要分担。",
+      "reversed": "开始卸下负担，或被压力困住。",
+      "symbol": "",
+      "prompt": "哪些任务可以分担或减少？",
+      "imagePath": "cards/wands-10.jpg"
+    },
+    {
+      "id": "wands-11",
+      "suit": "wands",
+      "rank": 11,
+      "name": "权杖侍从",
+      "english": "Wands · 11",
+      "keywords": [
+        "探索",
+        "热情"
+      ],
+      "upright": "对新方向感到好奇，愿意学习和尝试。",
+      "reversed": "尝试较冲动，或尚未明确行动方向。",
+      "symbol": "",
+      "prompt": "准备怎样试验这个新想法？",
+      "imagePath": "cards/wands-11.jpg"
+    },
+    {
+      "id": "wands-12",
+      "suit": "wands",
+      "rank": 12,
+      "name": "权杖骑士",
+      "english": "Wands · 12",
+      "keywords": [
+        "冒险",
+        "推进"
+      ],
+      "upright": "行动积极，愿意冒险或推进新的计划。",
+      "reversed": "推进过急、缺少持续性，或行动中断。",
+      "symbol": "",
+      "prompt": "行动速度与准备程度是否相符？",
+      "imagePath": "cards/wands-12.jpg"
+    },
+    {
+      "id": "wands-13",
+      "suit": "wands",
+      "rank": 13,
+      "name": "权杖王后",
+      "english": "Wands · 13",
+      "keywords": [
+        "自信",
+        "感染力"
+      ],
+      "upright": "自信、独立，能够带动他人的积极性。",
+      "reversed": "缺少自信，或太依赖外界的回应。",
+      "symbol": "",
+      "prompt": "怎样在保持独立的同时与他人合作？",
+      "imagePath": "cards/wands-13.jpg"
+    },
+    {
+      "id": "wands-14",
+      "suit": "wands",
+      "rank": 14,
+      "name": "权杖国王",
+      "english": "Wands · 14",
+      "keywords": [
+        "远见",
+        "带领"
+      ],
+      "upright": "有较明确的目标，能够组织和带领行动。",
+      "reversed": "主导过强，或愿景与实际行动脱节。",
+      "symbol": "",
+      "prompt": "目标能否转化成清楚的行动安排？",
+      "imagePath": "cards/wands-14.jpg"
+    },
+    {
+      "id": "cups-1",
+      "suit": "cups",
+      "rank": 1,
+      "name": "圣杯王牌",
+      "english": "Cups · 1",
+      "keywords": [
+        "情感",
+        "开放"
+      ],
+      "upright": "新的感受、人际关系或创作想法开始出现。",
+      "reversed": "情绪难以表达，或需要先照顾内在。",
+      "symbol": "",
+      "prompt": "有哪些感受需要表达？",
+      "imagePath": "cards/cups-01.jpg"
+    },
+    {
+      "id": "cups-2",
+      "suit": "cups",
+      "rank": 2,
+      "name": "圣杯二",
+      "english": "Cups · 2",
+      "keywords": [
+        "互信",
+        "联结"
+      ],
+      "upright": "双方平等交流，能够回应彼此的需要。",
+      "reversed": "沟通失衡，或双方期待不一致。",
+      "symbol": "",
+      "prompt": "双方的期待是否一致？",
+      "imagePath": "cards/cups-02.jpg"
+    },
+    {
+      "id": "cups-3",
+      "suit": "cups",
+      "rank": 3,
+      "name": "圣杯三",
+      "english": "Cups · 3",
+      "keywords": [
+        "友谊",
+        "分享"
+      ],
+      "upright": "朋友间的交流、聚会和共同分享。",
+      "reversed": "社交过量，或在群体中缺少真实联结。",
+      "symbol": "",
+      "prompt": "哪些关系能提供实际支持？",
+      "imagePath": "cards/cups-03.jpg"
+    },
+    {
+      "id": "cups-4",
+      "suit": "cups",
+      "rank": 4,
+      "name": "圣杯四",
+      "english": "Cups · 4",
+      "keywords": [
+        "停顿",
+        "内省"
+      ],
+      "upright": "对当前情况感到厌倦，可能忽略了其他机会。",
+      "reversed": "重新愿意接受其他选择，或仍受旧情绪影响。",
+      "symbol": "",
+      "prompt": "是否忽略了已有的其他选择？",
+      "imagePath": "cards/cups-04.jpg"
+    },
+    {
+      "id": "cups-5",
+      "suit": "cups",
+      "rank": 5,
+      "name": "圣杯五",
+      "english": "Cups · 5",
+      "keywords": [
+        "失落",
+        "剩余"
+      ],
+      "upright": "失落或遗憾较明显，但并非所有条件都已失去。",
+      "reversed": "逐渐接受失落，或难以放下遗憾。",
+      "symbol": "",
+      "prompt": "失去的是什么，仍然拥有的又是什么？",
+      "imagePath": "cards/cups-05.jpg"
+    },
+    {
+      "id": "cups-6",
+      "suit": "cups",
+      "rank": 6,
+      "name": "圣杯六",
+      "english": "Cups · 6",
+      "keywords": [
+        "回忆",
+        "善意"
+      ],
+      "upright": "回忆、熟悉的人际关系，以及善意的交流。",
+      "reversed": "陷入怀旧，或需要从旧关系模式中成长。",
+      "symbol": "",
+      "prompt": "过去的经历怎样影响了当前关系？",
+      "imagePath": "cards/cups-06.jpg"
+    },
+    {
+      "id": "cups-7",
+      "suit": "cups",
+      "rank": 7,
+      "name": "圣杯七",
+      "english": "Cups · 7",
+      "keywords": [
+        "想象",
+        "选择"
+      ],
+      "upright": "选项或想象较多，需要判断哪些符合实际。",
+      "reversed": "选项开始清晰，或用幻想逃避选择。",
+      "symbol": "",
+      "prompt": "哪些选择有现实依据，哪些主要来自想象？",
+      "imagePath": "cards/cups-07.jpg"
+    },
+    {
+      "id": "cups-8",
+      "suit": "cups",
+      "rank": 8,
+      "name": "圣杯八",
+      "english": "Cups · 8",
+      "keywords": [
+        "离开",
+        "寻找"
+      ],
+      "upright": "离开不再满足需求的事情，寻找新的方向。",
+      "reversed": "犹豫离开，或需要确认这是否是逃避。",
+      "symbol": "",
+      "prompt": "想要离开的原因是什么？",
+      "imagePath": "cards/cups-08.jpg"
+    },
+    {
+      "id": "cups-9",
+      "suit": "cups",
+      "rank": 9,
+      "name": "圣杯九",
+      "english": "Cups · 9",
+      "keywords": [
+        "满足",
+        "心愿"
+      ],
+      "upright": "个人愿望得到一定满足，对现状较为满意。",
+      "reversed": "满足流于表面，或期待与真实需要不一致。",
+      "symbol": "",
+      "prompt": "现状是否满足了实际需要？",
+      "imagePath": "cards/cups-09.jpg"
+    },
+    {
+      "id": "cups-10",
+      "suit": "cups",
+      "rank": 10,
+      "name": "圣杯十",
+      "english": "Cups · 10",
+      "keywords": [
+        "和谐",
+        "归属"
+      ],
+      "upright": "共同的感情和价值观带来较稳定的关系。",
+      "reversed": "理想化关系，或归属中的期待发生冲突。",
+      "symbol": "",
+      "prompt": "双方对稳定关系的理解是否相同？",
+      "imagePath": "cards/cups-10.jpg"
+    },
+    {
+      "id": "cups-11",
+      "suit": "cups",
+      "rank": 11,
+      "name": "圣杯侍从",
+      "english": "Cups · 11",
+      "keywords": [
+        "敏感",
+        "创意"
+      ],
+      "upright": "对新的感受和创意较敏感，表达仍在尝试中。",
+      "reversed": "情绪敏感，或表达尚不成熟。",
+      "symbol": "",
+      "prompt": "怎样把尚不明确的感受表达清楚？",
+      "imagePath": "cards/cups-11.jpg"
+    },
+    {
+      "id": "cups-12",
+      "suit": "cups",
+      "rank": 12,
+      "name": "圣杯骑士",
+      "english": "Cups · 12",
+      "keywords": [
+        "邀请",
+        "理想"
+      ],
+      "upright": "主动表达感情、提出邀请，或按个人理想行动。",
+      "reversed": "理想化承诺，或心情影响了行动。",
+      "symbol": "",
+      "prompt": "承诺与实际行动是否一致？",
+      "imagePath": "cards/cups-12.jpg"
+    },
+    {
+      "id": "cups-13",
+      "suit": "cups",
+      "rank": 13,
+      "name": "圣杯王后",
+      "english": "Cups · 13",
+      "keywords": [
+        "共情",
+        "倾听"
+      ],
+      "upright": "善于倾听和理解他人，也需要照顾自身的需要。",
+      "reversed": "情绪负担过重，或把他人的需要放在自己之前。",
+      "symbol": "",
+      "prompt": "理解他人时，是否忽略了自己的需要？",
+      "imagePath": "cards/cups-13.jpg"
+    },
+    {
+      "id": "cups-14",
+      "suit": "cups",
+      "rank": 14,
+      "name": "圣杯国王",
+      "english": "Cups · 14",
+      "keywords": [
+        "成熟",
+        "稳定"
+      ],
+      "upright": "能够理解情绪，并保持较稳定的判断和反应。",
+      "reversed": "压抑感受，或情绪影响了判断。",
+      "symbol": "",
+      "prompt": "情绪是否影响了当前判断？",
+      "imagePath": "cards/cups-14.jpg"
+    },
+    {
+      "id": "swords-1",
+      "suit": "swords",
+      "rank": 1,
+      "name": "宝剑王牌",
+      "english": "Swords · 1",
+      "keywords": [
+        "清晰",
+        "突破"
+      ],
+      "upright": "思路逐渐明确，能够指出问题的关键。",
+      "reversed": "思路混乱，或表达缺少事实依据。",
+      "symbol": "",
+      "prompt": "问题的关键是否已经明确？",
+      "imagePath": "cards/swords-01.jpg"
+    },
+    {
+      "id": "swords-2",
+      "suit": "swords",
+      "rank": 2,
+      "name": "宝剑二",
+      "english": "Swords · 2",
+      "keywords": [
+        "僵持",
+        "决定"
+      ],
+      "upright": "两个立场难以取舍，需要更多信息。",
+      "reversed": "僵局开始松动，或避免决定的代价增加。",
+      "symbol": "",
+      "prompt": "作出决定还缺少什么信息？",
+      "imagePath": "cards/swords-02.jpg"
+    },
+    {
+      "id": "swords-3",
+      "suit": "swords",
+      "rank": 3,
+      "name": "宝剑三",
+      "english": "Swords · 3",
+      "keywords": [
+        "伤痛",
+        "真相"
+      ],
+      "upright": "难以接受的事实、失望或关系中的伤痛。",
+      "reversed": "逐渐修复，或仍在反复触碰旧伤。",
+      "symbol": "",
+      "prompt": "哪些事实已经确认，哪些仍需沟通？",
+      "imagePath": "cards/swords-03.jpg"
+    },
+    {
+      "id": "swords-4",
+      "suit": "swords",
+      "rank": 4,
+      "name": "宝剑四",
+      "english": "Swords · 4",
+      "keywords": [
+        "休息",
+        "恢复"
+      ],
+      "upright": "暂时休息，减少干扰，恢复思考和行动所需的精力。",
+      "reversed": "需要回到行动，或休息仍然不足。",
+      "symbol": "",
+      "prompt": "目前是否需要暂停或休息？",
+      "imagePath": "cards/swords-04.jpg"
+    },
+    {
+      "id": "swords-5",
+      "suit": "swords",
+      "rank": 5,
+      "name": "宝剑五",
+      "english": "Swords · 5",
+      "keywords": [
+        "争执",
+        "代价"
+      ],
+      "upright": "争执涉及输赢，也可能造成关系上的损失。",
+      "reversed": "尝试和解，或争执还留下未解决的影响。",
+      "symbol": "",
+      "prompt": "争执的结果值得付出这些代价吗？",
+      "imagePath": "cards/swords-05.jpg"
+    },
+    {
+      "id": "swords-6",
+      "suit": "swords",
+      "rank": 6,
+      "name": "宝剑六",
+      "english": "Swords · 6",
+      "keywords": [
+        "过渡",
+        "离开"
+      ],
+      "upright": "离开困难的处境，逐渐进入较平稳的阶段。",
+      "reversed": "过渡受阻，或旧问题仍需要面对。",
+      "symbol": "",
+      "prompt": "过渡期间有哪些问题还需要处理？",
+      "imagePath": "cards/swords-06.jpg"
+    },
+    {
+      "id": "swords-7",
+      "suit": "swords",
+      "rank": 7,
+      "name": "宝剑七",
+      "english": "Swords · 7",
+      "keywords": [
+        "策略",
+        "隐瞒"
+      ],
+      "upright": "策略、隐瞒或信息不完整，需要确认事情的实际情况。",
+      "reversed": "隐情显露，或需要停止回避和自我欺骗。",
+      "symbol": "",
+      "prompt": "有哪些信息没有被完整说明？",
+      "imagePath": "cards/swords-07.jpg"
+    },
+    {
+      "id": "swords-8",
+      "suit": "swords",
+      "rank": 8,
+      "name": "宝剑八",
+      "english": "Swords · 8",
+      "keywords": [
+        "限制",
+        "想法"
+      ],
+      "upright": "感到受到限制，其中一部分可能来自自身的判断。",
+      "reversed": "发现新的选择，或仍然低估自己的行动空间。",
+      "symbol": "",
+      "prompt": "哪些限制来自实际条件，哪些来自自己的判断？",
+      "imagePath": "cards/swords-08.jpg"
+    },
+    {
+      "id": "swords-9",
+      "suit": "swords",
+      "rank": 9,
+      "name": "宝剑九",
+      "english": "Swords · 9",
+      "keywords": [
+        "焦虑",
+        "反复思考"
+      ],
+      "upright": "反复担心同一件事，情绪压力影响休息和判断。",
+      "reversed": "压力开始减轻，或需要向可信的人表达困扰。",
+      "symbol": "",
+      "prompt": "最担心的事情有多少事实依据？",
+      "imagePath": "cards/swords-09.jpg"
+    },
+    {
+      "id": "swords-10",
+      "suit": "swords",
+      "rank": 10,
+      "name": "宝剑十",
+      "english": "Swords · 10",
+      "keywords": [
+        "结束",
+        "低点"
+      ],
+      "upright": "困难达到某个终点，接下来需要处理结束和恢复。",
+      "reversed": "开始恢复，或难以接受已经发生的结束。",
+      "symbol": "",
+      "prompt": "结束之后，还有哪些事情需要处理？",
+      "imagePath": "cards/swords-10.jpg"
+    },
+    {
+      "id": "swords-11",
+      "suit": "swords",
+      "rank": 11,
+      "name": "宝剑侍从",
+      "english": "Swords · 11",
+      "keywords": [
+        "观察",
+        "求知"
+      ],
+      "upright": "观察、提问和获取信息，仍需核实细节。",
+      "reversed": "信息片面，或表达过急。",
+      "symbol": "",
+      "prompt": "现有信息是否完整、可靠？",
+      "imagePath": "cards/swords-11.jpg"
+    },
+    {
+      "id": "swords-12",
+      "suit": "swords",
+      "rank": 12,
+      "name": "宝剑骑士",
+      "english": "Swords · 12",
+      "keywords": [
+        "直接",
+        "速度"
+      ],
+      "upright": "思考和行动较直接，处理事情的速度快。",
+      "reversed": "鲁莽争辩，或行动比理解更快。",
+      "symbol": "",
+      "prompt": "行动前是否充分理解了问题？",
+      "imagePath": "cards/swords-12.jpg"
+    },
+    {
+      "id": "swords-13",
+      "suit": "swords",
+      "rank": 13,
+      "name": "宝剑王后",
+      "english": "Swords · 13",
+      "keywords": [
+        "独立",
+        "判断"
+      ],
+      "upright": "根据经验和事实判断，表达直接，界限较清楚。",
+      "reversed": "判断过于苛刻，或理性遮盖了感受。",
+      "symbol": "",
+      "prompt": "意见的依据和边界是否已经说明？",
+      "imagePath": "cards/swords-13.jpg"
+    },
+    {
+      "id": "swords-14",
+      "suit": "swords",
+      "rank": 14,
+      "name": "宝剑国王",
+      "english": "Swords · 14",
+      "keywords": [
+        "逻辑",
+        "原则"
+      ],
+      "upright": "依据逻辑、事实和既定原则作出决定。",
+      "reversed": "过度控制，或只重视原则而缺少灵活性。",
+      "symbol": "",
+      "prompt": "采用的原则是否适用于当前情况？",
+      "imagePath": "cards/swords-14.jpg"
+    },
+    {
+      "id": "pentacles-1",
+      "suit": "pentacles",
+      "rank": 1,
+      "name": "星币王牌",
+      "english": "Pentacles · 1",
+      "keywords": [
+        "机会",
+        "基础"
+      ],
+      "upright": "出现与工作、收入或实际计划有关的机会。",
+      "reversed": "机会尚未成熟，或计划缺少现实基础。",
+      "symbol": "",
+      "prompt": "这个机会需要投入哪些时间或资源？",
+      "imagePath": "cards/pentacles-01.jpg"
+    },
+    {
+      "id": "pentacles-2",
+      "suit": "pentacles",
+      "rank": 2,
+      "name": "星币二",
+      "english": "Pentacles · 2",
+      "keywords": [
+        "平衡",
+        "调度"
+      ],
+      "upright": "同时处理不同任务，需要协调时间和资源。",
+      "reversed": "安排过满，或需要重新设定优先级。",
+      "symbol": "",
+      "prompt": "各项任务的优先级是否明确？",
+      "imagePath": "cards/pentacles-02.jpg"
+    },
+    {
+      "id": "pentacles-3",
+      "suit": "pentacles",
+      "rank": 3,
+      "name": "星币三",
+      "english": "Pentacles · 3",
+      "keywords": [
+        "合作",
+        "技能"
+      ],
+      "upright": "通过专业能力、分工和沟通完成合作。",
+      "reversed": "协作失衡，或期待没有清楚沟通。",
+      "symbol": "",
+      "prompt": "分工和双方的期待是否已经说清楚？",
+      "imagePath": "cards/pentacles-03.jpg"
+    },
+    {
+      "id": "pentacles-4",
+      "suit": "pentacles",
+      "rank": 4,
+      "name": "星币四",
+      "english": "Pentacles · 4",
+      "keywords": [
+        "安全",
+        "保留"
+      ],
+      "upright": "重视资源和安全感，也可能不愿改变现有安排。",
+      "reversed": "愿意调整原有安排，或资源与安全感失去平衡。",
+      "symbol": "",
+      "prompt": "保留现有安排是出于需要，还是担心改变？",
+      "imagePath": "cards/pentacles-04.jpg"
+    },
+    {
+      "id": "pentacles-5",
+      "suit": "pentacles",
+      "rank": 5,
+      "name": "星币五",
+      "english": "Pentacles · 5",
+      "keywords": [
+        "困难",
+        "支持"
+      ],
+      "upright": "面临实际困难，需要确认可获得的帮助。",
+      "reversed": "处境逐步改善，或仍不愿接受帮助。",
+      "symbol": "",
+      "prompt": "有哪些可以申请或主动寻求的帮助？",
+      "imagePath": "cards/pentacles-05.jpg"
+    },
+    {
+      "id": "pentacles-6",
+      "suit": "pentacles",
+      "rank": 6,
+      "name": "星币六",
+      "english": "Pentacles · 6",
+      "keywords": [
+        "给予",
+        "公平"
+      ],
+      "upright": "给予、接受和资源分配，需要考虑公平。",
+      "reversed": "资源分配不均，或给予附带了压力。",
+      "symbol": "",
+      "prompt": "给予和接受是否公平？",
+      "imagePath": "cards/pentacles-06.jpg"
+    },
+    {
+      "id": "pentacles-7",
+      "suit": "pentacles",
+      "rank": 7,
+      "name": "星币七",
+      "english": "Pentacles · 7",
+      "keywords": [
+        "耐心",
+        "评估"
+      ],
+      "upright": "长期投入到了评估阶段，需要检查成果和方法。",
+      "reversed": "对进展失去耐心，或投入需要重新评估。",
+      "symbol": "",
+      "prompt": "投入与目前的成果是否相符？",
+      "imagePath": "cards/pentacles-07.jpg"
+    },
+    {
+      "id": "pentacles-8",
+      "suit": "pentacles",
+      "rank": 8,
+      "name": "星币八",
+      "english": "Pentacles · 8",
+      "keywords": [
+        "练习",
+        "专注"
+      ],
+      "upright": "通过持续练习和关注细节提高技能。",
+      "reversed": "重复缺少目标，或细节投入不足。",
+      "symbol": "",
+      "prompt": "练习有没有明确的目标和反馈？",
+      "imagePath": "cards/pentacles-08.jpg"
+    },
+    {
+      "id": "pentacles-9",
+      "suit": "pentacles",
+      "rank": 9,
+      "name": "星币九",
+      "english": "Pentacles · 9",
+      "keywords": [
+        "独立",
+        "成果"
+      ],
+      "upright": "已有积累带来较稳定的生活和独立性。",
+      "reversed": "成果尚不稳固，或外在条件遮住了真正的满足。",
+      "symbol": "",
+      "prompt": "哪些条件支撑着目前的独立生活？",
+      "imagePath": "cards/pentacles-09.jpg"
+    },
+    {
+      "id": "pentacles-10",
+      "suit": "pentacles",
+      "rank": 10,
+      "name": "星币十",
+      "english": "Pentacles · 10",
+      "keywords": [
+        "积累",
+        "传承"
+      ],
+      "upright": "长期积累、共同资源和稳定的安排。",
+      "reversed": "长期计划失衡，或群体期待限制了个人选择。",
+      "symbol": "",
+      "prompt": "长期计划如何兼顾个人与共同需要？",
+      "imagePath": "cards/pentacles-10.jpg"
+    },
+    {
+      "id": "pentacles-11",
+      "suit": "pentacles",
+      "rank": 11,
+      "name": "星币侍从",
+      "english": "Pentacles · 11",
+      "keywords": [
+        "学习",
+        "落地"
+      ],
+      "upright": "学习实际技能，为计划作具体准备。",
+      "reversed": "计划没有行动，或学习容易分心。",
+      "symbol": "",
+      "prompt": "学习之后准备怎样实际运用？",
+      "imagePath": "cards/pentacles-11.jpg"
+    },
+    {
+      "id": "pentacles-12",
+      "suit": "pentacles",
+      "rank": 12,
+      "name": "星币骑士",
+      "english": "Pentacles · 12",
+      "keywords": [
+        "耐心",
+        "执行"
+      ],
+      "upright": "按计划持续执行，重视可靠性和实际结果。",
+      "reversed": "做法过于固定，或进展过慢。",
+      "symbol": "",
+      "prompt": "当前方法是否还适合继续执行？",
+      "imagePath": "cards/pentacles-12.jpg"
+    },
+    {
+      "id": "pentacles-13",
+      "suit": "pentacles",
+      "rank": 13,
+      "name": "星币王后",
+      "english": "Pentacles · 13",
+      "keywords": [
+        "照顾",
+        "务实"
+      ],
+      "upright": "重视生活安排，能够提供实际的照顾和帮助。",
+      "reversed": "照顾他人造成过多负担，或生活安排失衡。",
+      "symbol": "",
+      "prompt": "照顾他人和自己的安排是否平衡？",
+      "imagePath": "cards/pentacles-13.jpg"
+    },
+    {
+      "id": "pentacles-14",
+      "suit": "pentacles",
+      "rank": 14,
+      "name": "星币国王",
+      "english": "Pentacles · 14",
+      "keywords": [
+        "稳健",
+        "经营"
+      ],
+      "upright": "利用经验管理资源，维持长期稳定。",
+      "reversed": "过于看重控制与成果，或资源管理失去弹性。",
+      "symbol": "",
+      "prompt": "资源管理是否兼顾稳定与灵活性？",
+      "imagePath": "cards/pentacles-14.jpg"
+    }
+  ]
+}

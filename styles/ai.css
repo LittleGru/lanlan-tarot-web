@@ -1,0 +1,149 @@
+.ai-panel {
+  margin-top: 28px;
+  padding: 28px;
+  background: linear-gradient(125deg, #211129, #100a19);
+}
+
+.ai-heading, .score-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.ai-heading h2, .score-heading h3 {
+  margin: 0;
+}
+
+.ai-heading .eyebrow {
+  margin-bottom: 8px;
+}
+
+.ai-heading button {
+  flex-shrink: 0;
+}
+
+.ai-message, .ai-note {
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+.ai-message:empty {
+  display: none;
+}
+
+.ai-message {
+  color: var(--gold);
+}
+
+.ai-message[data-state="error"] {
+  color: #efb8aa;
+}
+
+.ai-note {
+  color: var(--muted);
+  margin-bottom: 0;
+}
+
+.ai-output {
+  border-top: 1px solid var(--line);
+  margin-top: 22px;
+  padding-top: 22px;
+  overflow-wrap: anywhere;
+}
+
+.ai-output p, .ai-list li {
+  line-height: 1.9;
+  white-space: pre-wrap;
+}
+
+.ai-output h3, .ai-output h4 {
+  color: var(--accent);
+}
+
+.ai-card-grid, .grading-criteria {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  margin: 20px 0;
+}
+
+.ai-card-note, .grading-criterion {
+  padding: 18px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #0e081780;
+}
+
+.ai-card-grid.single {
+  grid-template-columns: 1fr;
+}
+
+.ai-card-note h3, .grading-criterion h4 {
+  margin: 0 0 12px;
+  font-size: 16px;
+}
+
+.ai-card-note p, .grading-criterion p {
+  margin: 0;
+}
+
+.grading-criteria {
+  grid-template-columns: 1fr;
+}
+
+.grading-criterion h4 {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.score-number {
+  font-size: 36px;
+  color: var(--gold);
+  white-space: nowrap;
+}
+
+.score-number small {
+  color: var(--muted);
+  font-size: 16px;
+}
+
+.ai-list {
+  padding-left: 22px;
+}
+
+.ai-list li + li {
+  margin-top: 8px;
+}
+
+.practice-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+@media (max-width: 850px) {
+  .ai-card-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 600px) {
+  .ai-panel {
+    padding: 20px;
+  }
+  .ai-heading, .writing-bottom {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+  .ai-card-grid {
+    grid-template-columns: 1fr;
+  }
+  .ai-heading button, .practice-actions {
+    width: 100%;
+  }
+  .practice-actions button {
+    flex: 1;
+  }
+}

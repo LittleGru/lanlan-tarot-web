@@ -1,0 +1,373 @@
+{
+  "schemaVersion": 1,
+  "spreads": [
+    {
+      "id": "daily",
+      "name": "单张牌",
+      "count": 1,
+      "level": "入门",
+      "layout": "single",
+      "description": "用一张牌练习基本解读，适合日常记录。",
+      "example": "今天有哪些事情值得留意？",
+      "positions": [
+        {
+          "name": "当前提示",
+          "prompt": "这张牌与今天的哪件事有关？",
+          "row": 1,
+          "column": 1
+        }
+      ],
+      "readingTip": "描述牌面细节，说明它与今天的实际情况有什么联系。"
+    },
+    {
+      "id": "situation",
+      "name": "现状·挑战·建议",
+      "count": 3,
+      "level": "入门",
+      "layout": "line",
+      "description": "分析当前情况、主要困难和可采取的行动。",
+      "example": "开始这个计划前，我需要做哪些准备？",
+      "positions": [
+        {
+          "name": "现状",
+          "prompt": "目前最需要处理的事情是什么？",
+          "row": 1,
+          "column": 1
+        },
+        {
+          "name": "挑战",
+          "prompt": "推进这件事的主要困难是什么？",
+          "row": 1,
+          "column": 2
+        },
+        {
+          "name": "建议",
+          "prompt": "针对前两个位置，可以采取什么行动？",
+          "row": 1,
+          "column": 3
+        }
+      ],
+      "readingTip": "先说明现状，再分析困难，最后提出与前两张牌有关的建议。"
+    },
+    {
+      "id": "timeline",
+      "name": "过去·现在·未来",
+      "count": 3,
+      "level": "入门",
+      "layout": "line",
+      "description": "按时间顺序，梳理一件事的发展和可能趋势。",
+      "example": "这件事是怎样发展到目前这一步的？",
+      "positions": [
+        {
+          "name": "过去",
+          "prompt": "哪些过去的经历仍在影响这件事？",
+          "row": 1,
+          "column": 1
+        },
+        {
+          "name": "现在",
+          "prompt": "当前的情况和主要问题是什么？",
+          "row": 1,
+          "column": 2
+        },
+        {
+          "name": "未来趋势",
+          "prompt": "沿用目前的做法，事情可能怎样发展？",
+          "row": 1,
+          "column": 3
+        }
+      ],
+      "readingTip": "先说明过去如何影响现在，再讨论沿用现有做法可能出现的变化。"
+    },
+    {
+      "id": "action",
+      "name": "现状·行动·结果",
+      "count": 3,
+      "level": "入门",
+      "layout": "line",
+      "description": "分析当前问题、行动方案及其可能带来的变化。",
+      "example": "怎样改善最近的拖延？",
+      "positions": [
+        {
+          "name": "当前现状",
+          "prompt": "目前的困难和有利条件是什么？",
+          "row": 1,
+          "column": 1
+        },
+        {
+          "name": "建议行动",
+          "prompt": "针对当前情况，可以采取什么做法？",
+          "row": 1,
+          "column": 2
+        },
+        {
+          "name": "可能结果",
+          "prompt": "采取上述做法后，可能有哪些变化？",
+          "row": 1,
+          "column": 3
+        }
+      ],
+      "readingTip": "第二张牌的建议应针对当前情况；第三张牌用于讨论采取行动后的可能变化。"
+    },
+    {
+      "id": "choice",
+      "name": "二选一牌阵",
+      "count": 5,
+      "level": "进阶",
+      "layout": "fork",
+      "description": "比较两个选项的机会和需要考虑的问题。",
+      "example": "应该先推进计划 A，还是计划 B？",
+      "positions": [
+        {
+          "name": "当前条件",
+          "prompt": "目前有哪些条件或限制会影响选择？",
+          "row": 1,
+          "column": 2
+        },
+        {
+          "name": "A 的机会",
+          "prompt": "选项 A 有哪些有利条件？",
+          "row": 2,
+          "column": 1
+        },
+        {
+          "name": "A 的问题",
+          "prompt": "选择 A 需要考虑什么困难？",
+          "row": 3,
+          "column": 1
+        },
+        {
+          "name": "B 的机会",
+          "prompt": "选项 B 有哪些有利条件？",
+          "row": 2,
+          "column": 3
+        },
+        {
+          "name": "B 的问题",
+          "prompt": "选择 B 需要考虑什么困难？",
+          "row": 3,
+          "column": 3
+        }
+      ],
+      "readingTip": "分别读 A、B 两组，再用同样的标准比较。决定前还需核实相关信息。"
+    },
+    {
+      "id": "relationship",
+      "name": "关系牌阵",
+      "count": 5,
+      "level": "进阶",
+      "layout": "mirror",
+      "description": "梳理双方的表现、相处方式和沟通中的问题。",
+      "example": "怎样改善与这位朋友的沟通？",
+      "positions": [
+        {
+          "name": "我的状态",
+          "prompt": "我对这段关系有什么期待或顾虑？",
+          "row": 1,
+          "column": 1
+        },
+        {
+          "name": "对方的表现",
+          "prompt": "对方在实际相处中有哪些表现？",
+          "row": 1,
+          "column": 3
+        },
+        {
+          "name": "关系基础",
+          "prompt": "双方有哪些共同点或相互认可的地方？",
+          "row": 2,
+          "column": 2
+        },
+        {
+          "name": "相处难点",
+          "prompt": "哪些相处方式容易引起误会？",
+          "row": 3,
+          "column": 1
+        },
+        {
+          "name": "沟通建议",
+          "prompt": "有哪些需求需要表达，哪些事情需要确认？",
+          "row": 3,
+          "column": 3
+        }
+      ],
+      "readingTip": "结合实际发生的互动解读。对方的想法需要通过沟通确认。"
+    },
+    {
+      "id": "self",
+      "name": "自我梳理",
+      "count": 6,
+      "level": "进阶",
+      "layout": "grid",
+      "description": "整理近期的状态、需要、习惯和可作出的调整。",
+      "example": "我最近的状态为什么会反复？",
+      "positions": [
+        {
+          "name": "当前状态",
+          "prompt": "近期最常出现的情绪或表现是什么？",
+          "row": 1,
+          "column": 1
+        },
+        {
+          "name": "个人需要",
+          "prompt": "目前有哪些需要尚未得到满足？",
+          "row": 1,
+          "column": 2
+        },
+        {
+          "name": "习惯模式",
+          "prompt": "哪些习惯可能影响了当前状态？",
+          "row": 1,
+          "column": 3
+        },
+        {
+          "name": "可用支持",
+          "prompt": "有哪些经验、能力或他人的帮助可以利用？",
+          "row": 2,
+          "column": 1
+        },
+        {
+          "name": "需要调整的",
+          "prompt": "哪些要求或安排可以重新考虑？",
+          "row": 2,
+          "column": 2
+        },
+        {
+          "name": "下一步",
+          "prompt": "接下来可以作出哪项具体调整？",
+          "row": 2,
+          "column": 3
+        }
+      ],
+      "readingTip": "先读当前状态和个人需要，再结合习惯、可用支持和调整建议理解。"
+    },
+    {
+      "id": "week",
+      "name": "一周牌阵",
+      "count": 7,
+      "level": "进阶",
+      "layout": "week",
+      "description": "为周一到周日各抽一张牌，配合日常记录。",
+      "example": "这一周有哪些事情值得留意？",
+      "positions": [
+        {
+          "name": "周一",
+          "prompt": "本周开始时，有什么需要安排？",
+          "row": 1,
+          "column": 1
+        },
+        {
+          "name": "周二",
+          "prompt": "今天需要留意什么？",
+          "row": 1,
+          "column": 2
+        },
+        {
+          "name": "周三",
+          "prompt": "一周过半，哪些安排需要调整？",
+          "row": 1,
+          "column": 3
+        },
+        {
+          "name": "周四",
+          "prompt": "哪些事情可以换一种做法？",
+          "row": 1,
+          "column": 4
+        },
+        {
+          "name": "周五",
+          "prompt": "本周已经完成了什么？",
+          "row": 2,
+          "column": 1
+        },
+        {
+          "name": "周六",
+          "prompt": "怎样安排休息和个人时间？",
+          "row": 2,
+          "column": 2
+        },
+        {
+          "name": "周日",
+          "prompt": "本周有哪些经验可以用于下一周？",
+          "row": 2,
+          "column": 3
+        }
+      ],
+      "readingTip": "每天记录实际经历，周末对照牌面回顾。七张牌分别对应周一至周日。"
+    },
+    {
+      "id": "celtic",
+      "name": "凯尔特十字",
+      "count": 10,
+      "level": "深入",
+      "layout": "celtic",
+      "description": "从现状、背景、个人态度和外部条件等方面，综合分析一个问题。",
+      "example": "当前项目的主要困难和有利条件是什么？",
+      "positions": [
+        {
+          "name": "当前影响",
+          "prompt": "当前问题的主要情况是什么？",
+          "row": 2,
+          "column": 2
+        },
+        {
+          "name": "阻碍与挑战",
+          "prompt": "什么因素正在妨碍进展？",
+          "row": 2,
+          "column": 2
+        },
+        {
+          "name": "目标与理想",
+          "prompt": "希望达到什么目标？",
+          "row": 1,
+          "column": 2
+        },
+        {
+          "name": "根基",
+          "prompt": "哪些已有经历或条件影响了这件事？",
+          "row": 3,
+          "column": 2
+        },
+        {
+          "name": "过去影响",
+          "prompt": "哪些过去的影响正在减弱？",
+          "row": 2,
+          "column": 1
+        },
+        {
+          "name": "近期变化",
+          "prompt": "接下来可能出现哪些变化？",
+          "row": 2,
+          "column": 3
+        },
+        {
+          "name": "我的态度",
+          "prompt": "我怎样看待这件事，又准备怎样处理？",
+          "row": 4,
+          "column": 4
+        },
+        {
+          "name": "周围环境",
+          "prompt": "哪些人或外部条件会影响进展？",
+          "row": 3,
+          "column": 4
+        },
+        {
+          "name": "希望与担忧",
+          "prompt": "我期待什么，又担心什么？",
+          "row": 2,
+          "column": 4
+        },
+        {
+          "name": "综合趋势",
+          "prompt": "综合前九张牌，可以看出哪些可能的发展方向？",
+          "row": 1,
+          "column": 4
+        }
+      ],
+      "readingTip": "先读 1、2 的现状与挑战，再看 3—6 的背景，最后结合 7—10 作综合分析。",
+      "sourceNote": "参照 Waite 位置含义的十张简化版，省略指示牌，固定过去在左、近期变化在右。第 2 张横置表示交叉，正逆位以标签为准。",
+      "sourceUrl": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot/Part_3#An_Ancient_Celtic_Method_of_Divination"
+    }
+  ]
+}

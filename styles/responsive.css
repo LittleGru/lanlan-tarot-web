@@ -1,0 +1,321 @@
+@media(min-width:1500px) {
+  main {
+    padding-left: 60px;
+    padding-right: 60px;
+  }
+
+}
+
+@media(max-width:1150px) {
+  .header {
+    gap: 30px;
+  }
+
+  .workspace {
+    grid-template-columns: minmax(0,1fr) 270px;
+  }
+
+  .draw-work {
+    padding: 22px;
+  }
+
+  .library-grid {
+    grid-template-columns: repeat(5,minmax(0,1fr));
+  }
+
+  .draw-table {
+    gap: 16px;
+  }
+
+  .tarot-card {
+    width: 115px;
+    height: 198px;
+  }
+
+  .draw-bottom {
+    flex-wrap: wrap;
+  }
+
+  .practice-layout {
+    grid-template-columns: 330px minmax(0,1fr);
+  }
+
+}
+
+@media(max-width:850px) {
+  .workspace {
+    grid-template-columns: 1fr;
+  }
+
+  .side {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+  }
+
+  .draw-table {
+    min-height: 340px;
+  }
+
+  .tarot-card {
+    width: 140px;
+    height: 240px;
+  }
+
+  .library-grid {
+    grid-template-columns: repeat(4,minmax(0,1fr));
+  }
+
+  .practice-layout {
+    grid-template-columns: 1fr 1.4fr;
+  }
+
+  .section-heading {
+    align-items: start;
+  }
+
+  .section-heading .pill {
+    margin-top: 25px;
+  }
+
+  .search {
+    width: 240px;
+  }
+
+  .header {
+    padding: 0 5%;
+    gap: 32px;
+  }
+
+  .nav {
+    gap: 23px;
+  }
+
+}
+
+@media(max-width:620px) {
+  .header {
+    height: auto;
+    padding-top: 17px;
+    display: block;
+  }
+
+  .brand {
+    font-size: 19px;
+  }
+
+  .nav {
+    height: 55px;
+    gap: 0;
+    justify-content: space-between;
+    margin-top: 10px;
+  }
+
+  .nav button {
+    font-size: 14px;
+    padding: 0 3px;
+  }
+
+  main {
+    padding: 30px 5% 45px;
+  }
+
+  h1 {
+    font-size: 27px;
+    letter-spacing: 0;
+  }
+
+  .intro {
+    font-size: 14px;
+  }
+
+  .section-heading {
+    display: block;
+    margin-bottom: 22px;
+  }
+
+  .section-heading .pill {
+    display: inline-block;
+    margin-top: 15px;
+  }
+
+  .draw-work {
+    padding: 18px 14px;
+  }
+
+  .controls {
+    gap: 8px;
+  }
+
+  .check {
+    font-size: 13px;
+    gap: 4px;
+  }
+
+  .draw-table {
+    gap: 11px;
+    padding: 20px 0 10px;
+    min-height: 290px;
+  }
+
+  .tarot-card {
+    width: clamp(75px,24vw,120px);
+    height: clamp(129px,41vw,207px);
+  }
+
+  .position {
+    font-size: 12px;
+    letter-spacing: 1px;
+  }
+
+  .card-name {
+    font-size: 13px;
+  }
+
+  .back-glyph {
+    font-size: 42px;
+  }
+
+  .back-line {
+    font-size: 8px;
+    letter-spacing: 1px;
+  }
+
+  .draw-bottom {
+    align-items: center;
+    gap: 12px;
+    justify-content: center;
+  }
+
+  .draw-bottom p {
+    width: 100%;
+    text-align: center;
+  }
+
+  .primary {
+    padding: 11px 20px;
+  }
+
+  .side {
+    display: block;
+  }
+
+  .tip-panel {
+    margin-bottom: 18px;
+  }
+
+  .tip-panel .steps {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .steps li {
+    margin-top: 16px;
+  }
+
+  .practice-invite {
+    padding: 22px;
+  }
+
+  .result-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .result-heading {
+    gap: 20px;
+  }
+
+  .search {
+    margin-top: 20px;
+    width: 100%;
+  }
+
+  .library-grid {
+    grid-template-columns: repeat(3,minmax(0,1fr));
+    gap: 14px 10px;
+  }
+
+  .library-card {
+    padding: 9px 7px;
+  }
+
+  .library-card b {
+    font-size: 14px;
+  }
+
+  .library-card p {
+    font-size: 12px;
+  }
+
+  .filter-row {
+    gap: 7px;
+  }
+
+  .filter-row button {
+    padding: 6px 11px;
+    font-size: 13px;
+  }
+
+  .practice-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .practice-scene,.writing-panel {
+    padding: 22px;
+  }
+
+  .practice-scene .tarot-card {
+    width: 134px;
+    height: 230px;
+  }
+
+  .writing-panel textarea {
+    min-height: 230px;
+  }
+
+  .guide-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .guide-grid .panel {
+    padding: 24px;
+  }
+
+  .detail-layout {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+
+  .detail-layout>img {
+    width: 125px;
+    margin: 0 auto;
+  }
+
+  dialog {
+    padding: 28px 22px;
+  }
+
+  .detail-layout h2 {
+    font-size: 25px;
+  }
+
+  footer {
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  footer p {
+    display: none;
+  }
+
+}
+
+@media(prefers-reduced-motion:reduce) {
+  * {
+    animation: none!important;
+    transition: none!important;
+    scroll-behavior: auto!important;
+  }
+
+}

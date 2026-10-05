@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#0c0712">
+    <meta name="tarot-ai-mode" content="disabled">
+    <title>懒懒塔罗 · 学习与练习</title>
+    <meta name="description" content="懒懒塔罗：78 张韦特塔罗牌义、9 种牌阵、随机抽牌与解读练习。">
+    <link rel="icon" type="image/png" href="assets/lanlan-witch-logo.png">
+    <link rel="stylesheet" href="styles/index.css">
+    <script type="module" src="src/main.js"></script>
+  </head>
+  <body>
+    <header class="header">
+      <a class="brand" href="#" aria-label="懒懒塔罗首页"><img class="brand-logo" src="assets/lanlan-witch-logo.png" alt="懒羊羊女巫 logo" width="80" height="80"><span>懒懒塔罗<small>LANLAN TAROT</small></span></a>
+      <nav aria-label="主导航" class="nav">
+        <button data-tab="draw" class="active">抽牌</button>
+        <button data-tab="learn">牌义资料</button>
+        <button data-tab="practice">解读练习</button>
+        <button data-tab="guide">入门指南</button>
+      </nav>
+    </header>
+    <main>
+      <section id="draw" class="page active" aria-labelledby="draw-title">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">TAROT READING</p>
+            <h1 id="draw-title">选择牌阵，开始解读</h1>
+            <p class="intro">先选牌阵，再写下你想了解的问题。</p>
+          </div>
+          <span class="pill">韦特体系 · 78 张</span>
+        </div>
+        <div class="workspace">
+          <div class="draw-work panel">
+            <div class="controls">
+              <div class="spread-selector">
+                <label for="spread-select">选择牌阵</label>
+                <select id="spread-select" aria-describedby="spread-description" disabled>
+                  <option>正在加载牌阵…</option>
+                </select>
+              </div>
+              <label class="check"><input type="checkbox" id="reversed" checked>包含逆位</label>
+              <button id="draw-button" class="primary draw-action" disabled>洗牌并抽牌 <span aria-hidden="true">✧</span></button>
+            </div>
+            <div class="spread-intro">
+              <span id="spread-level" class="spread-level"></span>
+              <p id="spread-description"></p>
+            </div>
+            <label class="field-label" for="question">你的问题 <span>选填</span></label>
+            <input id="question" maxlength="180" placeholder="例如：开始这个计划前，我需要做哪些准备？">
+            <div id="draw-table" class="draw-table" aria-live="polite"></div>
+            <details class="spread-guide">
+              <summary>牌阵说明</summary>
+              <p id="spread-reading-tip"></p>
+              <ol id="spread-position-guide"></ol>
+              <p id="spread-source-note" class="muted" hidden></p>
+            </details>
+            <div class="draw-bottom">
+              <p id="draw-caption">抽牌后可点击牌面查看牌义。</p>
+            </div>
+          </div>
+          <aside class="side">
+            <div class="panel tip-panel">
+              <p class="eyebrow">READING NOTES</p>
+              <h2>解读的基本步骤</h2>
+              <ol class="steps">
+                <li><span>01</span><div><b>观察画面</b><p>留意人物的动作、表情和周围环境。</p></div></li>
+                <li><span>02</span><div><b>联系牌义</b><p>参考关键词，判断牌面表达了什么状态。</p></div></li>
+                <li><span>03</span><div><b>回到问题</b><p>结合实际情况，说明这张牌与问题的关系。</p></div></li>
+              </ol>
+            </div>
+            <div class="practice-invite">
+              <span class="eyebrow">PRACTICE</span>
+              <h3>练习写出你的解读</h3>
+              <p>根据题目写一段解读，再查看参考说明。</p>
+              <button data-tab="practice" class="outline">开始练习</button>
+            </div>
+          </aside>
+        </div>
+        <section id="reading-assistant" class="panel ai-panel" aria-labelledby="assistant-title" hidden>
+          <div class="ai-heading">
+            <div><p class="eyebrow">READING ASSISTANT</p><h2 id="assistant-title">这组牌可以怎样理解？</h2></div>
+            <button id="interpret-reading" class="primary">帮我解读</button>
+          </div>
+          <p class="muted">结合本次问题，查看每张牌的含义、牌与牌之间的联系和建议。</p>
+          <p id="reading-ai-message" class="ai-message" role="status" aria-live="polite"></p>
+          <div id="reading-ai-result" hidden></div>
+          <p class="ai-note" hidden></p>
+        </section>
+        <div id="draw-results" class="results" hidden></div>
+      </section>
+      <section id="learn" class="page" aria-labelledby="learn-title">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">CARD LIBRARY</p>
+            <h1 id="learn-title">78 张牌的含义</h1>
+            <p class="intro">查阅正逆位含义、画面线索和解读问题。</p>
+          </div>
+          <label class="search"><span aria-hidden="true">⌕</span><input id="search" type="search" placeholder="搜索牌名或关键词" aria-label="搜索牌名或关键词"></label>
+        </div>
+        <div id="filters" class="filter-row" role="group" aria-label="按花色筛选">
+          <button class="selected" data-filter="all" aria-pressed="true">全部 78</button>
+          <button data-filter="major" aria-pressed="false">大阿尔卡那 22</button>
+          <button data-filter="wands" aria-pressed="false">权杖</button>
+          <button data-filter="cups" aria-pressed="false">圣杯</button>
+          <button data-filter="swords" aria-pressed="false">宝剑</button>
+          <button data-filter="pentacles" aria-pressed="false">星币</button>
+        </div>
+        <p id="library-count" class="muted"></p>
+        <div id="library-grid" class="library-grid"></div>
+      </section>
+      <section id="practice" class="page" aria-labelledby="practice-title">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">INTERPRETATION</p>
+            <h1 id="practice-title">解读练习</h1>
+            <p class="intro">根据题目写下自己的解读，再对照参考说明与自查提示。</p>
+          </div>
+          <span id="practice-count" class="pill">本次练习：0 题</span>
+        </div>
+        <div class="practice-layout">
+          <div class="panel practice-scene">
+            <div class="scene-top">
+              <span class="eyebrow">情境练习</span>
+              <button id="new-practice" class="text-button">换一道题</button>
+            </div>
+            <h2 id="scenario"></h2>
+            <div id="practice-card"></div>
+            <p class="muted">先完成自己的解读，再查看参考说明。</p>
+          </div>
+          <div class="panel writing-panel">
+            <label for="interpretation"><h2>你的解读</h2></label>
+            <p class="muted">说明牌面线索、与题目的联系，以及你的建议。</p>
+            <textarea id="interpretation" placeholder="牌面线索：……
+与题目的联系：……
+建议：……" maxlength="4000"></textarea>
+            <div class="writing-bottom">
+              <span id="char-count" class="muted">0 字</span>
+              <div class="practice-actions">
+                <button id="reveal-reference" class="outline">查看参考</button>
+                <button id="grade-practice" class="primary" hidden>评分与建议</button>
+              </div>
+            </div>
+            <p id="practice-message" role="status"></p>
+            <p id="grading-message" class="ai-message" role="status" aria-live="polite"></p>
+            <div id="grading-result" hidden></div>
+            <p class="ai-note" hidden></p>
+            <div id="reference" hidden></div>
+          </div>
+        </div>
+      </section>
+      <section id="guide" class="page guide-page" aria-labelledby="guide-title">
+        <p class="eyebrow">TAROT BASICS</p>
+        <h1 id="guide-title">塔罗入门</h1>
+        <p class="intro">了解牌组、牌面、提问方式和逆位的基本含义。</p>
+        <div class="guide-grid">
+          <article class="panel">
+            <span class="lesson-number">01</span>
+            <h2>牌组构成</h2>
+            <p>韦特塔罗共 78 张：22 张大阿尔卡那和 56 张小阿尔卡那。大阿尔卡那通常涉及人生阶段和主要课题，小阿尔卡那更侧重日常事务。</p>
+            <div class="suit-notes">
+              <p><b>权杖</b>行动、热情与创造</p>
+              <p><b>圣杯</b>情感、人际关系与交流</p>
+              <p><b>宝剑</b>思想、冲突与沟通</p>
+              <p><b>星币</b>资源、工作与日常</p>
+            </div>
+          </article>
+          <article class="panel">
+            <span class="lesson-number">02</span>
+            <h2>从画面理解牌义</h2>
+            <p>先看人物在做什么、视线朝向哪里，以及周围的环境。再对照关键词，说明哪些画面细节支持你的理解。</p>
+            <p class="lesson-example">例如，隐者手持提灯、独自站立。这些细节常与独处、思考和寻找方向有关。</p>
+            <button data-tab="learn" class="outline">查看牌义</button>
+          </article>
+          <article class="panel">
+            <span class="lesson-number">03</span>
+            <h2>如何提问</h2>
+            <p>尽量提出能结合实际情况讨论的问题，例如「我需要做哪些准备」「目前的困难在哪里」。问题越明确，越容易解释牌与情境的联系。</p>
+            <p class="lesson-example">可以从「现状 · 挑战 · 建议」三张牌阵开始。先按位置分别解读，再说明三张牌之间的联系。其他牌阵的用途和位置含义可在抽牌页查看。</p>
+            <button data-tab="draw" class="outline">选择牌阵</button>
+          </article>
+          <article class="panel">
+            <span class="lesson-number">04</span>
+            <h2>如何理解逆位</h2>
+            <p>逆位可能表示某种状态受阻、过度，或仍处于调整中，也可能与恢复有关。需要结合问题和其他牌判断，不能简单理解为正位含义的反面。</p>
+            <p class="lesson-example">刚开始学习时可以关闭逆位，先熟悉正位含义和牌阵位置。</p>
+          </article>
+        </div>
+        <div class="source-note">
+          <h3>资料说明</h3>
+          <p>牌图采用 Pamela Colman Smith 绘制的韦特塔罗。中文牌义和练习说明为学习整理，不是原书的逐字译文；不同流派的解释也有所区别。参考 A. E. Waite 的 <a href="https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot" target="_blank" rel="noopener">《The Pictorial Key to the Tarot》</a> 阅读。</p>
+          <p>牌图来源：<a href="https://commons.wikimedia.org/wiki/Category:Rider-Waite-Smith_tarot_deck_(TaionWC)" target="_blank" rel="noopener">Wikimedia Commons 历史扫描版</a>，原作属公有领域。本网站用于塔罗学习和解读练习。牌义是理解问题的一种参考，不能据此确定未来会发生什么。</p>
+        </div>
+      </section>
+    </main>
+    <footer>
+      <span class="footer-brand"><img src="assets/lanlan-witch-logo.png" alt="" width="42" height="42">懒懒塔罗</span>
+      <p>塔罗学习与练习</p>
+      <button data-tab="guide" class="text-button">图片与参考资料</button>
+    </footer>
+    <dialog id="card-dialog" aria-labelledby="detail-title">
+      <button id="close-dialog" class="dialog-close" aria-label="关闭牌义详情">×</button>
+      <div id="card-detail"></div>
+    </dialog>
+  </body>
+</html>
