@@ -1,6 +1,6 @@
-import { element, escapeHTML as html } from '../../shared/dom.js?v=2fc853de6c13';
-import { SPREAD_LEVELS } from '../../core/catalog.js?v=2fc853de6c13';
-import { renderCardFace, renderCardCaption, renderTags, orientationLabel } from '../../shared/card-view.js?v=2fc853de6c13';
+import { element, escapeHTML as html } from '../../shared/dom.js?v=76f66a77feeb';
+import { SPREAD_LEVELS } from '../../core/catalog.js?v=76f66a77feeb';
+import { renderCardFace, renderCardCaption, renderTags, orientationLabel } from '../../shared/card-view.js?v=76f66a77feeb';
 
 export function createPracticeView() {
   const input = element('#interpretation');

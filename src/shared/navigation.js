@@ -1,30 +1,36 @@
-import { element, listen } from './dom.js?v=2fc853de6c13';
-
-const PAGES = new Set(['draw', 'learn', 'practice', 'guide']);
+import { element, listen } from './dom.js?v=76f66a77feeb';
+import { createPageRouter, PAGE_TITLES } from '../core/routing.js?v=76f66a77feeb';
 
 export function createNavigation({ onEnter, signal }) {
-  function show(page) {
-    if (!PAGES.has(page)) throw new Error('未知页面');
+  function render(page) {
     document.querySelectorAll('.page').forEach(node => {
       node.classList.toggle('active', node.id === page);
     });
     document.querySelectorAll('.nav [data-tab]').forEach(node => {
       node.classList.toggle('active', node.dataset.tab === page);
+      if (node.dataset.tab === page) node.setAttribute('aria-current', 'page');
+      else node.removeAttribute('aria-current');
     });
+    document.title = `${PAGE_TITLES[page]} · 懒懒塔罗`;
     onEnter(page);
     window.scrollTo({ top: 0, behavior: 'instant' });
   }
+
+  const router = createPageRouter({ location: window.location, history: window.history, render });
+  // pushState is used for clicks; browser back/forward and edited hashes restore the existing views.
+  listen(window, 'popstate', router.restore, signal);
+  listen(window, 'hashchange', router.restore, signal);
 
   listen(document, 'click', event => {
     const button = event.target.closest('[data-tab]');
     if (!button) return;
     event.preventDefault();
-    show(button.dataset.tab);
+    router.show(button.dataset.tab);
   }, signal);
   listen(element('.brand'), 'click', event => {
     event.preventDefault();
-    show('draw');
+    router.show('draw');
   }, signal);
 
-  return { show };
+  return { show: router.show };
 }

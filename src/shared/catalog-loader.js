@@ -1,4 +1,4 @@
-import { validateCards, validateSpreads, validateScenarios } from '../core/catalog.js?v=2fc853de6c13';
+import { validateCards, validateSpreads, validateScenarios } from '../core/catalog.js?v=76f66a77feeb';
 
 async function readJSON(path, fetchResource) {
   const response = await fetchResource(path);
