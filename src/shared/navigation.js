@@ -1,8 +1,9 @@
-import { element, listen } from './dom.js?v=6fd9138dc4fb';
-import { createPageRouter, PAGE_TITLES } from '../core/routing.js?v=6fd9138dc4fb';
+import { element, listen } from './dom.js?v=46b267219527';
+import { createPageRouter, PAGE_TITLES } from '../core/routing.js?v=46b267219527';
 
 export function createNavigation({ onEnter, signal }) {
   function render(page) {
+    document.body.dataset.page = page;
     document.querySelectorAll('.page').forEach(node => {
       node.classList.toggle('active', node.id === page);
     });

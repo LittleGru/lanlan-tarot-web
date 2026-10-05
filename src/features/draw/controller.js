@@ -1,10 +1,10 @@
-import { drawCards, describeReading } from '../../core/drawing.js?v=6fd9138dc4fb';
-import { element, listen } from '../../shared/dom.js?v=6fd9138dc4fb';
-import { createDrawView } from './view.js?v=6fd9138dc4fb';
-import { createReadingAssistantView } from './ai-view.js?v=6fd9138dc4fb';
-import { requestAI } from '../../shared/ai-client.js?v=6fd9138dc4fb';
-import { createLatestRequest } from '../../shared/ai-view.js?v=6fd9138dc4fb';
-import { validateInterpretation } from '../../core/ai-contract.js?v=6fd9138dc4fb';
+import { drawCards, describeReading } from '../../core/drawing.js?v=46b267219527';
+import { element, listen } from '../../shared/dom.js?v=46b267219527';
+import { createDrawView } from './view.js?v=46b267219527';
+import { createReadingAssistantView } from './ai-view.js?v=46b267219527';
+import { requestAI } from '../../shared/ai-client.js?v=46b267219527';
+import { createLatestRequest } from '../../shared/ai-view.js?v=46b267219527';
+import { validateInterpretation } from '../../core/ai-contract.js?v=46b267219527';
 
 export function mountDraw({ cards, spreads, signal, aiAvailable = true }) {
   const view = createDrawView();

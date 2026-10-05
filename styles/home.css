@@ -1,3 +1,11 @@
+/* The cover is a separate entrance; functional pages retain their navigation. */
+body[data-page="home"] .header { position: absolute; top: 0; left: 0; right: 0; z-index: 3; height: 106px; padding-top: 0; border: 0; }
+body[data-page="home"] .nav,
+body[data-page="home"] .ai-access-button,
+body[data-page="home"] footer { display: none; }
+body[data-page="home"] main { max-width: none; padding: 0; }
+body[data-page="home"] .home-hero { min-height: 100svh; padding: 130px max(5%,calc((100vw - 1296px)/2)) 70px; border: 0; border-radius: 0; }
+body[data-page="home"] .home-hero::after { inset: 18px; }
 .home-hero { position: relative; isolation: isolate; display: grid; grid-template-columns: 1.1fr 1fr; align-items: center; gap: 20px; min-height: 630px; padding: 60px 48px; border: 1px solid #b78a5355; border-radius: 8px; overflow: hidden; background: #130b1a; }
 .home-hero::before { content: ''; position: absolute; inset: 0; z-index: -2; background: linear-gradient(90deg,#160c1df2 0%,#160c1dda 45%,#160c1d75 100%),url('../assets/witch-altar.png') center/cover no-repeat; }
 .home-hero::after { content: ''; position: absolute; inset: 12px; border: 1px solid #bd93532b; border-radius: 3px; pointer-events: none; z-index: -1; }
@@ -9,8 +17,6 @@
 .home-actions { display: flex; gap: 14px; flex-wrap: wrap; }
 .home-actions button { padding: 14px 24px; font-size: 16px; }
 .home-actions .primary span { margin-left: 24px; }
-.home-footnote { margin-top: 22px; font-size: 13px; color: var(--muted); }
-.home-footnote button { font-size: inherit; margin-left: 8px; }
 .home-logo { position: absolute; left: 50%; top: 48%; transform: translate(-50%,-50%); width: min(420px, 110%); height: auto; object-fit: contain; filter: drop-shadow(0 22px 35px #0007); }
 .home-art { position: relative; height: 430px; min-width: 0; }
 .home-orbit { position: absolute; width: 370px; height: 370px; left: 50%; top: 48%; transform: translate(-50%,-50%); border: 1px solid #c99c5660; border-radius: 50%; background: radial-gradient(ellipse,#97614730,transparent 70%); box-shadow: 0 0 0 22px #c99c5606,0 0 0 23px #c99c562b; }
@@ -19,27 +25,6 @@
 .home-star.star-one { top: 18px; left: 18%; }
 .home-star.star-two { bottom: 52px; right: 8%; font-size: 21px; }
 .home-art-caption { position: absolute; bottom: 2px; left: 50%; transform: translateX(-50%); white-space: nowrap; font: 9px Georgia,serif; letter-spacing: 2px; color: #c3a579; }
-.home-facts { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); padding: 28px 0; border-bottom: 1px solid var(--line); }
-.home-facts div { display: flex; align-items: center; justify-content: center; gap: 14px; padding: 12px; border-right: 1px solid var(--line); }
-.home-facts div:last-child { border-right: 0; }
-.home-facts strong { color: var(--gold); font: 27px Georgia,'Noto Serif SC',serif; font-weight: 400; white-space: nowrap; }
-.home-facts span { color: var(--muted); font-size: 13px; }
-.home-section-heading { margin: 68px 0 28px; }
-.home-section-heading h2 { font-size: 30px; }
-.home-section-heading p:last-child { color: var(--muted); }
-.home-paths { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); border-top: 1px solid var(--line); }
-.home-path { padding: 32px 28px 28px 0; }
-.home-path + .home-path { border-left: 1px solid var(--line); padding-left: 28px; }
-.home-path-number { color: #b99a72; font: 11px Georgia,serif; letter-spacing: 2px; }
-.home-path h3 { margin: 20px 0 15px; font-size: 23px; }
-.home-path p { color: var(--muted); font-size: 14px; line-height: 1.9; margin-bottom: 22px; }
-.home-path .text-button { font-size: 15px; }
-.home-closing { display: flex; gap: 26px; align-items: center; padding: 32px; margin-top: 55px; border: 1px solid #9d775947; background: linear-gradient(115deg,#311b3780,#130c1a); border-radius: 6px; }
-.home-closing img { flex-shrink: 0; object-fit: contain; }
-.home-closing div { flex: 1; }
-.home-closing h2 { font-size: 23px; }
-.home-closing p:last-child { color: var(--muted); font-size: 14px; margin-bottom: 0; }
-.home-closing button { flex-shrink: 0; }
 @media (max-width:1050px) {
   .header { flex-wrap: wrap; height: auto; padding-top: 14px; gap: 12px 20px; }
   .header .nav { order: 3; width: 100%; height: 48px; gap: 28px; }
@@ -50,7 +35,6 @@
   .home-art { height: 350px; }
   .home-logo { width: min(320px, 110%); }
   .home-hero h1 { font-size: 38px; }
-  .home-facts div { flex-direction: column; gap: 3px; text-align: center; }
 }
 @media (max-width:720px) {
   .home-hero { grid-template-columns: 1fr; padding: 38px 26px; }
@@ -59,16 +43,6 @@
   .home-art { height: 320px; margin-top: 10px; }
   .home-art-caption { font-size: 8px; letter-spacing: 1px; }
   .home-star.star-two { right: 5%; bottom: 38px; }
-  .home-facts strong { font-size: 22px; }
-  .home-facts span { font-size: 11px; }
-  .home-section-heading { margin-top: 44px; }
-  .home-paths { grid-template-columns: 1fr; }
-  .home-path,.home-path + .home-path { border-left: 0; border-bottom: 1px solid var(--line); padding: 25px 0; }
-  .home-closing { flex-wrap: wrap; padding: 24px; gap: 18px; }
-  .home-closing img { width: 65px; height: 65px; }
-  .home-closing div { flex-basis: calc(100% - 90px); }
-  .home-closing h2 { font-size: 18px; }
-  .home-closing button { width: 100%; }
   .header .nav { gap: 22px; overflow-x: auto; }
 }
 @media (prefers-reduced-motion: no-preference) {
@@ -84,4 +58,15 @@
   .home-orbit { width: 230px; height: 230px; }
   .home-art { height: 300px; }
   .home-logo { width: min(285px, 110%); }
+}
+
+@media (max-width:720px) {
+  body[data-page="home"] .header { height: 90px; }
+  body[data-page="home"] .home-hero { padding: 110px 28px 36px; gap: 20px; }
+  .home-hero-copy { text-align: center; }
+  .home-hero .eyebrow { margin-bottom: 18px; }
+  .home-hero h1 { margin-top: 0; margin-bottom: 18px; }
+  .home-intro { margin-bottom: 22px; }
+  .home-actions { justify-content: center; }
+  .home-art { height: 285px; margin-top: 0; }
 }
