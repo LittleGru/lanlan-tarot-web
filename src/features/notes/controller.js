@@ -1,8 +1,8 @@
-import { createNote } from '../../core/notes.js?v=c1a3470ea381';
-import { element, listen } from '../../shared/dom.js?v=c1a3470ea381';
-import { createNotesView } from './view.js?v=c1a3470ea381';
-import { createNotesAuth } from './auth.js?v=c1a3470ea381';
-import { createCloudNotesStore } from './cloud-store.js?v=c1a3470ea381';
+import { createNote } from '../../core/notes.js?v=cdb89d39fe1a';
+import { element, listen } from '../../shared/dom.js?v=cdb89d39fe1a';
+import { createNotesView } from './view.js?v=cdb89d39fe1a';
+import { createNotesAuth } from './auth.js?v=cdb89d39fe1a';
+import { createCloudNotesStore } from './cloud-store.js?v=cdb89d39fe1a';
 
 export function mountNotes({ cards, signal }) {
   const view = createNotesView(cards);
@@ -19,6 +19,7 @@ export function mountNotes({ cards, signal }) {
   const scope = () => user?.id ?? 'signed-out';
   let pendingAction = null;
   const notebook = element('#notebook-dialog');
+  const unsavedDialog = element('#notebook-unsaved');
 
   function requireLogin(action) {
     if (user && store) return true;
@@ -50,7 +51,8 @@ export function mountNotes({ cards, signal }) {
 
   function closeNotebook() {
     if (dirty) {
-      element('#notebook-unsaved').hidden = false;
+      element('#notebook-close-message').textContent = '';
+      if (!unsavedDialog.open) unsavedDialog.showModal();
       element('#notebook-keep').focus();
       return;
     }
@@ -60,7 +62,7 @@ export function mountNotes({ cards, signal }) {
   function choose(note = null) {
     current = note;
     dirty = false;
-    element('#notebook-unsaved').hidden = true;
+    if (unsavedDialog.open) unsavedDialog.close();
     view.renderEditor(current, records.some(record => record.id === current?.id));
     view.renderList(records, current?.id);
   }
@@ -114,7 +116,10 @@ export function mountNotes({ cards, signal }) {
   async function busy(button, task) {
     button.disabled = true;
     try { return await task(); }
-    catch (error) { view.message(error.message); }
+    catch (error) {
+      view.message(error.message);
+      if (unsavedDialog.open) element('#notebook-close-message').textContent = error.message;
+    }
     finally { button.disabled = false; }
   }
 
@@ -143,13 +148,14 @@ export function mountNotes({ cards, signal }) {
   }, signal);
   listen(element('#notebook-close'), 'click', closeNotebook, signal);
   listen(element('#notebook-keep'), 'click', () => {
-    element('#notebook-unsaved').hidden = true;
+    if (unsavedDialog.open) unsavedDialog.close();
     element('#note-body').focus();
   }, signal);
   listen(element('#notebook-discard'), 'click', () => { choose(current); view.message(''); notebook.close(); }, signal);
   listen(element('#notebook-save-close'), 'click', () => busy(element('#notebook-save-close'), async () => {
-    await persist(); notebook.close();
+    await persist(); if (unsavedDialog.open) unsavedDialog.close(); notebook.close();
   }), signal);
+  listen(unsavedDialog, 'cancel', event => { event.preventDefault(); unsavedDialog.close(); element('#note-body').focus(); }, signal);
   listen(notebook, 'cancel', event => { event.preventDefault(); closeNotebook(); }, signal);
   listen(notebook, 'click', event => {
     if (event.target !== notebook) return;
@@ -214,7 +220,7 @@ export function mountNotes({ cards, signal }) {
   function newStudy(card, reverse = false) {
     if (!requireLogin(() => newStudy(card, reverse)) || !mayReplace()) return;
     choose(createNote({ title: `${card.name} · 学习笔记`, snapshot: { cards: [{ id: card.id, reverse }], question: '', spreadName: '牌义学习' } }));
-    dirty = true; view.message(''); openNotebook();
+    view.message(''); openNotebook();
   }
 
   return {
