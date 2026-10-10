@@ -1,5 +1,5 @@
 export const PAGE_TITLES = Object.freeze({
-  home: '首页', draw: '抽牌', learn: '牌义资料', practice: '解读练习', guide: '入门指南',
+  home: '首页', draw: '抽牌', learn: '牌义资料', practice: '解读练习', guide: '入门指南', notes: '我的笔记',
 });
 
 export function pageFromHash(hash) {

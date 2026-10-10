@@ -1,6 +1,6 @@
-import { element, escapeHTML as html } from '../../shared/dom.js?v=01bfd33a34f4';
-import { SPREAD_LEVELS } from '../../core/catalog.js?v=01bfd33a34f4';
-import { renderCardFace, renderCardCaption, renderTags, orientationLabel } from '../../shared/card-view.js?v=01bfd33a34f4';
+import { element, escapeHTML as html } from '../../shared/dom.js?v=b174a18c0b6e';
+import { SPREAD_LEVELS } from '../../core/catalog.js?v=b174a18c0b6e';
+import { renderCardFace, renderCardCaption, renderTags, orientationLabel } from '../../shared/card-view.js?v=b174a18c0b6e';
 
 export function createPracticeView() {
   const input = element('#interpretation');
@@ -70,7 +70,7 @@ export function createPracticeView() {
           ${spread.count > 1 ? '<label><input type="checkbox">说明了牌与牌之间的联系</label>' : ''}
           <label><input type="checkbox">提出了具体的建议</label>
         </div>
-        <p class="muted">以上为固定参考说明，不会对你的解读评分。可以有不同解释，但应说明依据。</p>
+        <p class="muted">以上为参考说明，不会对你的解读评分。可以有不同解释，但应说明依据。</p>
       </div>`;
     revealButton.textContent = '参考说明已显示';
   }

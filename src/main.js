@@ -1,13 +1,14 @@
-import { loadCatalog } from './shared/catalog-loader.js?v=01bfd33a34f4';
-import { element } from './shared/dom.js?v=01bfd33a34f4';
-import { createNavigation } from './shared/navigation.js?v=01bfd33a34f4';
-import { mountCardDialog } from './shared/card-dialog.js?v=01bfd33a34f4';
-import { mountDraw } from './features/draw/controller.js?v=01bfd33a34f4';
-import { mountLibrary } from './features/library/controller.js?v=01bfd33a34f4';
-import { mountPractice } from './features/practice/controller.js?v=01bfd33a34f4';
-import { registerTarotTools } from './integrations/webmcp.js?v=01bfd33a34f4';
-import { configureRuntime } from './shared/runtime.js?v=01bfd33a34f4';
-import { mountAIAccess } from './shared/ai-access.js?v=01bfd33a34f4';
+import { loadCatalog } from './shared/catalog-loader.js?v=b174a18c0b6e';
+import { element } from './shared/dom.js?v=b174a18c0b6e';
+import { createNavigation } from './shared/navigation.js?v=b174a18c0b6e';
+import { mountCardDialog } from './shared/card-dialog.js?v=b174a18c0b6e';
+import { mountDraw } from './features/draw/controller.js?v=b174a18c0b6e';
+import { mountLibrary } from './features/library/controller.js?v=b174a18c0b6e';
+import { mountPractice } from './features/practice/controller.js?v=b174a18c0b6e';
+import { registerTarotTools } from './integrations/webmcp.js?v=b174a18c0b6e';
+import { configureRuntime } from './shared/runtime.js?v=b174a18c0b6e';
+import { mountAIAccess } from './shared/ai-access.js?v=b174a18c0b6e';
+import { mountNotes } from './features/notes/controller.js?v=b174a18c0b6e';
 
 async function startApplication() {
   const lifetime = new AbortController();
@@ -22,8 +23,11 @@ async function startApplication() {
 
   const { aiAvailable } = configureRuntime(document);
   mountAIAccess(document, signal);
-  const draw = mountDraw({ ...catalog, signal, aiAvailable });
-  const library = mountLibrary({ cards: catalog.cards, signal });
+  let navigation;
+  const notes = mountNotes({ cards: catalog.cards, signal, onNavigate: page => navigation.show(page) });
+  await notes.initialize();
+  const draw = mountDraw({ ...catalog, signal, aiAvailable, onSave: notes.saveSnapshot });
+  const library = mountLibrary({ cards: catalog.cards, guides: catalog.guides, signal });
   const practice = mountPractice({
     cards: catalog.cards,
     spreads: catalog.spreads,
@@ -31,15 +35,17 @@ async function startApplication() {
     includeReversed: () => draw.includeReversed,
     signal,
     aiAvailable,
+    onSave: notes.saveSnapshot,
   });
-  const navigation = createNavigation({
+  navigation = createNavigation({
     signal,
     onEnter(page) {
       if (page === 'learn') library.enter();
       if (page === 'practice') practice.enter();
+      if (page === 'notes') notes.enter();
     },
   });
-  mountCardDialog(catalog.cards, signal);
+  mountCardDialog(catalog.cards, signal, { guides: catalog.guides, onNote: notes.newStudy });
   registerTarotTools({ spreads: catalog.spreads, draw, practice, navigation }, signal);
 }
 
