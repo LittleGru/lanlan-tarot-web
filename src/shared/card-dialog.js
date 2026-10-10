@@ -1,7 +1,7 @@
-import { SUIT_NAMES } from '../core/catalog.js?v=b174a18c0b6e';
-import { element, escapeHTML as html, listen } from './dom.js?v=b174a18c0b6e';
-import { renderTags } from './card-view.js?v=b174a18c0b6e';
-import { GUIDE_DOMAINS } from '../core/card-guides.js?v=b174a18c0b6e';
+import { SUIT_NAMES } from '../core/catalog.js?v=cdac01788a19';
+import { element, escapeHTML as html, listen } from './dom.js?v=cdac01788a19';
+import { renderTags } from './card-view.js?v=cdac01788a19';
+import { GUIDE_DOMAINS } from '../core/card-guides.js?v=cdac01788a19';
 
 export function mountCardDialog(cards, signal, { guides = [], onNote } = {}) {
   const cardsById = new Map(cards.map(card => [card.id, card]));
