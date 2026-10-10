@@ -1,8 +1,8 @@
-import { createNote, createLocalNotesStore } from '../../core/notes.js?v=cdac01788a19';
-import { element, listen } from '../../shared/dom.js?v=cdac01788a19';
-import { createNotesView } from './view.js?v=cdac01788a19';
-import { createNotesAuth } from './auth.js?v=cdac01788a19';
-import { createCloudNotesStore } from './cloud-store.js?v=cdac01788a19';
+import { createNote, createLocalNotesStore } from '../../core/notes.js?v=fc8d92f11e1c';
+import { element, listen } from '../../shared/dom.js?v=fc8d92f11e1c';
+import { createNotesView } from './view.js?v=fc8d92f11e1c';
+import { createNotesAuth } from './auth.js?v=fc8d92f11e1c';
+import { createCloudNotesStore } from './cloud-store.js?v=fc8d92f11e1c';
 
 export function mountNotes({ cards, signal, onNavigate }) {
   const local = createLocalNotesStore(localStorage);
