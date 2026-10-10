@@ -1,5 +1,5 @@
-import { element, escapeHTML as html } from '../../shared/dom.js?v=21a4ba81b1e5';
-import { setAIState, renderTextList } from '../../shared/ai-view.js?v=21a4ba81b1e5';
+import { element, escapeHTML as html } from '../../shared/dom.js?v=01bfd33a34f4';
+import { setAIState, renderTextList } from '../../shared/ai-view.js?v=01bfd33a34f4';
 
 export function createGradingView() {
   const button = element('#grade-practice');

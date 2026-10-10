@@ -1,6 +1,6 @@
-import { SUIT_NAMES } from '../core/catalog.js?v=21a4ba81b1e5';
-import { element, escapeHTML as html, listen } from './dom.js?v=21a4ba81b1e5';
-import { renderTags } from './card-view.js?v=21a4ba81b1e5';
+import { SUIT_NAMES } from '../core/catalog.js?v=01bfd33a34f4';
+import { element, escapeHTML as html, listen } from './dom.js?v=01bfd33a34f4';
+import { renderTags } from './card-view.js?v=01bfd33a34f4';
 
 export function mountCardDialog(cards, signal) {
   const cardsById = new Map(cards.map(card => [card.id, card]));

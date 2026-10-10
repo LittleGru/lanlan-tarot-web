@@ -8,9 +8,9 @@
     <title>懒懒塔罗 · 学习与练习</title>
     <meta name="description" content="懒懒塔罗：78 张韦特塔罗牌义、9 种牌阵、随机抽牌、AI 解读与练习评分。">
     <link rel="icon" type="image/png" href="assets/lanlan-witch-logo.png">
-    <link rel="stylesheet" href="styles/index.css?v=21a4ba81b1e5">
-    <script type="module" src="src/main.js?v=21a4ba81b1e5"></script>
-  <meta name="tarot-assets-version" content="21a4ba81b1e5"></head>
+    <link rel="stylesheet" href="styles/index.css?v=01bfd33a34f4">
+    <script type="module" src="src/main.js?v=01bfd33a34f4"></script>
+  <meta name="tarot-assets-version" content="01bfd33a34f4"></head>
   <body data-page="home">
     <header class="header">
       <a class="brand" href="#/home" aria-label="懒懒塔罗首页"><img class="brand-logo" src="assets/lanlan-witch-logo.png" alt="懒羊羊女巫 logo" width="80" height="80"><span>懒懒塔罗<small>MOONLIT TAROT</small></span></a>
@@ -171,8 +171,12 @@
           <div class="panel practice-scene">
             <div class="scene-top">
               <span class="eyebrow">情境练习</span>
-              <button id="new-practice" class="text-button">换一道题</button>
+              <div class="scenario-actions">
+                <button id="new-practice" class="text-button">换一道题</button>
+                <button id="ai-new-practice" class="outline" hidden>AI 出题</button>
+              </div>
             </div>
+            <p id="scenario-generation-message" class="ai-message" role="status"></p>
             <h2 id="scenario"></h2>
             <div id="practice-card"></div>
             <p id="practice-reading-tip" class="muted"></p>

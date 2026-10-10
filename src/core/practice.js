@@ -1,4 +1,4 @@
-import { drawCards, randomIndex } from './drawing.js?v=21a4ba81b1e5';
+import { drawCards, randomIndex } from './drawing.js?v=01bfd33a34f4';
 
 export function scenarioSupportsSpread(scenario, spreadId) {
   return !scenario.spreadIds || scenario.spreadIds.includes(spreadId);
@@ -28,6 +28,15 @@ export function createPracticeSession(cards, scenarios, spreads, pickIndex = ran
     return exercise;
   }
 
+  function startGenerated(includeReversed, spreadId, scenario, scenarioToken) {
+    const spread = spreads.find(item => item.id === spreadId);
+    if (!spread || !scenarioToken) throw new Error('AI 练习题目无效');
+    exercise = { spread, reading: drawCards(cards, spread.count, includeReversed, pickIndex),
+      scenarioIndex: null, scenario, scenarioToken };
+    revealed = false;
+    return exercise;
+  }
+
   function reveal(interpretation) {
     if (!exercise) throw new Error('请先开始练习');
     if (interpretation.trim().length < 10) return false;
@@ -37,7 +46,7 @@ export function createPracticeSession(cards, scenarios, spreads, pickIndex = ran
   }
 
   return {
-    start, reveal,
+    start, startGenerated, reveal,
     get exercise() { return exercise; },
     get completed() { return completed; },
   };

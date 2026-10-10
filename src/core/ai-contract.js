@@ -40,3 +40,12 @@ export function validateGrade(value) {
   });
   return { ...value, criteria, score: criteria.reduce((sum, item) => sum + item.score, 0) };
 }
+
+/** A generated exercise contains a question and private-to-reference learning hints. */
+export function validateScenario(value) {
+  if (!value || !text(value.question, 180) || value.question.trim().length < 15 ||
+      !text(value.lens, 400) || !text(value.action, 400)) {
+    throw new Error('练习题目格式不完整');
+  }
+  return { question: value.question.trim(), lens: value.lens.trim(), action: value.action.trim() };
+}

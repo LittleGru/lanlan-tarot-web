@@ -7,6 +7,8 @@ export function configureRuntime(document) {
   const mode = document.querySelector('meta[name="tarot-ai-mode"]')?.content;
   const capabilities = runtimeCapabilities(mode);
   document.querySelector('#grade-practice').hidden = !capabilities.aiAvailable;
+  const scenarioButton = document.querySelector('#ai-new-practice');
+  if (scenarioButton) scenarioButton.hidden = !capabilities.aiAvailable;
   for (const note of document.querySelectorAll('.ai-note')) {
     note.hidden = !capabilities.aiAvailable;
     if (capabilities.aiAvailable && !capabilities.local) note.textContent = 'AI 反馈供学习参考，合理的不同解释也可以得分。';

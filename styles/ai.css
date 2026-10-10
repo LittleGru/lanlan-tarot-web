@@ -181,3 +181,9 @@
   .practice-cards:not(.single) .tarot-card { width: min(110px, 100%); height: auto; aspect-ratio: 158 / 270; }
   .practice-slot .position { font-size: 13px; }
 }
+
+.scenario-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 12px; }
+.scenario-actions .outline { padding: 7px 13px; font-size: 14px; }
+#scenario-generation-message:empty { display: none; }
+#scenario-generation-message { margin: 8px 0 16px; font-size: 13px; color: var(--muted); }
+@media (max-width:600px) { .scenario-actions { gap: 8px; } }
