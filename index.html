@@ -8,37 +8,41 @@
     <title>懒懒塔罗 · 学习与练习</title>
     <meta name="description" content="懒懒塔罗：78 张韦特塔罗牌义、9 种牌阵、随机抽牌、AI 解读与练习评分。">
     <link rel="icon" type="image/png" href="assets/lanlan-witch-logo.png">
-    <link rel="stylesheet" href="styles/index.css?v=cdb89d39fe1a">
-    <script type="module" src="src/main.js?v=cdb89d39fe1a"></script>
-  <meta name="tarot-supabase-url" content="https://fgutacbejaiaktsecvuc.supabase.co"><meta name="tarot-supabase-key" content="sb_publishable_I3So_DK3j0ovOxiBffTgMg_bkYvcU49"><meta name="tarot-assets-version" content="cdb89d39fe1a"></head>
+    <link rel="stylesheet" href="styles/index.css?v=5cfbefc47f66">
+    <script type="module" src="src/main.js?v=5cfbefc47f66"></script>
+  <meta name="tarot-supabase-url" content="https://fgutacbejaiaktsecvuc.supabase.co"><meta name="tarot-supabase-key" content="sb_publishable_I3So_DK3j0ovOxiBffTgMg_bkYvcU49"><meta name="tarot-assets-version" content="5cfbefc47f66"></head>
   <body data-page="home">
+    <a class="skip-link" href="#main-content">跳到正文</a>
     <header class="header">
       <a class="brand" href="#/home" aria-label="懒懒塔罗首页"><img class="brand-logo" src="assets/lanlan-witch-logo.png" alt="懒羊羊女巫 logo" width="80" height="80"><span>懒懒塔罗<small>MOONLIT TAROT</small></span></a>
       <nav aria-label="主导航" class="nav">
-        <button data-tab="draw">抽牌</button>
-        <button data-tab="learn">牌义资料</button>
-        <button data-tab="practice">解读练习</button>
-        <button data-tab="guide">入门指南</button>
-        <button data-tab="notes">我的笔记</button>
+        <a href="#/draw" data-tab="draw"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m4 7 8-4 8 4-8 4zM4 12l8 4 8-4M4 17l8 4 8-4"/></svg><span>抽牌</span></a>
+        <a href="#/learn" data-tab="learn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5h7l2 2 2-2h7v14h-7l-2 2-2-2H3zM12 7v14"/></svg><span>牌义</span></a>
+        <a href="#/practice" data-tab="practice"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 4 5 5M4 20l4-1L20 7l-3-3L5 16z"/></svg><span>练习</span></a>
+        <a href="#/guide" data-tab="guide"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m16 8-3 5-5 3 3-5z"/></svg><span>入门</span></a>
+        <a href="#/notes" data-tab="notes"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="3" width="15" height="18" rx="2"/><path d="M3 7h4M3 12h4M3 17h4M10 8h6M10 12h6"/></svg><span>笔记</span></a>
       </nav>
+      <button data-tab="notes" class="header-account" aria-label="打开我的笔记与邮箱登录">我的账户</button>
       <button id="ai-access-button" class="outline ai-access-button" hidden>输入邀请码</button>
     </header>
+    <dialog id="spread-picker-dialog" class="picker-dialog" aria-labelledby="spread-picker-title"><div class="dialog-toolbar"><div><p class="eyebrow">选择牌阵</p><h2 id="spread-picker-title">这次用哪一种？</h2></div><button id="spread-picker-close" class="dialog-close" aria-label="关闭牌阵选择">×</button></div><p class="muted">初次尝试建议选单张牌或三张牌。选好后仍可更换。</p><div id="spread-picker-list"></div></dialog>
+    <dialog id="action-confirm-dialog" class="action-confirm-dialog" aria-labelledby="action-confirm-title"><h2 id="action-confirm-title"></h2><p id="action-confirm-message" class="muted"></p><div class="confirm-actions"><button id="action-confirm-cancel" class="outline">取消</button><button id="action-confirm-accept" class="primary">继续</button></div></dialog>
     <dialog id="ai-access-dialog" class="ai-access-dialog" aria-labelledby="ai-access-title">
       <form id="ai-access-form">
         <p class="eyebrow">AI READING</p>
         <h2 id="ai-access-title">开启 AI 解读</h2>
-        <p class="muted">填写朋友分享的邀请码，即可使用解读与练习评分。试用次数有限，用完后会显示提示。</p>
+        <p class="muted">AI 解读、评分和出题需要邀请码。填写后会继续刚才的操作。</p>
         <label for="ai-invite-code">邀请码</label>
         <input id="ai-invite-code" type="password" maxlength="256" autocomplete="off" placeholder="填写邀请码" required>
-        <p class="muted">这里填写邀请码，不要填写 OpenAI API 密钥。</p>
+        <p class="muted">邀请码与笔记登录是分开的，抽牌和查阅牌义不需要邀请码。</p>
         <p id="ai-access-message" class="ai-message" role="status"></p>
         <div class="practice-actions">
-          <button id="ai-access-submit" type="submit" class="primary">确认</button>
-          <button id="ai-access-close" type="button" class="outline">稍后再说</button>
+          <button id="ai-access-submit" type="submit" class="primary">开启 AI</button>
+          <button id="ai-access-close" type="button" class="outline">暂不使用</button>
         </div>
       </form>
     </dialog>
-    <main>
+    <main id="main-content" tabindex="-1">
       <section id="home" class="page active home-page" aria-labelledby="home-title">
         <div class="home-hero">
           <div class="home-hero-copy">
@@ -67,84 +71,33 @@
         </div>
       </section>
       <section id="draw" class="page" aria-labelledby="draw-title">
-        <div class="section-heading">
-          <div>
-            <p class="eyebrow">TAROT READING</p>
-            <h1 id="draw-title">选择牌阵，开始解读</h1>
-            <p class="intro">先选牌阵，再写下你想了解的问题。</p>
-          </div>
-          <span class="pill">韦特体系 · 78 张</span>
-        </div>
+        <div class="section-heading"><div><p class="eyebrow">TAROT READING</p><h1 id="draw-title" tabindex="-1">抽一次牌</h1><p class="intro">选好牌阵，带着一个问题开始。没有具体问题也可以抽牌。</p></div><button data-tab="guide" class="text-button">第一次用？查看入门</button></div>
+        <ol class="flow-steps" aria-label="抽牌流程"><li id="draw-step-setup" aria-current="step"><span>1</span>选择牌阵与问题</li><li id="draw-step-result"><span>2</span>查看结果与解读</li></ol>
         <div class="workspace">
           <div class="draw-work panel">
-            <div class="controls">
-              <div class="spread-selector">
-                <label for="spread-select">选择牌阵</label>
-                <select id="spread-select" aria-describedby="spread-description" disabled>
-                  <option>正在加载牌阵…</option>
-                </select>
-              </div>
-              <label class="check"><input type="checkbox" id="reversed" checked>包含逆位</label>
-              <button id="draw-button" class="primary draw-action" disabled>洗牌并抽牌 <span aria-hidden="true">✧</span></button>
+            <div id="draw-setup">
+              <div class="controls"><div class="spread-selector"><label for="draw-spread-picker">牌阵</label><select id="spread-select" aria-describedby="spread-description" hidden disabled><option>正在加载牌阵…</option></select><button id="draw-spread-picker" class="spread-picker-trigger" data-spread-picker="spread-select" disabled>正在加载牌阵…</button></div><label class="check"><input type="checkbox" id="reversed" checked><span>包含逆位<small>牌面倒置时，参考逆位含义</small></span></label></div>
+              <div class="spread-intro"><span id="spread-level" class="spread-level" hidden></span><p id="spread-description"></p></div>
+              <label class="field-label" for="question">你的问题 <span>选填</span></label><input id="question" maxlength="180" placeholder="例如：开始这个计划前，我需要做哪些准备？">
+              <div class="setup-actions"><p class="muted">抽牌后，可以自己解读，也可以请 AI 帮忙。</p><button id="cancel-reading-setup" class="outline" hidden>返回本次结果</button><button id="draw-button" class="primary draw-action" disabled>开始抽牌</button></div>
+              <details class="spread-guide"><summary>查看各位置的含义</summary><p id="spread-reading-tip"></p><ol id="spread-position-guide"></ol><p id="spread-source-note" class="muted" hidden></p></details>
             </div>
-            <div class="spread-intro">
-              <span id="spread-level" class="spread-level"></span>
-              <p id="spread-description"></p>
-            </div>
-            <label class="field-label" for="question">你的问题 <span>选填</span></label>
-            <input id="question" maxlength="180" placeholder="例如：开始这个计划前，我需要做哪些准备？">
-            <div id="draw-table" class="draw-table" aria-live="polite"></div>
-            <details class="spread-guide">
-              <summary>牌阵说明</summary>
-              <p id="spread-reading-tip"></p>
-              <ol id="spread-position-guide"></ol>
-              <p id="spread-source-note" class="muted" hidden></p>
-            </details>
-            <div class="draw-bottom">
-              <p id="draw-caption">抽牌后可点击牌面查看牌义。</p>
-              <button id="save-reading" class="outline" disabled>保存本次抽牌</button>
-              <p id="draw-save-message" role="status"></p>
-            </div>
+            <div id="draw-reading" hidden><div class="reading-top"><div><p class="eyebrow">本次抽牌</p><h2 id="reading-spread-title"></h2><p id="reading-question-summary" class="muted"></p></div><button id="edit-reading-setup" class="outline">调整问题与牌阵</button></div><div id="draw-table" class="draw-table" aria-live="polite"></div><div class="draw-bottom"><p id="draw-caption">点击牌面查看牌义。</p><div class="reading-actions"><button id="interpret-reading" class="primary" hidden>AI 帮我解读</button><button id="save-reading" class="outline" disabled>记到笔记</button><button id="redraw-button" class="text-button">重新抽牌</button></div><p id="draw-save-message" role="status"></p></div></div>
           </div>
-          <aside class="side">
-            <div class="panel tip-panel">
-              <p class="eyebrow">READING NOTES</p>
-              <h2>解读的基本步骤</h2>
-              <ol class="steps">
-                <li><span>01</span><div><b>观察画面</b><p>留意人物的动作、表情和周围环境。</p></div></li>
-                <li><span>02</span><div><b>联系牌义</b><p>参考关键词，判断牌面表达了什么状态。</p></div></li>
-                <li><span>03</span><div><b>回到问题</b><p>结合实际情况，说明这张牌与问题的关系。</p></div></li>
-              </ol>
-            </div>
-            <div class="practice-invite">
-              <span class="eyebrow">PRACTICE</span>
-              <h3>练习写出你的解读</h3>
-              <p>根据题目写一段解读，再查看参考说明。</p>
-              <button data-tab="practice" class="outline">开始练习</button>
-            </div>
-          </aside>
         </div>
-        <section id="reading-assistant" class="panel ai-panel" aria-labelledby="assistant-title" hidden>
-          <div class="ai-heading">
-            <div><p class="eyebrow">READING ASSISTANT</p><h2 id="assistant-title">这组牌可以怎样理解？</h2></div>
-            <button id="interpret-reading" class="primary">帮我解读</button>
-          </div>
-          <p class="muted">结合本次问题，查看每张牌的含义、牌与牌之间的联系和建议。</p>
-          <p id="reading-ai-message" class="ai-message" role="status" aria-live="polite"></p>
-          <div id="reading-ai-result" hidden></div>
-          <p class="ai-note">AI 反馈供学习参考，合理的不同解释也可以得分。</p>
-        </section>
-        <div id="draw-results" class="results" hidden></div>
+        <section id="reading-assistant" class="panel ai-panel" aria-labelledby="assistant-title" hidden><div class="ai-heading"><div><p class="eyebrow">AI 解读</p><h2 id="assistant-title">一起看看这组牌</h2><p class="muted">解释每张牌与问题的关系，并给出可尝试的建议。</p></div></div><p id="reading-ai-message" class="ai-message" role="status" aria-live="polite"></p><div id="reading-ai-result" hidden></div><p class="ai-note">AI 反馈供学习参考，合理的不同解释也可以得分。</p></section>
+        <details id="draw-reference" class="reading-reference" hidden><summary>自己解读：查看牌义与位置提示</summary><div id="draw-results" class="results" hidden></div></details>
       </section>
       <section id="learn" class="page" aria-labelledby="learn-title">
         <div class="section-heading">
           <div>
             <p class="eyebrow">CARD LIBRARY</p>
-            <h1 id="learn-title">78 张牌的含义</h1>
-            <p class="intro">从画面理解牌义，再把它放进爱情、事业和日常生活的问题里。</p>
+            <h1 id="learn-title" tabindex="-1">查一张牌</h1>
+            <p class="intro">搜索牌名或关键词，点击牌面查看正逆位含义。</p>
           </div>
-          <label class="search"><span aria-hidden="true">⌕</span><input id="search" type="search" placeholder="搜索牌名或关键词" aria-label="搜索牌名或关键词"></label>
+          <label class="search"><input id="search" type="search" placeholder="搜索牌名或关键词" aria-label="搜索牌名或关键词"></label>
         </div>
+        <div class="library-tools"><button id="clear-library-filters" class="text-button" hidden>清除筛选</button></div>
         <div id="filters" class="filter-row" role="group" aria-label="按花色筛选">
           <button class="selected" data-filter="all" aria-pressed="true">全部 78</button>
           <button data-filter="complete" aria-pressed="false">完整牌义 · 7 张</button>
@@ -161,45 +114,45 @@
         <div class="section-heading">
           <div>
             <p class="eyebrow">INTERPRETATION</p>
-            <h1 id="practice-title">解读练习</h1>
-            <p class="intro">写下你的解读，查看评分与修改建议，也可以对照参考说明。</p>
+            <h1 id="practice-title" tabindex="-1">练习一次解读</h1>
+            <p class="intro">观察题目和牌面，写下你的理解，再对照参考或获取 AI 反馈。</p>
           </div>
           <span id="practice-count" class="pill">本次练习：0 题</span>
         </div>
         <div class="practice-toolbar">
-          <label for="practice-spread">练习牌阵</label>
-          <select id="practice-spread" aria-describedby="practice-spread-description"></select>
+          <div class="spread-selector"><label for="practice-spread-picker">练习牌阵</label><select id="practice-spread" aria-describedby="practice-spread-description" hidden></select><button id="practice-spread-picker" class="spread-picker-trigger" data-spread-picker="practice-spread">选择牌阵</button></div>
           <p id="practice-spread-description" class="muted"></p>
         </div>
         <div class="practice-layout">
           <div class="panel practice-scene">
             <div class="scene-top">
-              <span class="eyebrow">情境练习</span>
+              <span class="step-label">1 · 观察题目与牌面</span>
               <div class="scenario-actions">
                 <button id="new-practice" class="text-button">换一道题</button>
-                <button id="ai-new-practice" class="outline" hidden>AI 出题</button>
+                <button id="ai-new-practice" class="outline" hidden>让 AI 出新题</button>
               </div>
             </div>
             <p id="scenario-generation-message" class="ai-message" role="status"></p>
             <h2 id="scenario"></h2>
             <div id="practice-card"></div>
             <p id="practice-reading-tip" class="muted"></p>
-            <p class="muted">先完成自己的解读，再查看参考说明。</p>
+            <p class="muted">点击牌面可以查阅牌义。</p>
           </div>
           <div class="panel writing-panel">
-            <label for="interpretation"><h2>你的解读</h2></label>
-            <p class="muted">说明每张牌的位置和线索、牌之间的联系，以及你的建议。</p>
+            <label for="interpretation"><h2>2 · 写下你的解读</h2></label>
+            <p class="muted">从最明显的画面细节开始。多张牌时，再说说它们之间的联系。</p>
             <textarea id="interpretation" placeholder="牌面线索：……
 与题目的联系：……
 建议：……" maxlength="4000"></textarea>
             <div class="writing-bottom">
               <span id="char-count" class="muted">0 字</span>
               <div class="practice-actions">
-                <button id="save-practice" class="outline">保存本次练习</button>
-                <button id="reveal-reference" class="outline">查看参考</button>
-                <button id="grade-practice" class="primary">评分与建议</button>
+                <button id="save-practice" class="text-button">记到笔记</button>
+                <button id="reveal-reference" class="outline">对照参考</button>
+                <button id="grade-practice" class="primary">AI 评分与建议</button>
               </div>
             </div>
+            <p id="practice-input-hint" class="muted">AI 评分需至少 10 个字；也可以直接查看参考。</p>
             <p id="practice-message" role="status"></p>
             <p id="grading-message" class="ai-message" role="status" aria-live="polite"></p>
             <div id="grading-result" hidden></div>
@@ -209,14 +162,15 @@
         </div>
       </section>
       <section id="notes" class="page notes-page" aria-labelledby="notes-title">
-        <div class="section-heading"><div><p class="eyebrow">MY JOURNAL</p><h1 id="notes-title">我的笔记</h1><p class="intro">记录牌义、抽牌结果和解读练习。</p></div><button id="new-note" class="primary">写一篇笔记</button></div>
+        <div class="section-heading"><div><p class="eyebrow">MY JOURNAL</p><h1 id="notes-title" tabindex="-1">我的笔记</h1><p class="intro">记录牌义、抽牌结果和解读练习。</p></div><button id="new-note" class="primary">写一篇笔记</button></div>
         <div class="notes-account"><p id="notes-storage">登录后查看你的云端笔记</p><div><button id="notes-login" class="outline" hidden>邮箱登录</button><button id="notes-logout" class="text-button" hidden>退出登录</button><button id="notes-export" class="text-button">导出备份</button></div></div>
-        <div id="notes-signed-out" class="notes-signin-card"><p class="eyebrow">YOUR PRIVATE SPACE</p><h2>你的笔记，随时接着写。</h2><p>登录后，学习笔记与抽牌记录会保存在你的云端空间，<br>换一台设备也可以继续查看。只有你能看到这些记录。</p><button id="notes-start-login" class="primary">登录我的笔记</button></div><div class="notes-shelf" hidden><label class="sr-only" for="notes-search">搜索笔记</label><input id="notes-search" type="search" placeholder="搜索标题、内容或问题"><input id="notes-filter" type="hidden" value="all"><div class="notes-filter-tabs" role="group" aria-label="筛选笔记"><button data-notes-filter="all" aria-pressed="true">全部记录</button><button data-notes-filter="study" aria-pressed="false">学习笔记</button><button data-notes-filter="draw" aria-pressed="false">抽牌记录</button><button data-notes-filter="practice" aria-pressed="false">练习记录</button><button data-notes-filter="trash" aria-pressed="false">废纸篓</button></div><p id="notes-count" class="muted">0 条记录</p><div id="notes-list"></div><p id="notes-shelf-message" role="status" aria-live="polite"></p></div>
+        <div id="notes-signed-out" class="notes-signin-card"><p class="eyebrow">YOUR PRIVATE SPACE</p><h2>登录后使用私人笔记</h2><p>登录后，学习笔记与抽牌记录会保存在你的云端空间，<br>换一台设备也可以继续查看。只有你能看到这些记录。</p><button id="notes-start-login" class="primary">邮箱登录</button><p class="signin-explanation">登录用于保存笔记。抽牌、查牌义和题库练习可以直接使用。</p></div><div class="notes-shelf" hidden><button id="notes-resume" class="outline" hidden>继续未保存的笔记</button><label class="sr-only" for="notes-search">搜索笔记</label><input id="notes-search" type="search" placeholder="搜索标题、内容或问题"><input id="notes-filter" type="hidden" value="all"><div class="notes-filter-tabs" role="group" aria-label="筛选笔记"><button data-notes-filter="all" aria-pressed="true">全部记录</button><button data-notes-filter="study" aria-pressed="false">学习笔记</button><button data-notes-filter="draw" aria-pressed="false">抽牌记录</button><button data-notes-filter="practice" aria-pressed="false">练习记录</button><button data-notes-filter="trash" aria-pressed="false">废纸篓</button></div><p id="notes-count" class="muted">0 条记录</p><div id="notes-list"></div><p id="notes-shelf-message" role="status" aria-live="polite"></p></div>
       </section>
       <section id="guide" class="page guide-page" aria-labelledby="guide-title">
         <p class="eyebrow">TAROT BASICS</p>
-        <h1 id="guide-title">塔罗入门</h1>
-        <p class="intro">了解牌组、牌面、提问方式和逆位的基本含义。</p>
+        <h1 id="guide-title" tabindex="-1">从这里入门</h1>
+        <p class="intro">先了解基本规则，再抽一张牌试试。</p>
+        <div class="guide-start"><p>不知道从哪开始？单张牌最适合第一次练习。</p><button data-tab="draw" class="primary">去抽一张牌</button></div>
         <div class="guide-grid">
           <article class="panel">
             <span class="lesson-number">01</span>

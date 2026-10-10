@@ -1,5 +1,5 @@
-import { searchCards } from '../../core/catalog.js?v=cdb89d39fe1a';
-import { element, escapeHTML as html, listen } from '../../shared/dom.js?v=cdb89d39fe1a';
+import { searchCards } from '../../core/catalog.js?v=5cfbefc47f66';
+import { element, escapeHTML as html, listen } from '../../shared/dom.js?v=5cfbefc47f66';
 
 export function mountLibrary({ cards, guides = [], signal }) {
   const search = element('#search');
@@ -11,6 +11,7 @@ export function mountLibrary({ cards, guides = [], signal }) {
   function render() {
     const matches = searchCards(cards, { suit: suit === 'complete' ? 'all' : suit, query: search.value })
       .filter(card => suit !== 'complete' || guideIds.has(card.id));
+    element('#clear-library-filters').hidden = suit === 'all' && !search.value;
     element('#library-count').textContent = `共 ${matches.length} 张牌 · 点击查看详情`;
     grid.innerHTML = matches.length ? matches.map(card => `
       <button class="library-card" data-detail="${html(card.id)}">
@@ -22,6 +23,14 @@ export function mountLibrary({ cards, guides = [], signal }) {
   }
 
   listen(search, 'input', render, signal);
+  listen(element('#clear-library-filters'), 'click', () => {
+    suit = 'all'; search.value = '';
+    filters.querySelectorAll('[data-filter]').forEach(button => {
+      const active = button.dataset.filter === 'all';
+      button.classList.toggle('selected', active); button.setAttribute('aria-pressed', String(active));
+    });
+    render(); search.focus();
+  }, signal);
   listen(filters, 'click', event => {
     const selected = event.target.closest('[data-filter]');
     if (!selected) return;

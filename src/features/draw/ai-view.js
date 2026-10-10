@@ -1,6 +1,6 @@
-import { element, escapeHTML as html } from '../../shared/dom.js?v=cdb89d39fe1a';
-import { setAIState, renderTextList } from '../../shared/ai-view.js?v=cdb89d39fe1a';
-import { orientationLabel } from '../../shared/card-view.js?v=cdb89d39fe1a';
+import { element, escapeHTML as html } from '../../shared/dom.js?v=5cfbefc47f66';
+import { setAIState, renderTextList } from '../../shared/ai-view.js?v=5cfbefc47f66';
+import { orientationLabel } from '../../shared/card-view.js?v=5cfbefc47f66';
 
 export function createReadingAssistantView() {
   const panel = element('#reading-assistant');
@@ -10,22 +10,26 @@ export function createReadingAssistantView() {
   const nodes = { button, message, result };
 
   function reset(available) {
-    panel.hidden = !available;
+    panel.hidden = true;
+    button.hidden = !available;
     setAIState(nodes, 'idle');
-    button.textContent = '帮我解读';
+    button.textContent = 'AI 帮我解读';
   }
 
   function loading() {
+    panel.hidden = false;
     setAIState(nodes, 'loading');
     button.textContent = '正在解读…';
   }
 
   function showError(error) {
+    panel.hidden = false;
     setAIState(nodes, 'error', error);
     button.textContent = '重试解读';
   }
 
   function showResult(value, spread, reading, question) {
+    panel.hidden = false;
     setAIState(nodes, 'complete');
     button.textContent = '重新解读';
     result.hidden = false;

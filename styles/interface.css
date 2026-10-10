@@ -1,0 +1,283 @@
+/* Shared app shell: familiar navigation, one visual vocabulary, generous touch targets. */
+body { background:radial-gradient(ellipse at 85% 0,#35203f55,transparent 50%),#100b17; }
+body:not([data-page=home]) main { max-width:1160px; padding:28px 28px 72px; margin:auto; }
+body:not([data-page=home]) .page { scroll-margin-top:110px; }
+.header { position:sticky; top:0; z-index:10; display:flex; flex-wrap:nowrap; gap:24px; padding:0 max(24px,calc((100vw - 1160px)/2)); height:84px; min-height:84px; background:#140e1beb; backdrop-filter:blur(16px); border-color:#ffffff14; }
+.brand { gap:8px; font:500 18px/1.4 'Noto Serif SC',serif; letter-spacing:0; }
+.brand-logo { width:48px; height:48px; }
+.brand small { font:9px/1.7 Georgia,serif; letter-spacing:1.7px; }
+.header .nav { display:flex; gap:4px; height:auto; width:auto; order:0; overflow:visible; margin:0 auto; }
+.nav a { display:flex; align-items:center; gap:7px; min-height:44px; padding:8px 13px; border-radius:8px; color:#baacbf; text-decoration:none; font-size:14px; white-space:nowrap; }
+.nav a svg { width:18px; height:18px; fill:none; stroke:currentColor; stroke-width:1.5; stroke-linecap:round; stroke-linejoin:round; }
+.nav a:is(:hover,.active) { color:#f0d9ad; background:#d4b47514; }
+.nav a.active { box-shadow:inset 0 -2px #d4b475; }
+.header-account { background:none; border:0; padding:10px 0; font-size:12px; color:var(--muted); white-space:nowrap; }
+.header .ai-access-button { padding:8px 12px; font-size:12px; margin:0; }
+h1 { font:500 clamp(26px,3vw,34px)/1.5 'Noto Serif SC',serif; letter-spacing:0; }
+h2,h3 { font-family:'Noto Serif SC',serif; }
+.intro { max-width:660px; font-size:14px; color:#bcaec4; line-height:1.9; }
+.section-heading { margin-bottom:22px; align-items:center; gap:24px; }
+.eyebrow { color:#bb9e72; letter-spacing:2px; font-size:10px; margin-bottom:10px; }
+.pill { border-radius:20px; border-color:#ffffff1c; color:#c5b4cd; }
+.panel { border:1px solid #ffffff14; border-radius:14px; background:#1c1525; box-shadow:none; }
+.primary,.outline,.home-practice { border-radius:8px; font-family:var(--font); font-size:14px; letter-spacing:0; min-height:44px; padding:11px 20px; }
+.primary { background:#d9bc84; border:1px solid #e4cb9a; color:#2e2317; box-shadow:none; }
+.primary:hover { background:#edd3a0; }
+.outline { background:#ffffff03; border-color:#ffffff28; color:#e0d5e6; }
+.outline:hover { background:#ffffff0a; border-color:#d9bc8490; }
+.text-button { min-height:44px; padding:8px 10px; color:#d1b785; }
+button:disabled { cursor:not-allowed; opacity:.5; }
+input:not([type=checkbox]),textarea { border:1px solid #ffffff25; border-radius:8px; background:#120d1b; color:#eee4f2; font-size:15px; }
+input::placeholder,textarea::placeholder { color:#92859c; }
+input:focus-visible,textarea:focus-visible,button:focus-visible,a:focus-visible,summary:focus-visible { outline:2px solid #d9bc84; outline-offset:3px; }
+[tabindex="-1"]:focus { outline:none; }
+.check { color:#d7cadc; }
+.check input { width:20px; height:20px; flex-shrink:0; }
+.check small { display:block; font-size:11px; color:var(--muted); }
+.skip-link { position:fixed; left:16px; top:-100px; z-index:100; padding:12px; background:#f1e8d8; color:#342839; border-radius:6px; }
+.skip-link:focus { top:16px; }
+footer { background:none; border-color:#ffffff10; font-size:12px; }
+footer p { letter-spacing:0; }
+/* Dialogs use one visible, sticky close control and keep actions inside the viewport. */
+dialog { border-radius:14px; background:#201727; border-color:#8a6c4255; padding:28px; width:calc(100% - 32px); max-height:90dvh; box-shadow:0 32px 100px #0009; }
+dialog::backdrop { background:#09060ec9; backdrop-filter:blur(5px); }
+.dialog-toolbar { display:flex; justify-content:space-between; gap:20px; }
+.dialog-close { position:sticky; top:0; float:right; margin:0 0 -44px 16px; flex-shrink:0; width:40px; height:40px; border-radius:50%; z-index:5; background:#33253d; color:#e6dcea; font-size:26px; line-height:1; }
+.dialog-toolbar .dialog-close { margin:0; }
+.action-confirm-dialog { max-width:440px; }
+.confirm-actions { display:flex; justify-content:flex-end; flex-wrap:wrap; gap:10px; margin-top:24px; }
+.ai-message:empty,[role=status]:empty { display:none; }
+/* Spread choice: legible descriptions rather than a long system dropdown. */
+.spread-selector { min-width:0; max-width:440px; flex:1; }
+.spread-picker-trigger { width:100%; min-height:68px; display:flex; align-items:center; justify-content:space-between; gap:20px; padding:12px 16px; border:1px solid #b7955f65; border-radius:10px; background:#211a2c; color:#f0e5ef; text-align:left; }
+.spread-picker-trigger b { display:block; font-weight:500; font-size:16px; }
+.spread-picker-trigger small { display:block; color:#bcaec4; font-size:12px; margin-top:3px; }
+.picker-change { color:#d4b475; font-size:13px; }
+.picker-dialog { max-width:760px; }
+#spread-picker-list { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:20px; }
+.spread-choice { position:relative; display:flex; align-items:start; gap:14px; text-align:left; padding:20px 16px; border:1px solid #ffffff1a; border-radius:10px; background:#ffffff03; }
+.spread-choice[aria-pressed=true] { background:#d4b47512; border-color:#d4b475; }
+.spread-choice-count { display:grid; place-items:center; width:38px; flex-shrink:0; font:26px/1.3 Georgia,serif; color:#d4b475; }
+.spread-choice-count small { font:11px var(--font); }
+.spread-choice b { display:block; font-weight:500; }
+.spread-choice small { color:var(--muted); font-size:11px; }
+.spread-choice p { font-size:12px; color:var(--muted); margin:8px 0 0; }
+.spread-selected { position:absolute; right:12px; top:8px; font-size:10px; color:#d4b475; }
+/* Draw: setup, then results. The table is a working surface, not another form. */
+#draw-reading { scroll-margin-top:104px; }
+.flow-steps { padding:0; display:flex; gap:32px; list-style:none; margin:0 0 20px; color:#94869e; font-size:13px; }
+.flow-steps li { display:flex; align-items:center; gap:9px; }
+.flow-steps li>span { width:26px; height:26px; display:grid; place-items:center; border:1px solid #ffffff25; border-radius:50%; font-size:12px; }
+.flow-steps li[aria-current] { color:#e2c592; }
+.flow-steps li[aria-current]>span { background:#d4b475; color:#2a1e15; border-color:#d4b475; }
+.workspace,.workspace[data-wide=true] { display:block; }
+.draw-work { background:#1c1525; outline:none; padding:28px; }
+.setup-heading,.setup-actions,.reading-top { display:flex; justify-content:space-between; align-items:center; gap:24px; }
+.setup-heading h2 { font-size:22px; margin:0; }
+.setup-heading { margin-bottom:16px; }
+.setup-heading .muted { font-size:12px; }
+.controls { align-items:center; margin-bottom:18px; flex-wrap:wrap; gap:28px; }
+.controls .check { margin:0; }
+.spread-intro { margin-bottom:24px; gap:10px; }
+.spread-intro p { color:var(--muted); font-size:13px; }
+.spread-level { border:0; padding:0; font-size:12px; color:#d4b475; }
+.spread-guide { margin:10px 0 0; padding:10px 0; border-color:#ffffff10; }
+.spread-guide summary { font-size:13px; min-height:32px; }
+.spread-guide p,.spread-guide li span,.spread-guide li b { font-size:13px; }
+.setup-actions { border-top:1px solid #ffffff10; padding-top:22px; }
+.setup-actions p { margin:0; font-size:12px; }
+.setup-actions .draw-action { min-width:160px; margin:0; }
+.reading-top h2 { margin:0; font-size:24px; }
+.reading-top .muted { margin:8px 0 0; }
+.draw-table { background:radial-gradient(ellipse,#46324735,transparent 80%),#17101f; border:1px solid #ffffff0a; border-radius:10px; margin-top:24px; min-height:300px; }
+.tarot-card { border-radius:5px; height:230px; width:134px; box-shadow:0 12px 28px #0005; }
+.tarot-card img { object-fit:contain; }
+.card-back { color:#cfb685; }
+.tarot-card:hover { transform:translateY(-3px); }
+.draw-table .card-name,.draw-table .orientation { background:none; padding:0; }
+.draw-bottom { justify-content:space-between; margin-top:20px; padding-top:16px; border-color:#ffffff14; }
+.reading-actions { display:flex; gap:12px; align-items:center; flex-wrap:wrap; }
+#draw-save-message { flex-basis:100%; }
+.reading-reference { border:1px solid #ffffff15; border-radius:12px; margin-top:20px; padding:20px; background:#1a1321; }
+.reading-reference>summary { cursor:pointer; color:#e2c592; font-size:15px; min-height:28px; }
+.results { margin-top:24px; }
+.result-grid { grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr)); }
+.result-card { background:#21182a; border-color:#ffffff12; border-radius:10px; padding:20px; }
+.result-heading h2 { font-size:18px; }
+.result-heading .text-button { display:none; }
+.result-card p { font-size:14px; }
+.tag { border-color:#b7955f40; border-radius:5px; color:#d6c2a2; background:none; }
+.ai-panel { margin-top:20px; padding:24px 28px; }
+.ai-heading { align-items:center; }
+.ai-heading h2 { font-size:23px; margin:0 0 8px; }
+.ai-heading .muted { margin:0; }
+.ai-note { font-size:11px; color:#a899b2; margin:12px 0 0; }
+.ai-output { line-height:1.9; }
+/* Learning and practice share compact cards and keep reading and writing in order. */
+#learn .search { width:330px; border-radius:8px; background:#1c1525; }
+.filter-row { gap:8px; }
+.filter-row button { font-family:var(--font); border-radius:20px; background:none; border-color:#ffffff20; font-size:13px; min-height:40px; padding:6px 15px; }
+.filter-row button.selected { background:#d4b47514; color:#e1c592; border-color:#b7955f85; }
+.library-tools { text-align:right; }
+.library-grid { grid-template-columns:repeat(6,minmax(0,1fr)); gap:20px; }
+.library-card { border-color:#ffffff14; border-radius:10px; background:#1c1525; padding:16px; text-align:center; }
+.library-card img { width:100%; height:auto; aspect-ratio:1/1.7; object-fit:contain; outline:none; border-radius:3px; }
+.library-card p { min-height:20px; }
+.guide-badge { font-size:10px; display:inline-block; border-radius:12px; background:#d4b47514; padding:1px 8px; }
+.library-card b { display:block; color:#e9deef; }
+.practice-toolbar { display:flex; gap:24px; align-items:center; padding:20px 24px; border:1px solid #ffffff14; border-radius:12px; background:#1c1525; margin-bottom:24px; }
+.practice-toolbar .spread-selector { flex:0 1 330px; }
+.practice-toolbar>p { flex:1; font-size:13px; margin:0; }
+.practice-layout,.practice-layout[data-multi=true] { display:grid; grid-template-columns:1fr; gap:20px; }
+.practice-scene { padding:24px; text-align:left; background:#1c1525; }
+.step-label { font-size:12px; color:#d4b475; }
+.scene-top { gap:20px; flex-wrap:wrap; }
+.scenario-actions { display:flex; gap:10px; align-items:center; }
+.practice-scene h2 { margin-bottom:24px; font-size:21px; }
+.practice-cards { display:grid; grid-template-columns:repeat(auto-fit,minmax(130px,1fr)); gap:24px 16px; max-width:none; align-items:start; }
+.practice-cards.single { display:grid; grid-template-columns:1fr; max-width:360px; margin:auto; }
+.practice-slot { display:grid; grid-template-rows:42px 170px 30px 24px auto; gap:8px; align-items:start; text-align:center; min-width:0; }
+.practice-scene .practice-slot .tarot-card { width:100px; height:170px; margin:auto; }
+.practice-slot .position { margin:0; min-height:42px; font-size:12px; letter-spacing:0; display:flex; align-items:center; justify-content:center; gap:4px; }
+.practice-slot .card-name { margin:0; align-self:center; font-size:14px; }
+.practice-slot .orientation { margin:0; font-size:12px; }
+.practice-slot .practice-position-prompt { margin:0; font-size:12px; color:#aa9bb3; line-height:1.8; }
+.practice-scene>.muted { font-size:12px; text-align:center; margin:20px 0 0; }
+#scenario-generation-message { font-size:12px; margin:0 0 12px; }
+.writing-panel { padding:28px; }
+.writing-panel textarea { min-height:220px; }
+.writing-panel>.muted { font-size:13px; }
+.writing-bottom { display:flex; flex-wrap:wrap; gap:16px; }
+.practice-actions { display:flex; flex-wrap:wrap; gap:10px; }
+#practice-input-hint { margin:16px 0 0; font-size:12px; }
+#reference { scroll-margin-top:100px; }
+.reference { margin-top:24px; padding-top:24px; border-color:#ffffff15; }
+.reference h3 { font-size:16px; margin:20px 0 8px; }
+.reference p { font-size:14px; }
+/* Notes: one login entrance; the book remains the writing surface. */
+.notes-account { font-size:12px; border-color:#ffffff14; }
+.notes-signin-card { background:#1c1525; border-color:#ffffff15; padding:48px 24px; }
+.notes-signin-card h2 { font-size:26px; }
+.notes-signin-card>p:not(.eyebrow) { font-size:14px; margin-bottom:20px; }
+.notes-signin-card .signin-explanation { margin:20px auto 0; color:#9f90a8; font-size:12px; max-width:440px; }
+.notes-shelf .note-list-item { background:#1c1525; border-color:#ffffff18; border-radius:12px; }
+.notes-page #new-note { min-width:130px; }
+.notes-filter-tabs button { min-height:40px; }
+#notebook-close { width:40px; height:40px; margin:14px 14px -54px 0; top:14px; font-size:28px; }
+.notebook { padding:12px; }
+.notebook-reference { padding-top:36px; }
+.notebook-page.notes-editor { padding-top:46px; }
+.notebook-page .note-kind-tabs button { min-height:36px; }
+.notebook-page .note-actions button { min-height:44px; }
+#notes-auth-dialog .dialog-close { background:#33253d; }
+#notes-auth-dialog h2 { padding-right:48px; }
+.guide-start { display:flex; gap:20px; justify-content:space-between; align-items:center; padding:24px; background:#1c1525; border:1px solid #ffffff14; border-radius:12px; margin-top:24px; }
+.guide-start p { color:var(--muted); font-size:14px; margin:0; }
+.guide-grid .panel { border-radius:12px; }
+@media(max-width:1050px) {
+  .header { flex-wrap:nowrap; gap:12px; }
+  .header-account { display:none; }
+  .header .nav { width:auto; gap:2px; }
+  .nav a { padding:8px 10px; }
+  .brand { font-size:16px; }
+  .brand small { font-size:8px; }
+  .library-grid { grid-template-columns:repeat(4,minmax(0,1fr)); }
+}
+@media(max-width:720px) {
+  body:not([data-page=home]) main { padding:24px 18px 104px; }
+  .header { height:72px; min-height:72px; padding:0 18px; justify-content:space-between; }
+  .brand-logo { width:42px; height:42px; }
+  .header .nav { position:fixed; inset:auto 0 0; top:calc(100dvh - 72px - env(safe-area-inset-bottom)); width:100%; height:calc(72px + env(safe-area-inset-bottom)); padding:7px 8px calc(7px + env(safe-area-inset-bottom)); background:#1c1425f5; border-top:1px solid #ffffff14; display:grid; grid-template-columns:repeat(5,1fr); margin:0; gap:3px; overflow:visible; }
+  .nav a { flex-direction:column; gap:3px; justify-content:center; font-size:11px; padding:5px; min-height:52px; }
+  .nav a svg { width:21px; height:21px; }
+  .nav a.active { box-shadow:none; background:#d4b47515; }
+  .header .ai-access-button { padding:8px 12px; font-size:11px; }
+  .section-heading { flex-direction:column; align-items:start; gap:14px; margin-bottom:24px; }
+  .intro { font-size:13px; }
+  .section-heading>.text-button { padding:0; min-height:28px; }
+  .flow-steps { gap:16px; font-size:11px; }
+  .flow-steps li { gap:6px; }
+  .flow-steps li>span { width:23px; height:23px; }
+  .draw-work,.writing-panel,.practice-scene { padding:20px; }
+  .setup-heading { flex-direction:column; align-items:start; gap:4px; margin-bottom:20px; }
+  .setup-heading h2 { font-size:20px; }
+  .controls { gap:18px; }
+  .spread-selector { max-width:none; flex-basis:100%; }
+  .setup-actions { flex-direction:column; align-items:stretch; gap:14px; }
+  .setup-actions .draw-action { width:100%; }
+  .reading-top { align-items:start; gap:12px; flex-wrap:wrap; }
+  .reading-top h2 { font-size:21px; }
+  .reading-top .outline { padding:8px 12px; font-size:12px; min-height:36px; }
+  .draw-table { margin-top:20px; padding:22px 12px; min-height:240px; }
+  .draw-table.layout-line { grid-template-columns:repeat(3,minmax(0,1fr)); gap:10px; }
+  .draw-table.layout-line .card-slot { grid-row:auto!important; grid-column:auto!important; }
+  .draw-table.layout-line .tarot-card { width:clamp(65px,20vw,90px); height:clamp(111px,34vw,153px); }
+  .draw-table.layout-line .position { font-size:11px; }
+  .draw-table.layout-line .card-name { font-size:12px; }
+  .draw-bottom { justify-content:flex-start; }
+  .reading-actions { width:100%; justify-content:space-between; }
+  .ai-panel { padding:20px; }
+  .ai-heading { flex-direction:column; align-items:stretch; gap:20px; }
+  .ai-heading h2 { font-size:21px; }
+  .reading-reference { padding:18px; }
+  .reading-reference>summary { font-size:13px; }
+  #learn .search { width:100%; }
+  .library-grid { grid-template-columns:repeat(3,minmax(0,1fr)); gap:12px; margin-top:18px; }
+  .library-card { padding:10px 8px; }
+  .library-card b { font-size:12px; }
+  .library-card p { font-size:10px; }
+  .library-card .guide-badge { font-size:9px; padding:1px 5px; }
+  .filter-row { gap:7px; }
+  .filter-row button { padding:6px 12px; font-size:11px; }
+  .practice-toolbar { display:block; padding:18px; }
+  .practice-toolbar>p { margin-top:14px; }
+  .practice-scene h2 { font-size:18px; }
+  .scene-top { gap:10px; }
+  .scenario-actions { gap:6px; }
+  .scenario-actions button { font-size:11px; padding:8px 10px; }
+  .practice-cards:not(.single) { grid-template-columns:repeat(2,minmax(0,1fr)); gap:24px 12px; }
+  .practice-slot { grid-template-rows:42px 153px 28px 22px auto; gap:6px; }
+  .practice-scene .practice-slot .tarot-card { width:90px; height:153px; }
+  .writing-panel textarea { min-height:220px; }
+  .writing-bottom { align-items:stretch; flex-direction:column; }
+  .writing-bottom .practice-actions { display:grid; grid-template-columns:1fr 1fr; width:100%; }
+  .practice-actions #grade-practice { grid-column:1/-1; }
+  .practice-actions #save-practice { order:3; grid-column:1/-1; }
+  .practice-actions #reveal-reference { grid-column:1/-1; order:2; }
+  .writing-panel h2 { font-size:20px; }
+  .notes-account { align-items:start; flex-wrap:wrap; gap:8px; }
+  .notes-signin-card { padding:32px 20px; }
+  .notes-signin-card h2 { font-size:22px; }
+  #spread-picker-list { grid-template-columns:1fr; }
+  .picker-dialog { padding:22px; }
+  .spread-choice { padding:16px; }
+  .guide-start { flex-direction:column; align-items:stretch; padding:20px; }
+  footer { margin-bottom:72px; padding:22px 18px; flex-wrap:wrap; gap:12px; }
+  footer p { display:none; }
+  .complete-guide-dialog { padding:24px 20px; }
+  .guide-portrait { display:grid; grid-template-columns:100px 1fr; gap:0 20px; text-align:left; }
+  .guide-portrait>img { grid-row:1/7; width:100px; }
+  .guide-portrait .eyebrow { margin-top:0; }
+  .guide-portrait h2 { font-size:25px; margin:8px 0 4px; }
+  .guide-portrait .tags { justify-content:start; margin:6px 0 10px; }
+  .guide-portrait .outline { font-size:12px; padding:7px 10px; min-height:38px; }
+  .guide-layout { gap:24px; }
+}
+@media(prefers-reduced-motion:reduce) { *,*::before,*::after { scroll-behavior:auto!important; } }
+
+@media(max-width:720px) { .reading-actions { display:grid; grid-template-columns:1fr 1fr; gap:10px; } .reading-actions .primary { grid-column:1/-1; } }
+.guide-jump-links { position:sticky; top:0; z-index:2; display:flex; flex-wrap:wrap; gap:6px; background:#201727; padding:8px 0 14px; margin-bottom:16px; border-bottom:1px solid #ffffff18; }
+.guide-jump-links button { padding:8px 12px; min-height:38px; font-size:12px; border:1px solid #ffffff20; border-radius:20px; background:#ffffff04; color:#cbbbd3; }
+.guide-jump-links button:hover { border-color:#d4b475; color:#e2c592; }
+.guide-content [id^=guide-] { scroll-margin-top:78px; }
+.guide-portrait>img.reversed { transform:rotate(180deg); }
+@media(max-width:720px) { .guide-jump-links { top:0; gap:5px; } .guide-jump-links button { font-size:11px; padding:6px 10px; } }
+
+@media(min-width:960px) { .practice-layout[data-multi=false] { grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr); align-items:start; } }
+#notes-resume { margin-bottom:20px; }
+
+@media(max-width:720px) { .controls .check small { display:none; } .controls .check { font-size:12px; } }
+
+@media(max-width:720px) { .guide-jump-links { display:grid; grid-template-columns:1fr 1fr; width:calc(100% - 46px); } .guide-content [id^=guide-] { scroll-margin-top:126px; } }
+body:has(dialog[open]) { overflow:hidden; }
+dialog { overscroll-behavior:contain; }

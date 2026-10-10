@@ -1,13 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700&family=Noto+Serif+SC:wght@400;500;600&display=swap');
 
 /* Keep the layer order explicit: foundations, breakpoints, theme, brand, spreads. */
-@import url('./base.css?v=cdb89d39fe1a');
-@import url('./responsive.css?v=cdb89d39fe1a');
-@import url('./theme.css?v=cdb89d39fe1a');
-@import url('./branding.css?v=cdb89d39fe1a');
-@import url('./spreads.css?v=cdb89d39fe1a');
-@import url('./ai.css?v=cdb89d39fe1a');
-@import url('./home.css?v=cdb89d39fe1a');
-@import url('./study.css?v=cdb89d39fe1a');
-@import url('./notes.css?v=cdb89d39fe1a');
-@import url('./notebook.css?v=cdb89d39fe1a');
+@import url('./base.css?v=5cfbefc47f66');
+@import url('./responsive.css?v=5cfbefc47f66');
+@import url('./branding.css?v=5cfbefc47f66');
+@import url('./spreads.css?v=5cfbefc47f66');
+@import url('./ai.css?v=5cfbefc47f66');
+@import url('./home.css?v=5cfbefc47f66');
+@import url('./study.css?v=5cfbefc47f66');
+@import url('./notes.css?v=5cfbefc47f66');
+@import url('./notebook.css?v=5cfbefc47f66');
+
+/* Unified interaction styles follow the retained brand and feature layouts. */
+@import url('./interface.css?v=5cfbefc47f66');

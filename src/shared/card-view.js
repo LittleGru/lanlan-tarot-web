@@ -1,4 +1,4 @@
-import { escapeHTML as html } from './dom.js?v=cdb89d39fe1a';
+import { escapeHTML as html } from './dom.js?v=5cfbefc47f66';
 
 export function orientationLabel(reverse) {
   return reverse ? '逆位' : '正位';
@@ -19,7 +19,7 @@ export function renderCardFace(drawn, label) {
 
   const { card, reverse } = drawn;
   return `
-    <button class="tarot-card" data-detail="${html(card.id)}"
+    <button class="tarot-card" data-detail="${html(card.id)}" data-orientation="${reverse ? 'reversed' : 'upright'}"
       aria-label="${html(label)}：查看${html(card.name)}${orientationLabel(reverse)}牌义">
       <img src="${html(card.imagePath)}" alt="${html(card.name)}牌面"
         ${reverse ? 'class="reversed"' : ''}>

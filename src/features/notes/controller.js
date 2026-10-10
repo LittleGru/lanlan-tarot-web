@@ -1,8 +1,9 @@
-import { createNote } from '../../core/notes.js?v=cdb89d39fe1a';
-import { element, listen } from '../../shared/dom.js?v=cdb89d39fe1a';
-import { createNotesView } from './view.js?v=cdb89d39fe1a';
-import { createNotesAuth } from './auth.js?v=cdb89d39fe1a';
-import { createCloudNotesStore } from './cloud-store.js?v=cdb89d39fe1a';
+import { confirmAction } from '../../shared/confirmation.js?v=5cfbefc47f66';
+import { createNote } from '../../core/notes.js?v=5cfbefc47f66';
+import { element, listen } from '../../shared/dom.js?v=5cfbefc47f66';
+import { createNotesView } from './view.js?v=5cfbefc47f66';
+import { createNotesAuth } from './auth.js?v=5cfbefc47f66';
+import { createCloudNotesStore } from './cloud-store.js?v=5cfbefc47f66';
 
 export function mountNotes({ cards, signal }) {
   const view = createNotesView(cards);
@@ -24,23 +25,27 @@ export function mountNotes({ cards, signal }) {
   function requireLogin(action) {
     if (user && store) return true;
     pendingAction = action;
-    element('#notes-auth-message').textContent = auth ? '登录后再继续，笔记将保存到你的私人云端空间。' : '邮箱登录暂未开放，请稍后再试。';
+    element('#notes-auth-message').textContent = auth ? '输入邮箱，我们会发送登录链接。登录后继续刚才的记录。' : '登录服务正在加载，请稍后再试。';
     element('#notes-auth-dialog').showModal();
+    element('#notes-email').focus();
     return false;
   }
 
   function updateAccountView() {
     element('#notes-storage').textContent = user ? `个人云端笔记 · ${user.email ?? ''}` : '登录后查看你的云端笔记';
-    login.hidden = Boolean(user);
+    login.hidden = true;
+    element('#new-note').hidden = !user;
+    element('.header-account').textContent = user ? '我的账户' : '邮箱登录';
     logout.hidden = !user;
     element('.notes-shelf').hidden = !user;
     element('#notes-signed-out').hidden = Boolean(user);
     element('#notes-export').hidden = !user;
+    element('#notes-resume').hidden = !user || !dirty;
     element('#notes-auth-submit').disabled = !auth;
   }
 
-  function newNote() {
-    if (!requireLogin(newNote) || !mayReplace()) return;
+  async function newNote() {
+    if (!requireLogin(newNote) || !await mayReplace()) return;
     choose(); view.message(''); openNotebook(); element('#note-title').focus();
   }
 
@@ -62,6 +67,7 @@ export function mountNotes({ cards, signal }) {
   function choose(note = null) {
     current = note;
     dirty = false;
+    element('#notes-resume').hidden = true;
     if (unsavedDialog.open) unsavedDialog.close();
     view.renderEditor(current, records.some(record => record.id === current?.id));
     view.renderList(records, current?.id);
@@ -91,7 +97,9 @@ export function mountNotes({ cards, signal }) {
     return saved;
   }
 
-  function mayReplace() { return !dirty || window.confirm('当前修改还没有保存。要离开这篇笔记吗？'); }
+  async function mayReplace() {
+    return !dirty || await confirmAction({ title: '切换到另一篇笔记？', message: '当前修改还没有保存。切换后将放弃这些修改。', confirmLabel: '放弃并切换', cancelLabel: '继续写' });
+  }
 
   async function switchAccount(nextUser, client) {
     if (nextUser?.id === user?.id && (nextUser || store === null)) return;
@@ -127,11 +135,12 @@ export function mountNotes({ cards, signal }) {
     event.preventDefault();
     busy(element('#note-save'), () => persist());
   }, signal);
-  listen(element('#note-form'), 'input', () => { dirty = true; view.message('有未保存的修改。'); }, signal);
+  listen(element('#note-form'), 'input', () => { dirty = true; element('#notes-resume').hidden = !user; view.message('有未保存的修改。'); }, signal);
   listen(element('#new-note'), 'click', newNote, signal);
-  listen(element('#notes-list'), 'click', event => {
+  listen(element('#notes-resume'), 'click', openNotebook, signal);
+  listen(element('#notes-list'), 'click', async event => {
     const button = event.target.closest('[data-note-id]');
-    if (button && mayReplace()) { choose(records.find(note => note.id === button.dataset.noteId)); view.message(''); openNotebook(); }
+    if (button && await mayReplace()) { choose(records.find(note => note.id === button.dataset.noteId)); view.message(''); openNotebook(); }
   }, signal);
   listen(element('#notes-search'), 'input', () => view.renderList(records, current?.id), signal);
   listen(element('.notes-filter-tabs'), 'click', event => {
@@ -144,7 +153,7 @@ export function mountNotes({ cards, signal }) {
     const button = event.target.closest('[data-note-kind]');
     if (!button || button.disabled) return;
     view.setKind(button.dataset.noteKind);
-    dirty = true; view.message('有未保存的修改。');
+    dirty = true; element('#notes-resume').hidden = !user; view.message('有未保存的修改。');
   }, signal);
   listen(element('#notebook-close'), 'click', closeNotebook, signal);
   listen(element('#notebook-keep'), 'click', () => {
@@ -163,8 +172,12 @@ export function mountNotes({ cards, signal }) {
     if (event.clientX < bounds.left || event.clientX > bounds.right || event.clientY < bounds.top || event.clientY > bounds.bottom) closeNotebook();
   }, signal);
   listen(element('#note-trash'), 'click', () => busy(element('#note-trash'), async () => {
-    if (!current || !mayReplace()) return;
+    if (!current) return;
     const restoring = Boolean(current.trashedAt);
+    if (dirty) {
+      if (!await confirmAction({ title: '先保存修改？', message: '保存当前修改后，再将笔记移入废纸篓。以后仍可恢复。', confirmLabel: '保存并移入废纸篓', cancelLabel: '继续写' })) return;
+      await persist();
+    }
     await persist({ ...current, trashedAt: restoring ? null : new Date().toISOString() });
     element('#notes-filter').value = restoring ? 'all' : 'trash';
     view.renderList(records, current?.id);
@@ -204,7 +217,7 @@ export function mountNotes({ cards, signal }) {
   updateAccountView();
 
   async function saveSnapshot(snapshot, body = '') {
-    if (!requireLogin(() => saveSnapshot(snapshot, body))) throw new Error('请先登录，登录后继续保存这次记录。');
+    if (!requireLogin(() => saveSnapshot(snapshot, body))) return;
     const expected = revision;
     if (dirty) await persist();
     if (expected !== revision) throw new Error('登录状态已变化，请重新保存这次记录。');
@@ -217,8 +230,8 @@ export function mountNotes({ cards, signal }) {
     choose(saved); openNotebook();
   }
 
-  function newStudy(card, reverse = false) {
-    if (!requireLogin(() => newStudy(card, reverse)) || !mayReplace()) return;
+  async function newStudy(card, reverse = false) {
+    if (!requireLogin(() => newStudy(card, reverse)) || !await mayReplace()) return;
     choose(createNote({ title: `${card.name} · 学习笔记`, snapshot: { cards: [{ id: card.id, reverse }], question: '', spreadName: '牌义学习' } }));
     view.message(''); openNotebook();
   }

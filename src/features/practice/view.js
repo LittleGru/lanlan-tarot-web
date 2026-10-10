@@ -1,6 +1,6 @@
-import { element, escapeHTML as html } from '../../shared/dom.js?v=cdb89d39fe1a';
-import { SPREAD_LEVELS } from '../../core/catalog.js?v=cdb89d39fe1a';
-import { renderCardFace, renderCardCaption, renderTags, orientationLabel } from '../../shared/card-view.js?v=cdb89d39fe1a';
+import { element, escapeHTML as html } from '../../shared/dom.js?v=5cfbefc47f66';
+import { SPREAD_LEVELS } from '../../core/catalog.js?v=5cfbefc47f66';
+import { renderCardFace, renderCardCaption, renderTags, orientationLabel } from '../../shared/card-view.js?v=5cfbefc47f66';
 
 export function createPracticeView() {
   const input = element('#interpretation');
@@ -35,7 +35,7 @@ export function createPracticeView() {
     reference.replaceChildren();
     message.textContent = '';
     revealButton.disabled = false;
-    revealButton.textContent = '查看参考';
+    revealButton.textContent = '对照参考';
   }
 
   function updateCharacterCount() {
@@ -72,7 +72,7 @@ export function createPracticeView() {
         </div>
         <p class="muted">以上为参考说明，不会对你的解读评分。可以有不同解释，但应说明依据。</p>
       </div>`;
-    revealButton.textContent = '参考说明已显示';
+    revealButton.textContent = '收起参考';
   }
 
   return { populate, showExercise, updateCharacterCount, showValidation, showReference };

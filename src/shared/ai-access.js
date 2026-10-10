@@ -16,7 +16,7 @@ export function clearAIInvite() {
   invite = '';
   try { sessionStorage.removeItem(storageKey); } catch { /* Memory-only works without storage. */ }
   const button = globalThis.document?.querySelector('#ai-access-button');
-  if (button) button.textContent = '输入邀请码';
+  if (button) button.textContent = '开启 AI';
 }
 
 export async function requireAIInvite(signal) {
@@ -29,7 +29,7 @@ export async function requireAIInvite(signal) {
   });
   const code = await pending;
   if (signal?.aborted) throw new DOMException('已取消', 'AbortError');
-  if (!code) throw new Error('输入邀请码后即可使用 AI 解读和评分。');
+  if (!code) throw new DOMException('已取消 AI 操作', 'AbortError');
   return code;
 }
 
@@ -44,7 +44,7 @@ export function mountAIAccess(document, signal) {
   const input = document.querySelector('#ai-invite-code');
   const message = document.querySelector('#ai-access-message');
   const submit = document.querySelector('#ai-access-submit');
-  const updateButton = () => { button.textContent = invite ? 'AI 已开启' : '输入邀请码'; };
+  const updateButton = () => { button.textContent = invite ? 'AI 已开启' : '开启 AI'; };
   updateButton();
   button.addEventListener('click', () => { dialog.showModal(); input.focus(); }, { signal });
   document.querySelector('#ai-access-close').addEventListener('click', () => dialog.close(), { signal });

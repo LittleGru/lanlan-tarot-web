@@ -1,6 +1,6 @@
-import { SPREAD_LEVELS } from '../../core/catalog.js?v=cdb89d39fe1a';
-import { element, escapeHTML as html } from '../../shared/dom.js?v=cdb89d39fe1a';
-import { renderCardFace, renderCardCaption, renderTags, orientationLabel } from '../../shared/card-view.js?v=cdb89d39fe1a';
+import { SPREAD_LEVELS } from '../../core/catalog.js?v=5cfbefc47f66';
+import { element, escapeHTML as html } from '../../shared/dom.js?v=5cfbefc47f66';
+import { renderCardFace, renderCardCaption, renderTags, orientationLabel } from '../../shared/card-view.js?v=5cfbefc47f66';
 
 function renderSlot(position, index, drawn) {
   return `
@@ -52,6 +52,7 @@ export function createDrawView() {
       </optgroup>`).join('');
     selector.disabled = false;
     drawButton.disabled = false;
+    element('#draw-spread-picker').disabled = false;
   }
 
   function showSpread(spread) {
@@ -81,7 +82,10 @@ export function createDrawView() {
     caption.textContent = spread.layout === 'celtic'
       ? '按编号阅读；第 2 张横置，正逆位以标签为准。'
       : '可展开牌阵说明查看各位置的含义。';
-    drawButton.innerHTML = '洗牌并抽牌 <span aria-hidden="true">✧</span>';
+    drawButton.textContent = '开始抽牌';
+    showMode('setup');
+    element('#cancel-reading-setup').hidden = true;
+    document.dispatchEvent(new Event('spreadchange'));
   }
 
   function showTable(spread, reading, useCrossLayout) {
@@ -98,7 +102,10 @@ export function createDrawView() {
     caption.textContent = spread.layout === 'celtic'
       ? '点击牌面或中央的牌名查看牌义。第 2 张横置，正逆位以标签为准。'
       : '点击牌面查看牌义，下方列有各位置的解读提示。';
-    drawButton.innerHTML = '重新洗牌 <span aria-hidden="true">✧</span>';
+    drawButton.textContent = '重新抽牌';
+    element('#reading-spread-title').textContent = spread.name;
+    element('#reading-question-summary').textContent = question || '本次没有填写问题';
+    showMode('reading');
     results.hidden = false;
     results.innerHTML = `
       <div class="result-heading">
@@ -127,5 +134,16 @@ export function createDrawView() {
     questionDisplay.textContent = question ? `本次问题：${question}` : '';
   }
 
-  return { populate, showSpread, showTable, showReading, showQuestion };
+  function showMode(mode) {
+    const setup = mode === 'setup';
+    element('#draw-setup').hidden = !setup;
+    element('#draw-reading').hidden = setup;
+    element('#draw-reference').hidden = setup;
+    for (const [id, active] of [['draw-step-setup', setup], ['draw-step-result', !setup]]) {
+      const step = element(`#${id}`);
+      if (active) step.setAttribute('aria-current', 'step'); else step.removeAttribute('aria-current');
+    }
+  }
+
+  return { showMode, populate, showSpread, showTable, showReading, showQuestion };
 }

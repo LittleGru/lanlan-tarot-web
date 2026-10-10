@@ -1,5 +1,5 @@
-import { element, escapeHTML as html } from '../../shared/dom.js?v=cdb89d39fe1a';
-import { setAIState, renderTextList } from '../../shared/ai-view.js?v=cdb89d39fe1a';
+import { element, escapeHTML as html } from '../../shared/dom.js?v=5cfbefc47f66';
+import { setAIState, renderTextList } from '../../shared/ai-view.js?v=5cfbefc47f66';
 
 export function createGradingView() {
   const button = element('#grade-practice');
@@ -9,7 +9,7 @@ export function createGradingView() {
 
   function reset() {
     setAIState(nodes, 'idle');
-    button.textContent = '评分与建议';
+    button.textContent = 'AI 评分与建议';
   }
 
   function loading() {
@@ -24,7 +24,7 @@ export function createGradingView() {
 
   function showValidation() {
     setAIState(nodes, 'error', '请先写下至少 10 个字的解读，再查看评分。');
-    button.textContent = '评分与建议';
+    button.textContent = 'AI 评分与建议';
   }
 
   function showResult(value, completed) {
