@@ -1,10 +1,10 @@
-import { createNote, createLocalNotesStore } from '../../core/notes.js?v=fc8d92f11e1c';
-import { element, listen } from '../../shared/dom.js?v=fc8d92f11e1c';
-import { createNotesView } from './view.js?v=fc8d92f11e1c';
-import { createNotesAuth } from './auth.js?v=fc8d92f11e1c';
-import { createCloudNotesStore } from './cloud-store.js?v=fc8d92f11e1c';
+import { createNote, createLocalNotesStore } from '../../core/notes.js?v=83cc152c2770';
+import { element, listen } from '../../shared/dom.js?v=83cc152c2770';
+import { createNotesView } from './view.js?v=83cc152c2770';
+import { createNotesAuth } from './auth.js?v=83cc152c2770';
+import { createCloudNotesStore } from './cloud-store.js?v=83cc152c2770';
 
-export function mountNotes({ cards, signal, onNavigate }) {
+export function mountNotes({ cards, signal }) {
   const local = createLocalNotesStore(localStorage);
   const view = createNotesView(cards);
   let store = local;
@@ -18,11 +18,27 @@ export function mountNotes({ cards, signal, onNavigate }) {
   const login = element('#notes-login');
   const logout = element('#notes-logout');
   const scope = () => user?.id ?? 'local';
+  const notebook = element('#notebook-dialog');
+
+  function openNotebook() {
+    if (!notebook.open) notebook.showModal();
+    element('#note-body').focus({ preventScroll: window.innerWidth > 650 });
+  }
+
+  function closeNotebook() {
+    if (dirty) {
+      element('#notebook-unsaved').hidden = false;
+      element('#notebook-keep').focus();
+      return;
+    }
+    notebook.close();
+  }
 
   function choose(note = null) {
     current = note;
     dirty = false;
-    view.renderEditor(current);
+    element('#notebook-unsaved').hidden = true;
+    view.renderEditor(current, records.some(record => record.id === current?.id));
     view.renderList(records, current?.id);
   }
 
@@ -78,13 +94,39 @@ export function mountNotes({ cards, signal, onNavigate }) {
     busy(element('#note-save'), () => persist());
   }, signal);
   listen(element('#note-form'), 'input', () => { dirty = true; view.message('有未保存的修改。'); }, signal);
-  listen(element('#new-note'), 'click', () => { if (mayReplace()) { choose(); view.message(''); element('#note-title').focus(); } }, signal);
+  listen(element('#new-note'), 'click', () => { if (mayReplace()) { choose(); view.message(''); openNotebook(); element('#note-title').focus(); } }, signal);
   listen(element('#notes-list'), 'click', event => {
     const button = event.target.closest('[data-note-id]');
-    if (button && mayReplace()) { choose(records.find(note => note.id === button.dataset.noteId)); view.message(''); }
+    if (button && mayReplace()) { choose(records.find(note => note.id === button.dataset.noteId)); view.message(''); openNotebook(); }
   }, signal);
   listen(element('#notes-search'), 'input', () => view.renderList(records, current?.id), signal);
-  listen(element('#notes-filter'), 'change', () => view.renderList(records, current?.id), signal);
+  listen(element('.notes-filter-tabs'), 'click', event => {
+    const button = event.target.closest('[data-notes-filter]');
+    if (!button) return;
+    element('#notes-filter').value = button.dataset.notesFilter;
+    view.renderList(records, current?.id);
+  }, signal);
+  listen(element('.note-kind-tabs'), 'click', event => {
+    const button = event.target.closest('[data-note-kind]');
+    if (!button || button.disabled) return;
+    view.setKind(button.dataset.noteKind);
+    dirty = true; view.message('有未保存的修改。');
+  }, signal);
+  listen(element('#notebook-close'), 'click', closeNotebook, signal);
+  listen(element('#notebook-keep'), 'click', () => {
+    element('#notebook-unsaved').hidden = true;
+    element('#note-body').focus();
+  }, signal);
+  listen(element('#notebook-discard'), 'click', () => { choose(current); view.message(''); notebook.close(); }, signal);
+  listen(element('#notebook-save-close'), 'click', () => busy(element('#notebook-save-close'), async () => {
+    await persist(); notebook.close();
+  }), signal);
+  listen(notebook, 'cancel', event => { event.preventDefault(); closeNotebook(); }, signal);
+  listen(notebook, 'click', event => {
+    if (event.target !== notebook) return;
+    const bounds = notebook.getBoundingClientRect();
+    if (event.clientX < bounds.left || event.clientX > bounds.right || event.clientY < bounds.top || event.clientY > bounds.bottom) closeNotebook();
+  }, signal);
   listen(element('#note-trash'), 'click', () => busy(element('#note-trash'), async () => {
     if (!current || !mayReplace()) return;
     const restoring = Boolean(current.trashedAt);
@@ -157,12 +199,12 @@ export function mountNotes({ cards, signal, onNavigate }) {
       const saved = await persist({ ...note, createdAt: existing?.createdAt ?? note.createdAt });
       if (expected !== revision) return;
       element('#notes-filter').value = 'all'; element('#notes-search').value = '';
-      choose(saved); onNavigate('notes');
+      choose(saved); openNotebook();
     },
     newStudy(card, reverse = false) {
       if (!mayReplace()) return;
       choose(createNote({ title: `${card.name} · 学习笔记`, snapshot: { cards: [{ id: card.id, reverse }], question: '', spreadName: '牌义学习' } }));
-      dirty = true; onNavigate('notes'); element('#note-body').focus();
+      dirty = true; view.message(''); openNotebook();
     },
   };
 }

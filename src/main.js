@@ -1,14 +1,14 @@
-import { loadCatalog } from './shared/catalog-loader.js?v=fc8d92f11e1c';
-import { element } from './shared/dom.js?v=fc8d92f11e1c';
-import { createNavigation } from './shared/navigation.js?v=fc8d92f11e1c';
-import { mountCardDialog } from './shared/card-dialog.js?v=fc8d92f11e1c';
-import { mountDraw } from './features/draw/controller.js?v=fc8d92f11e1c';
-import { mountLibrary } from './features/library/controller.js?v=fc8d92f11e1c';
-import { mountPractice } from './features/practice/controller.js?v=fc8d92f11e1c';
-import { registerTarotTools } from './integrations/webmcp.js?v=fc8d92f11e1c';
-import { configureRuntime } from './shared/runtime.js?v=fc8d92f11e1c';
-import { mountAIAccess } from './shared/ai-access.js?v=fc8d92f11e1c';
-import { mountNotes } from './features/notes/controller.js?v=fc8d92f11e1c';
+import { loadCatalog } from './shared/catalog-loader.js?v=83cc152c2770';
+import { element } from './shared/dom.js?v=83cc152c2770';
+import { createNavigation } from './shared/navigation.js?v=83cc152c2770';
+import { mountCardDialog } from './shared/card-dialog.js?v=83cc152c2770';
+import { mountDraw } from './features/draw/controller.js?v=83cc152c2770';
+import { mountLibrary } from './features/library/controller.js?v=83cc152c2770';
+import { mountPractice } from './features/practice/controller.js?v=83cc152c2770';
+import { registerTarotTools } from './integrations/webmcp.js?v=83cc152c2770';
+import { configureRuntime } from './shared/runtime.js?v=83cc152c2770';
+import { mountAIAccess } from './shared/ai-access.js?v=83cc152c2770';
+import { mountNotes } from './features/notes/controller.js?v=83cc152c2770';
 
 async function startApplication() {
   const lifetime = new AbortController();
@@ -24,7 +24,7 @@ async function startApplication() {
   const { aiAvailable } = configureRuntime(document);
   mountAIAccess(document, signal);
   let navigation;
-  const notes = mountNotes({ cards: catalog.cards, signal, onNavigate: page => navigation.show(page) });
+  const notes = mountNotes({ cards: catalog.cards, signal });
   await notes.initialize();
   const draw = mountDraw({ ...catalog, signal, aiAvailable, onSave: notes.saveSnapshot });
   const library = mountLibrary({ cards: catalog.cards, guides: catalog.guides, signal });

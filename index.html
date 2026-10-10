@@ -8,9 +8,9 @@
     <title>懒懒塔罗 · 学习与练习</title>
     <meta name="description" content="懒懒塔罗：78 张韦特塔罗牌义、9 种牌阵、随机抽牌、AI 解读与练习评分。">
     <link rel="icon" type="image/png" href="assets/lanlan-witch-logo.png">
-    <link rel="stylesheet" href="styles/index.css?v=fc8d92f11e1c">
-    <script type="module" src="src/main.js?v=fc8d92f11e1c"></script>
-  <meta name="tarot-supabase-url" content="https://fgutacbejaiaktsecvuc.supabase.co"><meta name="tarot-supabase-key" content="sb_publishable_I3So_DK3j0ovOxiBffTgMg_bkYvcU49"><meta name="tarot-assets-version" content="fc8d92f11e1c"></head>
+    <link rel="stylesheet" href="styles/index.css?v=83cc152c2770">
+    <script type="module" src="src/main.js?v=83cc152c2770"></script>
+  <meta name="tarot-supabase-url" content="https://fgutacbejaiaktsecvuc.supabase.co"><meta name="tarot-supabase-key" content="sb_publishable_I3So_DK3j0ovOxiBffTgMg_bkYvcU49"><meta name="tarot-assets-version" content="83cc152c2770"></head>
   <body data-page="home">
     <header class="header">
       <a class="brand" href="#/home" aria-label="懒懒塔罗首页"><img class="brand-logo" src="assets/lanlan-witch-logo.png" alt="懒羊羊女巫 logo" width="80" height="80"><span>懒懒塔罗<small>MOONLIT TAROT</small></span></a>
@@ -211,10 +211,7 @@
       <section id="notes" class="page notes-page" aria-labelledby="notes-title">
         <div class="section-heading"><div><p class="eyebrow">MY JOURNAL</p><h1 id="notes-title">我的笔记</h1><p class="intro">留下牌面的细节，也留下当时的想法。</p></div><button id="new-note" class="primary">写一篇笔记</button></div>
         <div class="notes-account"><p id="notes-storage">本机笔记 · 仅保存在当前浏览器</p><div><button id="notes-login" class="outline" hidden>邮箱登录</button><button id="notes-logout" class="text-button" hidden>退出登录</button><button id="notes-import" class="outline" hidden>导入本机笔记</button><button id="notes-export" class="text-button">导出备份</button></div></div>
-        <div class="notes-layout"><aside class="panel notes-sidebar"><label class="sr-only" for="notes-search">搜索笔记</label><input id="notes-search" type="search" placeholder="搜索标题、内容或问题"><label class="sr-only" for="notes-filter">笔记分类</label><select id="notes-filter"><option value="all">全部记录</option><option value="study">学习笔记</option><option value="draw">抽牌记录</option><option value="practice">练习记录</option><option value="trash">废纸篓</option></select><p id="notes-count" class="muted">0 条记录</p><div id="notes-list"></div></aside>
-        <div class="panel notes-editor"><p class="eyebrow" id="note-editor-heading">写一篇笔记</p><p id="note-updated" class="muted"></p><div id="note-context" hidden></div><form id="note-form"><label for="note-title">标题</label><input id="note-title" placeholder="给这次记录起个名字" maxlength="120"><label for="note-kind">分类</label><select id="note-kind"><option value="study">学习笔记</option><option value="draw">抽牌记录</option><option value="practice">练习记录</option></select><label for="note-body">笔记内容</label><textarea id="note-body" maxlength="20000" placeholder="看见了哪些细节？
-这张牌让你想到了什么？
-回过头看，有没有新的理解？"></textarea><div class="note-actions"><button id="note-save" type="submit" class="primary">保存笔记</button><button id="note-trash" type="button" class="text-button" hidden>移入废纸篓</button></div></form><p id="note-message" role="status" aria-live="polite"></p></div></div>
+        <div class="notes-shelf"><label class="sr-only" for="notes-search">搜索笔记</label><input id="notes-search" type="search" placeholder="搜索标题、内容或问题"><input id="notes-filter" type="hidden" value="all"><div class="notes-filter-tabs" role="group" aria-label="筛选笔记"><button data-notes-filter="all" aria-pressed="true">全部记录</button><button data-notes-filter="study" aria-pressed="false">学习笔记</button><button data-notes-filter="draw" aria-pressed="false">抽牌记录</button><button data-notes-filter="practice" aria-pressed="false">练习记录</button><button data-notes-filter="trash" aria-pressed="false">废纸篓</button></div><p id="notes-count" class="muted">0 条记录</p><div id="notes-list"></div><p id="notes-shelf-message" role="status" aria-live="polite"></p></div>
       </section>
       <section id="guide" class="page guide-page" aria-labelledby="guide-title">
         <p class="eyebrow">TAROT BASICS</p>
@@ -265,6 +262,9 @@
       <p>塔罗学习与练习</p>
       <button data-tab="guide" class="text-button">图片与参考资料</button>
     </footer>
+    <dialog id="notebook-dialog" aria-labelledby="note-editor-heading"><button id="notebook-close" type="button" aria-label="合上笔记本">×</button><div class="notebook"><aside class="notebook-page notebook-reference"><p class="eyebrow">MOONLIT JOURNAL</p><h2>留在这一页</h2><p class="notebook-intro">记下牌面的线索，<br>也记下此刻的想法。</p><div id="note-context" hidden></div><div class="notebook-mark" aria-hidden="true">☾</div><span class="notebook-folio">懒懒 · 私人笔记</span></aside><div class="notebook-page notes-editor"><h2 id="note-editor-heading">写一篇笔记</h2><p id="note-updated" class="muted"></p><form id="note-form"><label for="note-title">标题</label><input id="note-title" placeholder="给这次记录起个名字" maxlength="120"><input id="note-kind" type="hidden" value="study"><div class="note-kind-tabs" role="group" aria-label="笔记分类"><button type="button" data-note-kind="study" aria-pressed="true">学习笔记</button><button type="button" data-note-kind="draw" aria-pressed="false">抽牌记录</button><button type="button" data-note-kind="practice" aria-pressed="false">练习记录</button></div><label for="note-body">笔记内容</label><textarea id="note-body" maxlength="20000" placeholder="看见了哪些细节？
+这张牌让你想到了什么？
+回过头看，有没有新的理解？"></textarea><div class="note-actions"><button id="note-save" type="submit" class="primary">保存笔记</button><button id="note-trash" type="button" class="text-button" hidden>移入废纸篓</button></div></form><p id="note-message" role="status" aria-live="polite"></p><div id="notebook-unsaved" class="notebook-unsaved" role="alert" hidden><p>这一页还有未保存的修改。</p><div><button id="notebook-keep" type="button">继续写</button><button id="notebook-discard" type="button">放弃修改</button><button id="notebook-save-close" type="button">保存并合上</button></div></div></div></div></dialog>
     <dialog id="notes-auth-dialog" aria-labelledby="notes-auth-title"><button id="notes-auth-close" class="dialog-close" aria-label="关闭邮箱登录">×</button><p class="eyebrow">YOUR PRIVATE JOURNAL</p><h2 id="notes-auth-title">邮箱登录</h2><p class="muted">点击邮件中的登录链接，就可以在不同设备查看自己的笔记。笔记仅对你可见。</p><form id="notes-auth-form"><label for="notes-email">邮箱地址</label><input id="notes-email" type="email" autocomplete="email" required maxlength="254"><button id="notes-auth-submit" type="submit" class="primary">发送登录链接</button><p id="notes-auth-message" role="status"></p></form></dialog>
     <dialog id="card-dialog" aria-labelledby="detail-title">
       <button id="close-dialog" class="dialog-close" aria-label="关闭牌义详情">×</button>

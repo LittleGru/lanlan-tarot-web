@@ -1,5 +1,5 @@
-import { element, listen } from './dom.js?v=fc8d92f11e1c';
-import { createPageRouter, PAGE_TITLES } from '../core/routing.js?v=fc8d92f11e1c';
+import { element, listen } from './dom.js?v=83cc152c2770';
+import { createPageRouter, PAGE_TITLES } from '../core/routing.js?v=83cc152c2770';
 
 export function createNavigation({ onEnter, signal }) {
   function render(page) {

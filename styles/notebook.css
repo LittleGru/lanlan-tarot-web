@@ -1,0 +1,74 @@
+/* The notebook dialog is shared by learning, draws, practice and the journal. */
+#notebook-dialog { width:min(1100px,calc(100vw - 48px)); max-width:1100px; max-height:90dvh; padding:0; border:0; border-radius:14px; background:#34243e; color:#342839; box-shadow:0 32px 100px #000b; overflow:auto; }
+#notebook-dialog::backdrop { background:#08040ed6; backdrop-filter:blur(6px); }
+#notebook-dialog[open] { animation:notebook-arrive .55s cubic-bezier(.2,.75,.25,1) both; }
+.notebook { display:grid; grid-template-columns:minmax(0,.82fr) minmax(0,1fr); gap:0; padding:14px; position:relative; perspective:1600px; }
+.notebook::after { content:''; position:absolute; top:16px; bottom:16px; left:calc(45.05% + 1px); width:14px; background:linear-gradient(90deg,#40302430,transparent); pointer-events:none; }
+.notebook-page { min-width:0; padding:36px; background:#f1e8d8; border-radius:4px; }
+.notebook-reference { position:relative; background:linear-gradient(90deg,#e9dec9 0%,#f1e8d8 80%,#d8cbb5 100%); transform-origin:right center; }
+#notebook-dialog[open] .notebook-reference { animation:notebook-unfold .7s cubic-bezier(.2,.75,.25,1) both; }
+.notebook-page h2 { margin:0 0 8px; font:500 28px/1.5 'Noto Serif SC',serif; color:#49364e; }
+.notebook-page .eyebrow { color:#897047; font-size:11px; margin:0 0 18px; }
+.notebook-intro { color:#776970; font:16px/2 'Noto Serif SC',serif; }
+.notebook-mark { color:#ae956657; font-size:120px; line-height:1.6; text-align:center; margin:36px 0; }
+.notebook-folio { display:block; text-align:center; margin-top:24px; font-size:11px; letter-spacing:3px; color:#8a796c; }
+.notebook-page.notes-editor { background:linear-gradient(90deg,#e6dac5,#f7f0e3 5%,#f7f0e3); }
+.notebook-page #note-updated { color:#8b7b80; margin:0 0 20px; }
+.notebook-page label { display:block; color:#7b646d; margin:16px 0 6px; font-size:12px; }
+.notebook-page input:not([type=hidden]) { width:100%; border:0; border-bottom:1px solid #b5a38c; border-radius:0; padding:8px 0 12px; background:transparent; color:#3b2c3f; font:500 20px/1.7 'Noto Serif SC',serif; }
+.notebook-page textarea { width:100%; display:block; border:0; border-radius:0; padding:0 4px; background:repeating-linear-gradient(transparent 0,transparent 35px,#ac95752c 35px,#ac95752c 36px); color:#3b2c3f; font:16px/36px var(--font); min-height:324px; resize:vertical; }
+.notebook-page textarea::placeholder,.notebook-page input::placeholder { color:#9c8c91; }
+.notebook-page input:focus,.notebook-page textarea:focus { outline:0; box-shadow:0 2px 0 #ab8f61; }
+.note-kind-tabs { gap:6px; margin:14px 0 22px; }
+.note-kind-tabs button { border:0; background:transparent; color:#8b7983; padding:5px 10px; border-radius:4px; font-size:12px; }
+.note-kind-tabs button[aria-pressed=true] { color:#5b4165; background:#77528716; box-shadow:inset 0 -2px #9c7d65; }
+.note-kind-tabs button:disabled { cursor:default; opacity:1; }
+.notebook-page .note-actions { justify-content:space-between; gap:12px; }
+.notebook-page .note-actions .primary { color:#f7efe0; background:#604365; border:1px solid #604365; box-shadow:none; }
+.notebook-page .text-button { color:#78616f; }
+.notebook-page #note-message { color:#755a79; margin-bottom:0; }
+.notebook-page .note-question { color:#665366; font-size:14px; }
+.notebook-page .note-card-strip { flex-wrap:wrap; justify-content:center; gap:14px 8px; overflow:visible; }
+.notebook-page .note-card-strip button { color:#4e3a52; min-width:76px; max-width:95px; }
+.notebook-page .note-card-strip img { width:60px; height:102px; }
+.notebook-page .note-card-strip span,.notebook-page .note-card-strip small { color:#8a6e66; }
+.notebook-page .saved-feedback { border-color:#ae957b70; color:#665366; padding:12px; font-size:12px; }
+.notebook-page .saved-feedback summary,.notebook-page .saved-feedback h4 { color:#6b4c72; }
+#notebook-close { position:sticky; top:16px; float:right; margin:16px 16px -48px 0; z-index:4; width:32px; height:32px; padding:0; border:0; border-radius:50%; color:#705a73; background:#eee4d4; font-size:24px; line-height:1; }
+@keyframes notebook-arrive { from { opacity:0; transform:translateY(30px) scale(.93) rotate(-2deg); } to { opacity:1; transform:none; } }
+@keyframes notebook-unfold { from { transform:rotateY(34deg); opacity:.4; } to { transform:rotateY(0); opacity:1; } }
+@media(max-width:650px) {
+  #notebook-dialog { width:calc(100vw - 20px); max-height:94dvh; }
+  .notebook { display:flex; flex-direction:column; padding:8px; }
+  .notebook::after { display:none; }
+  .notebook-page { padding:24px; }
+  .notebook-reference { padding-bottom:16px; }
+  .notebook-reference h2 { font-size:22px; }
+  .notebook-intro,.notebook-mark,.notebook-folio { display:none; }
+  .notebook-reference .note-card-strip { flex-wrap:nowrap; justify-content:flex-start; overflow:auto; }
+  .notebook-page.notes-editor { padding:24px; }
+  .notebook-page textarea { min-height:288px; }
+}
+@media(prefers-reduced-motion:reduce) { #notebook-dialog[open],#notebook-dialog[open] .notebook-reference { animation:none; } }
+@media(min-width:651px) {
+  .notebook-page { padding:28px; }
+  .notebook-page textarea { min-height:252px; }
+  .notebook-mark { position:absolute; bottom:40px; left:0; width:100%; margin:0; font-size:86px; pointer-events:none; }
+  .notebook-folio { position:absolute; bottom:26px; left:0; width:100%; margin:0; }
+  .notebook-reference { padding-bottom:150px; }
+  .notebook-page .note-card-strip button:only-child { max-width:150px; }
+  .notebook-page .note-card-strip button:only-child img { width:116px; height:196px; }
+}
+.notebook-page .note-actions { position:sticky; bottom:0; background:#f7f0e3; padding:12px 0; margin-top:12px; z-index:1; }
+.notebook-unsaved { position:sticky; bottom:0; padding:14px; border:1px solid #a38b6c; border-radius:6px; background:#efe2cb; color:#654e61; z-index:3; }
+.notebook-unsaved p { margin:0 0 10px; font-size:13px; }
+.notebook-unsaved>div { display:flex; flex-wrap:wrap; gap:8px; }
+.notebook-unsaved button { background:#f7f0e3; color:#654e61; border:1px solid #b7a184; border-radius:4px; padding:6px 10px; font-size:12px; }
+#notebook-dialog::backdrop { background:#08040eb8; backdrop-filter:blur(3px); }
+@media(max-width:650px) {
+  .notebook-reference h2 { display:none; }
+  .notebook-reference .eyebrow { margin-bottom:10px; }
+  .notebook-reference .note-card-strip { padding:0 0 4px; }
+  .notebook-reference .note-card-strip img { width:42px; height:72px; margin:6px auto; }
+  .notebook-reference .note-question { margin:8px 0 12px; }
+}

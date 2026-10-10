@@ -1,12 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700&family=Noto+Serif+SC:wght@400;500;600&display=swap');
 
 /* Keep the layer order explicit: foundations, breakpoints, theme, brand, spreads. */
-@import url('./base.css?v=fc8d92f11e1c');
-@import url('./responsive.css?v=fc8d92f11e1c');
-@import url('./theme.css?v=fc8d92f11e1c');
-@import url('./branding.css?v=fc8d92f11e1c');
-@import url('./spreads.css?v=fc8d92f11e1c');
-@import url('./ai.css?v=fc8d92f11e1c');
-@import url('./home.css?v=fc8d92f11e1c');
-@import url('./study.css?v=fc8d92f11e1c');
-@import url('./notes.css?v=fc8d92f11e1c');
+@import url('./base.css?v=83cc152c2770');
+@import url('./responsive.css?v=83cc152c2770');
+@import url('./theme.css?v=83cc152c2770');
+@import url('./branding.css?v=83cc152c2770');
+@import url('./spreads.css?v=83cc152c2770');
+@import url('./ai.css?v=83cc152c2770');
+@import url('./home.css?v=83cc152c2770');
+@import url('./study.css?v=83cc152c2770');
+@import url('./notes.css?v=83cc152c2770');
+@import url('./notebook.css?v=83cc152c2770');
