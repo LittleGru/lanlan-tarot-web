@@ -10,7 +10,6 @@
 .notebook-page h2 { margin:0 0 8px; font:500 28px/1.5 'Noto Serif SC',serif; color:#49364e; }
 .notebook-page .eyebrow { color:#897047; font-size:11px; margin:0 0 18px; }
 .notebook-intro { color:#776970; font:16px/2 'Noto Serif SC',serif; }
-.notebook-mark { color:#ae956657; font-size:120px; line-height:1.6; text-align:center; margin:36px 0; }
 .notebook-folio { display:block; text-align:center; margin-top:24px; font-size:11px; letter-spacing:3px; color:#8a796c; }
 .notebook-page.notes-editor { background:linear-gradient(90deg,#e6dac5,#f7f0e3 5%,#f7f0e3); }
 .notebook-page #note-updated { color:#8b7b80; margin:0 0 20px; }
@@ -44,7 +43,7 @@
   .notebook-page { padding:24px; }
   .notebook-reference { padding-bottom:16px; }
   .notebook-reference h2 { font-size:22px; }
-  .notebook-intro,.notebook-mark,.notebook-folio { display:none; }
+  .notebook-intro,.notebook-folio { display:none; }
   .notebook-reference .note-card-strip { flex-wrap:nowrap; justify-content:flex-start; overflow:auto; }
   .notebook-page.notes-editor { padding:24px; }
   .notebook-page textarea { min-height:288px; }
@@ -53,9 +52,8 @@
 @media(min-width:651px) {
   .notebook-page { padding:28px; }
   .notebook-page textarea { min-height:252px; }
-  .notebook-mark { position:absolute; bottom:40px; left:0; width:100%; margin:0; font-size:86px; pointer-events:none; }
   .notebook-folio { position:absolute; bottom:26px; left:0; width:100%; margin:0; }
-  .notebook-reference { padding-bottom:150px; }
+  .notebook-reference { padding-bottom:64px; }
   .notebook-page .note-card-strip button:only-child { max-width:150px; }
   .notebook-page .note-card-strip button:only-child img { width:116px; height:196px; }
 }

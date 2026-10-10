@@ -1,8 +1,8 @@
-import { createNote } from '../../core/notes.js?v=7887522df624';
-import { element, listen } from '../../shared/dom.js?v=7887522df624';
-import { createNotesView } from './view.js?v=7887522df624';
-import { createNotesAuth } from './auth.js?v=7887522df624';
-import { createCloudNotesStore } from './cloud-store.js?v=7887522df624';
+import { createNote } from '../../core/notes.js?v=c1a3470ea381';
+import { element, listen } from '../../shared/dom.js?v=c1a3470ea381';
+import { createNotesView } from './view.js?v=c1a3470ea381';
+import { createNotesAuth } from './auth.js?v=c1a3470ea381';
+import { createCloudNotesStore } from './cloud-store.js?v=c1a3470ea381';
 
 export function mountNotes({ cards, signal }) {
   const view = createNotesView(cards);

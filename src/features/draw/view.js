@@ -1,6 +1,6 @@
-import { SPREAD_LEVELS } from '../../core/catalog.js?v=7887522df624';
-import { element, escapeHTML as html } from '../../shared/dom.js?v=7887522df624';
-import { renderCardFace, renderCardCaption, renderTags, orientationLabel } from '../../shared/card-view.js?v=7887522df624';
+import { SPREAD_LEVELS } from '../../core/catalog.js?v=c1a3470ea381';
+import { element, escapeHTML as html } from '../../shared/dom.js?v=c1a3470ea381';
+import { renderCardFace, renderCardCaption, renderTags, orientationLabel } from '../../shared/card-view.js?v=c1a3470ea381';
 
 function renderSlot(position, index, drawn) {
   return `
