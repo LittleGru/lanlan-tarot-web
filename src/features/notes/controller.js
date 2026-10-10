@@ -1,13 +1,12 @@
-import { createNote, createLocalNotesStore } from '../../core/notes.js?v=83cc152c2770';
-import { element, listen } from '../../shared/dom.js?v=83cc152c2770';
-import { createNotesView } from './view.js?v=83cc152c2770';
-import { createNotesAuth } from './auth.js?v=83cc152c2770';
-import { createCloudNotesStore } from './cloud-store.js?v=83cc152c2770';
+import { createNote } from '../../core/notes.js?v=7887522df624';
+import { element, listen } from '../../shared/dom.js?v=7887522df624';
+import { createNotesView } from './view.js?v=7887522df624';
+import { createNotesAuth } from './auth.js?v=7887522df624';
+import { createCloudNotesStore } from './cloud-store.js?v=7887522df624';
 
 export function mountNotes({ cards, signal }) {
-  const local = createLocalNotesStore(localStorage);
   const view = createNotesView(cards);
-  let store = local;
+  let store = null;
   let records = [];
   let current = null;
   let dirty = false;
@@ -17,8 +16,32 @@ export function mountNotes({ cards, signal }) {
   const drafts = new Map();
   const login = element('#notes-login');
   const logout = element('#notes-logout');
-  const scope = () => user?.id ?? 'local';
+  const scope = () => user?.id ?? 'signed-out';
+  let pendingAction = null;
   const notebook = element('#notebook-dialog');
+
+  function requireLogin(action) {
+    if (user && store) return true;
+    pendingAction = action;
+    element('#notes-auth-message').textContent = auth ? '登录后再继续，笔记将保存到你的私人云端空间。' : '邮箱登录暂未开放，请稍后再试。';
+    element('#notes-auth-dialog').showModal();
+    return false;
+  }
+
+  function updateAccountView() {
+    element('#notes-storage').textContent = user ? `个人云端笔记 · ${user.email ?? ''}` : '登录后查看你的云端笔记';
+    login.hidden = Boolean(user);
+    logout.hidden = !user;
+    element('.notes-shelf').hidden = !user;
+    element('#notes-signed-out').hidden = Boolean(user);
+    element('#notes-export').hidden = !user;
+    element('#notes-auth-submit').disabled = !auth;
+  }
+
+  function newNote() {
+    if (!requireLogin(newNote) || !mayReplace()) return;
+    choose(); view.message(''); openNotebook(); element('#note-title').focus();
+  }
 
   function openNotebook() {
     if (!notebook.open) notebook.showModal();
@@ -43,6 +66,7 @@ export function mountNotes({ cards, signal }) {
   }
 
   async function refresh() {
+    if (!store || !user) return;
     const expected = revision;
     try {
       const value = await store.list();
@@ -53,6 +77,7 @@ export function mountNotes({ cards, signal }) {
   }
 
   async function persist(note = null) {
+    if (!store || !user) throw new Error('请先登录，再保存到云端笔记。');
     const expected = revision;
     const next = note ?? { ...(current ?? createNote({})), ...view.values() };
     const saved = await store.save(next);
@@ -60,26 +85,30 @@ export function mountNotes({ cards, signal }) {
     const index = records.findIndex(item => item.id === saved.id);
     if (index < 0) records.unshift(saved); else records[index] = saved;
     choose(saved);
-    view.message(user ? '已保存到你的个人笔记。' : '已保存在这台设备的浏览器中。');
+    view.message('已保存到你的云端笔记。');
     return saved;
   }
 
   function mayReplace() { return !dirty || window.confirm('当前修改还没有保存。要离开这篇笔记吗？'); }
 
   async function switchAccount(nextUser, client) {
-    if (nextUser?.id === user?.id && (nextUser || store === local)) return;
+    if (nextUser?.id === user?.id && (nextUser || store === null)) return;
     if (dirty) drafts.set(scope(), { ...(current ?? createNote({})), ...view.values() });
     user = nextUser;
     revision += 1;
-    store = user ? createCloudNotesStore(client, user.id) : local;
+    store = user ? createCloudNotesStore(client, user.id) : null;
     records = [];
     choose(drafts.get(scope()) ?? null);
     if (drafts.has(scope())) { dirty = true; view.message('已恢复上次尚未保存的草稿。'); }
-    element('#notes-storage').textContent = user ? `个人云端笔记 · ${user.email ?? ''}` : '本机笔记 · 仅保存在当前浏览器';
-    login.hidden = Boolean(user);
-    logout.hidden = !user;
-    element('#notes-import').hidden = !user;
+    if (!user && notebook.open) notebook.close();
+    updateAccountView();
     await refresh();
+    if (user && pendingAction) {
+      const action = pendingAction;
+      pendingAction = null;
+      element('#notes-auth-dialog').close();
+      try { await action(); } catch (error) { view.message(error.message); }
+    }
   }
 
   async function busy(button, task) {
@@ -94,7 +123,7 @@ export function mountNotes({ cards, signal }) {
     busy(element('#note-save'), () => persist());
   }, signal);
   listen(element('#note-form'), 'input', () => { dirty = true; view.message('有未保存的修改。'); }, signal);
-  listen(element('#new-note'), 'click', () => { if (mayReplace()) { choose(); view.message(''); openNotebook(); element('#note-title').focus(); } }, signal);
+  listen(element('#new-note'), 'click', newNote, signal);
   listen(element('#notes-list'), 'click', event => {
     const button = event.target.closest('[data-note-id]');
     if (button && mayReplace()) { choose(records.find(note => note.id === button.dataset.noteId)); view.message(''); openNotebook(); }
@@ -142,8 +171,10 @@ export function mountNotes({ cards, signal }) {
     link.href = url; link.download = `moonlit-notes-${new Date().toISOString().slice(0, 10)}.json`; link.click();
     setTimeout(() => URL.revokeObjectURL(url), 1000);
   }, signal);
-  listen(login, 'click', () => { element('#notes-auth-dialog').showModal(); }, signal);
-  listen(element('#notes-auth-close'), 'click', () => element('#notes-auth-dialog').close(), signal);
+  listen(login, 'click', () => requireLogin(null), signal);
+  listen(element('#notes-start-login'), 'click', () => requireLogin(null), signal);
+  listen(element('#notes-auth-dialog'), 'cancel', () => { pendingAction = null; }, signal);
+  listen(element('#notes-auth-close'), 'click', () => { pendingAction = null; element('#notes-auth-dialog').close(); }, signal);
   listen(element('#notes-auth-form'), 'submit', event => {
     event.preventDefault();
     const button = element('#notes-auth-submit');
@@ -151,7 +182,7 @@ export function mountNotes({ cards, signal }) {
     (async () => {
       try {
         if (dirty) await persist();
-        if (!auth) throw new Error('邮箱登录暂未开放，笔记仍可保存在这台设备。');
+        if (!auth) throw new Error('邮箱登录暂未开放，请稍后再试。');
         await auth.signIn(element('#notes-email').value.trim());
         element('#notes-auth-message').textContent = '登录链接已发送，请查看邮箱并点击链接。';
       } catch (error) { element('#notes-auth-message').textContent = error.message; }
@@ -162,49 +193,42 @@ export function mountNotes({ cards, signal }) {
     if (dirty) await persist();
     await auth.signOut();
   }), signal);
-  listen(element('#notes-import'), 'click', () => busy(element('#notes-import'), async () => {
-    if (!user) return;
-    const ownStore = store;
-    const entries = await local.list();
-    const existingIds = new Set(records.map(note => note.id));
-    let count = 0;
-    for (const note of entries.filter(item => !existingIds.has(item.id))) {
-      if (store !== ownStore) break;
-      await ownStore.save(note); count += 1;
-    }
-    await refresh();
-    view.message(`已将 ${count} 条本机笔记复制到当前账号；本机原记录仍保留。`);
-  }), signal);
   listen(window, 'beforeunload', event => { if (dirty) { event.preventDefault(); event.returnValue = ''; } }, signal);
   choose();
+  updateAccountView();
+
+  async function saveSnapshot(snapshot, body = '') {
+    if (!requireLogin(() => saveSnapshot(snapshot, body))) throw new Error('请先登录，登录后继续保存这次记录。');
+    const expected = revision;
+    if (dirty) await persist();
+    if (expected !== revision) throw new Error('登录状态已变化，请重新保存这次记录。');
+    const existing = records.find(note => note.id === snapshot.id);
+    const note = createNote({ id: snapshot.id, title: existing?.title ?? snapshot.question.slice(0, 120),
+      body: existing?.body && snapshot.kind === 'draw' ? existing.body : body, kind: snapshot.kind, snapshot });
+    const saved = await persist({ ...note, createdAt: existing?.createdAt ?? note.createdAt });
+    if (expected !== revision) return;
+    element('#notes-filter').value = 'all'; element('#notes-search').value = '';
+    choose(saved); openNotebook();
+  }
+
+  function newStudy(card, reverse = false) {
+    if (!requireLogin(() => newStudy(card, reverse)) || !mayReplace()) return;
+    choose(createNote({ title: `${card.name} · 学习笔记`, snapshot: { cards: [{ id: card.id, reverse }], question: '', spreadName: '牌义学习' } }));
+    dirty = true; view.message(''); openNotebook();
+  }
 
   return {
     async initialize() {
       try {
         auth = await createNotesAuth(document, switchAccount);
-        login.hidden = !auth;
+        updateAccountView();
         if (auth?.user) await switchAccount(auth.user, auth.client);
         signal.addEventListener('abort', () => auth?.dispose(), { once: true });
-      } catch (error) { view.message(error.message); login.hidden = true; }
+      } catch (error) { view.message(error.message); element('#notes-auth-message').textContent = error.message; updateAccountView(); }
       await refresh();
     },
     enter: refresh,
-    async saveSnapshot(snapshot, body = '') {
-      const expected = revision;
-      if (dirty) await persist();
-      if (expected !== revision) throw new Error('登录状态已变化，请重新保存这次记录。');
-      const existing = records.find(note => note.id === snapshot.id);
-      const note = createNote({ id: snapshot.id, title: existing?.title ?? snapshot.question.slice(0, 120),
-        body: existing?.body && snapshot.kind === 'draw' ? existing.body : body, kind: snapshot.kind, snapshot });
-      const saved = await persist({ ...note, createdAt: existing?.createdAt ?? note.createdAt });
-      if (expected !== revision) return;
-      element('#notes-filter').value = 'all'; element('#notes-search').value = '';
-      choose(saved); openNotebook();
-    },
-    newStudy(card, reverse = false) {
-      if (!mayReplace()) return;
-      choose(createNote({ title: `${card.name} · 学习笔记`, snapshot: { cards: [{ id: card.id, reverse }], question: '', spreadName: '牌义学习' } }));
-      dirty = true; view.message(''); openNotebook();
-    },
+    saveSnapshot,
+    newStudy,
   };
 }

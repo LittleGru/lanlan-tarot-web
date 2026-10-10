@@ -42,3 +42,7 @@
 .notes-shelf #notes-list { display:grid; grid-template-columns:repeat(auto-fill,minmax(min(100%,270px),1fr)); gap:18px; max-height:none; }
 .notes-shelf .note-list-item { border:1px solid #9a7b4535; padding:24px; background:linear-gradient(135deg,#251a2d,#17101e); min-height:158px; }
 .notes-shelf .notes-empty { grid-column:1/-1; padding:64px 24px; text-align:center; border:1px dashed #9a7b4550; border-radius:8px; }
+.notes-signin-card { padding:64px 24px; border:1px solid #9a7b4550; border-radius:12px; text-align:center; background:radial-gradient(ellipse at 50% 0,#45304c55,transparent 75%); }
+.notes-signin-card h2 { font:500 30px/1.6 'Noto Serif SC',serif; margin:16px 0; }
+.notes-signin-card>p:not(.eyebrow) { color:var(--muted); font-size:15px; line-height:2; margin-bottom:28px; }
+@media(max-width:650px) { .notes-signin-card { padding:40px 20px; } .notes-signin-card h2 { font-size:24px; } .notes-signin-card br { display:none; } }

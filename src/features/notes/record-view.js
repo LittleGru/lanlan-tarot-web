@@ -1,4 +1,4 @@
-import { escapeHTML as html } from '../../shared/dom.js?v=83cc152c2770';
+import { escapeHTML as html } from '../../shared/dom.js?v=7887522df624';
 
 const list = (title, values) => values?.length
   ? `<h4>${title}</h4><ul>${values.map(value => `<li>${html(value)}</li>`).join('')}</ul>` : '';

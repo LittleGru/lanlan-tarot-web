@@ -1,4 +1,4 @@
-import { validateGrade, validateInterpretation } from './ai-contract.js?v=83cc152c2770';
+import { validateGrade, validateInterpretation } from './ai-contract.js?v=7887522df624';
 const kinds = new Set(['study', 'draw', 'practice']);
 export const NOTE_LIMIT = 300;
 
@@ -39,30 +39,3 @@ export function filterNotes(notes, { query = '', kind = 'all', trash = false } =
     .sort((a, b) => b.updatedAt.localeCompare(a.updatedAt));
 }
 
-export function createLocalNotesStore(storage, key = 'moonlit-notes-v1') {
-  function read() {
-    let stored;
-    try { stored = storage.getItem(key); }
-    catch { throw new Error('浏览器不允许保存笔记，请检查存储权限。'); }
-    if (!stored) return [];
-    try {
-      const value = JSON.parse(stored);
-      if (value.version !== 1 || !Array.isArray(value.notes) || value.notes.length > NOTE_LIMIT) throw new Error();
-      return value.notes.map(note => ({ ...createNote(note, note.createdAt), updatedAt: note.updatedAt, trashedAt: note.trashedAt ?? null }));
-    } catch { throw new Error('本机笔记无法读取，原记录已保留。'); }
-  }
-  return {
-    async list() { return read(); },
-    async save(note) {
-      const entries = read();
-      const index = entries.findIndex(entry => entry.id === note.id);
-      const clean = createNote(note, note.createdAt);
-      const saved = { ...clean, createdAt: index < 0 ? clean.createdAt : entries[index].createdAt, updatedAt: new Date().toISOString(), trashedAt: note.trashedAt ?? null };
-      if (index < 0) entries.push(saved); else entries[index] = saved;
-      if (entries.length > NOTE_LIMIT) throw new Error(`本机笔记最多保存 ${NOTE_LIMIT} 条，请先导出整理。`);
-      try { storage.setItem(key, JSON.stringify({ version: 1, notes: entries })); }
-      catch { throw new Error('保存失败，浏览器空间可能不足。请先复制文字或导出已有笔记。'); }
-      return saved;
-    },
-  };
-}

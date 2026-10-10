@@ -19,7 +19,7 @@ export async function createNotesAuth(document, onChange) {
       const redirect = `${location.origin}${location.pathname}`;
       const { error: signInError } = await client.auth.signInWithOtp({ email, options: { emailRedirectTo: redirect } });
       if (signInError?.code === 'email_address_not_authorized') {
-        throw new Error('网站发信服务尚在配置中，目前仅限项目成员邮箱登录。你的本机笔记仍可正常使用。');
+        throw new Error('网站发信服务尚在配置中，目前仅限项目成员邮箱登录。笔记需要登录后才能保存到云端。');
       }
       if (signInError?.status === 429 || signInError?.code === 'over_email_send_rate_limit') {
         throw new Error('登录邮件发送过于频繁，请稍后再试。');
